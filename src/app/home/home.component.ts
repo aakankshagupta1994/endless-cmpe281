@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
+import { DynamodbsrvService } from '../dynamodbsrv.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
