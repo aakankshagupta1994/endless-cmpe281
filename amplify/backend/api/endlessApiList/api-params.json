@@ -1,0 +1,42 @@
+{
+  "paths": [
+    {
+      "name": "/diets",
+      "lambdaFunction": "manageEndlessAPIs",
+      "privacy": {
+        "private": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ]
+      },
+      "policyResourceName": "/diets"
+    }
+  ],
+  "resourceName": "endlessApiList",
+  "apiName": "endlessApiList",
+  "functionArns": [
+    {
+      "lambdaFunction": "manageEndlessAPIs"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 0,
+    "authRoleName": "amplify-endlesscmpe281-dev-164341-authRole",
+    "unAuthRoleName": "amplify-endlesscmpe281-dev-164341-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "manageEndlessAPIs",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}
