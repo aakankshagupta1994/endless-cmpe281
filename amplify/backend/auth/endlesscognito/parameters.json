@@ -1,8 +1,6 @@
 {
-    "identityPoolName": "endlesscmpe281_identitypool_2d4c9aa6",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "endles2d4c9aa6",
-    "userPoolName": "endlesscmpe281_userpool_2d4c9aa6",
+    "resourceNameTruncated": "endles8c2ec5cc",
+    "userPoolName": "endlesscognitopool",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,7 +16,9 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email"
+        "email",
+        "gender",
+        "name"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
@@ -29,11 +29,11 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "endles2d4c9aa6_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "endles8c2ec5cc_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "authSelections": "identityPoolAndUserPool",
-    "resourceName": "cognito2d4c9aa6",
-    "sharedId": "2d4c9aa6",
+    "sharedId": "8c2ec5cc",
+    "resourceName": "endlesscognito",
+    "authSelections": "userPoolOnly",
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -46,14 +46,26 @@
             "Arn"
         ]
     },
+    "useDefault": "manual",
+    "userPoolGroups": true,
+    "adminQueries": true,
+    "triggers": "{}",
     "hostedUI": true,
-    "useDefault": "defaultSocial",
-    "hostedUIDomainName": "endlesscmpe281d03896cf-d03896cf",
+    "hostedUIDomainName": "endlesscmpe2818c2ec5cc-8c2ec5cc",
     "authProvidersUserPool": [],
     "hostedUIProviderMeta": "[]",
-    "userPoolGroupList": [],
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}",
+    "userPoolGroupList": [
+        "endlesscognitouserpoolgroup"
+    ],
+    "adminQueryGroup": "endlesscognitouserpoolgroup",
     "serviceName": "Cognito",
-    "dependsOn": [],
-    "authProviders": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}"
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": false,
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "breakCircularDependency": true,
+    "permissions": [],
+    "dependsOn": []
 }

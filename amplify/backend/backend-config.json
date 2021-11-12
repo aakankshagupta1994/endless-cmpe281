@@ -4,19 +4,50 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "AdminQueries3a4c3311": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "endlesscognito",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
     }
   },
   "auth": {
-    "cognito2d4c9aa6": {
-      "service": "Cognito",
-      "serviceType": "managed",
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
       "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "endlesscognito",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID"
+          ]
+        }
+      ]
+    },
+    "endlesscognito": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
       "frontendAuthConfig": {
-        "loginMechanisms": [
-          "PREFERRED_USERNAME"
-        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
         "signupAttributes": [
-          "EMAIL"
+          "EMAIL",
+          "GENDER",
+          "NAME"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
@@ -29,8 +60,7 @@
         "verificationMechanisms": [
           "EMAIL"
         ]
-      },
-      "dependsOn": []
+      }
     }
   },
   "api": {
@@ -44,6 +74,28 @@
           "attributes": [
             "Name",
             "Arn"
+          ]
+        }
+      ]
+    },
+    "AdminQueries": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "authorizationType": "AMAZON_COGNITO_USER_POOLS",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "endlesscognito",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "AdminQueries3a4c3311",
+          "attributes": [
+            "Arn",
+            "Name"
           ]
         }
       ]
