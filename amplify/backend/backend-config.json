@@ -7,14 +7,14 @@
     }
   },
   "auth": {
-    "cognito2d4c9aa6": {
+    "endlesscognito": {
       "service": "Cognito",
-      "serviceType": "managed",
       "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
       "frontendAuthConfig": {
-        "loginMechanisms": [
-          "PREFERRED_USERNAME"
-        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
         "signupAttributes": [
           "EMAIL"
         ],
@@ -29,8 +29,7 @@
         "verificationMechanisms": [
           "EMAIL"
         ]
-      },
-      "dependsOn": []
+      }
     }
   },
   "api": {

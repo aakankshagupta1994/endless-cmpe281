@@ -1,8 +1,6 @@
 {
-    "identityPoolName": "endlesscmpe281_identitypool_2d4c9aa6",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "endles2d4c9aa6",
-    "userPoolName": "endlesscmpe281_userpool_2d4c9aa6",
+    "resourceNameTruncated": "endles0e6b06da",
+    "userPoolName": "endlesscognitouserpool",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -29,11 +27,11 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "endles2d4c9aa6_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "endles0e6b06da_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "authSelections": "identityPoolAndUserPool",
-    "resourceName": "cognito2d4c9aa6",
-    "sharedId": "2d4c9aa6",
+    "sharedId": "0e6b06da",
+    "resourceName": "endlesscognito",
+    "authSelections": "userPoolOnly",
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -46,14 +44,24 @@
             "Arn"
         ]
     },
+    "useDefault": "manual",
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": "{}",
     "hostedUI": true,
-    "useDefault": "defaultSocial",
-    "hostedUIDomainName": "endlesscmpe281d03896cf-d03896cf",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": false,
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "breakCircularDependency": true,
+    "permissions": [],
     "dependsOn": [],
+    "hostedUIDomainName": "endlesscmpe281be41eb25-be41eb25",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
     "authProviders": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\",\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}"
 }
