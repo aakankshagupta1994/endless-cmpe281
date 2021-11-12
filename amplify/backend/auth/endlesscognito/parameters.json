@@ -1,6 +1,6 @@
 {
-    "resourceNameTruncated": "endles8c2ec5cc",
-    "userPoolName": "endlesscognitopool",
+    "resourceNameTruncated": "endles0e6b06da",
+    "userPoolName": "endlesscognitouserpool",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -16,9 +16,7 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email",
-        "gender",
-        "name"
+        "email"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
@@ -29,9 +27,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "endles8c2ec5cc_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "endles0e6b06da_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "8c2ec5cc",
+    "sharedId": "0e6b06da",
     "resourceName": "endlesscognito",
     "authSelections": "userPoolOnly",
     "authRoleArn": {
@@ -47,18 +45,11 @@
         ]
     },
     "useDefault": "manual",
-    "userPoolGroups": true,
-    "adminQueries": true,
+    "userPoolGroups": false,
+    "adminQueries": false,
     "triggers": "{}",
-    "hostedUI": true,
-    "hostedUIDomainName": "endlesscmpe2818c2ec5cc-8c2ec5cc",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}",
-    "userPoolGroupList": [
-        "endlesscognitouserpoolgroup"
-    ],
-    "adminQueryGroup": "endlesscognitouserpoolgroup",
+    "hostedUI": false,
+    "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "useEnabledMfas": false,
@@ -67,5 +58,6 @@
     },
     "breakCircularDependency": true,
     "permissions": [],
-    "dependsOn": []
+    "dependsOn": [],
+    "authProviders": []
 }

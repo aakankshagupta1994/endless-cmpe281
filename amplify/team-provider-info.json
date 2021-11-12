@@ -16,10 +16,6 @@
         "manageEndlessAPIs": {
           "deploymentBucketName": "amplify-endlesscmpe281-dev-164341-deployment",
           "s3Key": "amplify-builds/manageEndlessAPIs-2b7a32663377336b6c49-build.zip"
-        },
-        "AdminQueries3a4c3311": {
-          "deploymentBucketName": "amplify-endlesscmpe281-dev-164341-deployment",
-          "s3Key": "amplify-builds/AdminQueries3a4c3311-654555654b7a62416471-build.zip"
         }
       },
       "hosting": {
