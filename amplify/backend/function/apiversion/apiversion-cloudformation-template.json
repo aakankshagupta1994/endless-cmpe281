@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "manageEndlessAPIs",
+            "apiversion",
             {
               "Fn::Join": [
                 "",
                 [
-                  "manageEndlessAPIs",
+                  "apiversion",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "endlesscmpe281LambdaRole5d589872",
+            "endlesscmpe281LambdaRolee327ef2e",
             {
               "Fn::Join": [
                 "",
                 [
-                  "endlesscmpe281LambdaRole5d589872",
+                  "endlesscmpe281LambdaRolee327ef2e",
                   "-",
                   {
                     "Ref": "env"

@@ -1,4 +1,6 @@
 {
+    "identityPoolName": "endlesscognito_identitypool_76605b37",
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "endles0e6b06da",
     "userPoolName": "endlesscognitouserpool",
     "autoVerifiedAttributes": [
@@ -31,7 +33,7 @@
     "userpoolClientSetAttributes": false,
     "sharedId": "0e6b06da",
     "resourceName": "endlesscognito",
-    "authSelections": "userPoolOnly",
+    "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
