@@ -1,0 +1,12 @@
+.full-width-table {
+  width: 100%;
+}
+
+
+.data-table{
+  /*  horizontal width accross page reduces from 100 to 80 */
+  width: 80%; 
+  /* margin 20px is for top and botton and auto is to center it between left and right */
+  margin: 20px auto;
+
+}
