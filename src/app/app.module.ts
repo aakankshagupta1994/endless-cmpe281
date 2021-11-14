@@ -9,23 +9,25 @@ import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { MaterialModule } from './modules/material/material.module';
+import { CreateMealPlanComponent } from './components/create-meal-plan/create-meal-plan.component';
+import { MealPlanComponent } from './components/meal-plan/meal-plan.component';
+import { CreateRecipeComponent } from './components/create-recipe/create-recipe.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
+import { MyPlansComponent } from './components/my-plans/my-plans.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    CreateMealPlanComponent,
+    MealPlanComponent,
+    CreateRecipeComponent,
+    RecipeComponent,
+    MyPlansComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -35,16 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
     NoopAnimationsModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatSelectModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
