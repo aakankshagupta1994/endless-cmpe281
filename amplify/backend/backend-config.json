@@ -1,20 +1,34 @@
 {
   "function": {
-    "manageEndlessAPIs": {
+    "apiversion": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "mealplanservice": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "apiversion",
+          "attributes": [
+            "Name"
+          ]
+        }
+      ]
     }
   },
   "auth": {
-    "cognito2d4c9aa6": {
+    "endlesscognito": {
       "service": "Cognito",
-      "serviceType": "managed",
       "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
       "frontendAuthConfig": {
-        "loginMechanisms": [
-          "PREFERRED_USERNAME"
-        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
         "signupAttributes": [
           "EMAIL"
         ],
@@ -29,18 +43,25 @@
         "verificationMechanisms": [
           "EMAIL"
         ]
-      },
-      "dependsOn": []
+      }
     }
   },
   "api": {
-    "endlessApiList": {
+    "endlessapi": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "manageEndlessAPIs",
+          "resourceName": "apiversion",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "mealplanservice",
           "attributes": [
             "Name",
             "Arn"

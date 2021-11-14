@@ -20,17 +20,24 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { RecipeComponent } from './components/recipe/recipe.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { CreateRecipeComponent } from './components/create-recipe/create-recipe.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { SampleComponent } from './sample/sample.component';
 import { FormsModule } from '@angular/forms';
+import { MaterialModule } from './modules/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CreateMealPlanComponent } from './components/create-meal-plan/create-meal-plan.component';
+import { MealPlanComponent } from './components/meal-plan/meal-plan.component';
+import { CreateRecipeComponent } from './components/create-recipe/create-recipe.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
+import { MyPlansComponent } from './components/my-plans/my-plans.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { MealPlansComponent } from './components/meal-plans/meal-plans.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +46,14 @@ import { FormsModule } from '@angular/forms';
     NavComponent,
     RecipeComponent,
     CreateRecipeComponent,
-    SampleComponent
+    SampleComponent,
+    CreateMealPlanComponent,
+    MealPlanComponent,
+    CreateRecipeComponent,
+    RecipeComponent,
+    MyPlansComponent,
+    ProfileComponent,
+    MealPlansComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +80,9 @@ import { FormsModule } from '@angular/forms';
     MatRadioModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

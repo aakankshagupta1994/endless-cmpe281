@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "function": {
+      "apiversion": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

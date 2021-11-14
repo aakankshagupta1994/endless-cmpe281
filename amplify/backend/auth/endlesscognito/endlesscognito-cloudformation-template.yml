@@ -1,4 +1,5 @@
 
+ 
 AWSTemplateFormatVersion: 2010-09-09
 
 Parameters:
@@ -100,7 +101,7 @@ Parameters:
   userpoolClientSetAttributes:
     Type: String
             
-  authSelections:
+  sharedId:
     Type: String
   
             
@@ -108,20 +109,64 @@ Parameters:
     Type: String
   
             
-  sharedId:
+  authSelections:
     Type: String
   
             
             
-            
-  
-  hostedUI:
-    Type: String
             
   useDefault:
     Type: String
   
             
+  
+  userPoolGroups:
+    Type: String
+            
+  
+  adminQueries:
+    Type: String
+            
+  triggers:
+    Type: String
+  
+            
+  
+  hostedUI:
+    Type: String
+            
+        
+  userPoolGroupList:
+    Type: CommaDelimitedList
+      
+  serviceName:
+    Type: String
+  
+            
+  
+  usernameCaseSensitive:
+    Type: String
+            
+  
+  useEnabledMfas:
+    Type: String
+            
+      
+  parentStack:
+    Type: String
+        
+  
+  breakCircularDependency:
+    Type: String
+            
+        
+  permissions:
+    Type: CommaDelimitedList
+      
+        
+  dependsOn:
+    Type: CommaDelimitedList
+      
   hostedUIDomainName:
     Type: String
   
@@ -135,29 +180,16 @@ Parameters:
   
             
         
-  userPoolGroupList:
-    Type: CommaDelimitedList
-      
-  serviceName:
-    Type: String
-  
-            
-        
-  dependsOn:
-    Type: CommaDelimitedList
-      
-        
   authProviders:
     Type: CommaDelimitedList
       
-  hostedUIProviderCreds:
-    Type: String
-  
-            
   oAuthMetadata:
     Type: String
   
             
+  hostedUIProviderCreds:
+    Type: String
+  
             
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
@@ -168,12 +200,13 @@ Conditions:
 Resources:
   
   
+  
   # BEGIN SNS ROLE RESOURCE
   SNSRole:
   # Created to allow the UserPool SMS Config to publish via the Simple Notification Service during MFA Process
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, 'endles2d4c9aa6_sns-role', !Join ['',[ 'sns', '2d4c9aa6', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, 'endles0e6b06da_sns-role', !Join ['',[ 'sns', '0e6b06da', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -185,10 +218,10 @@ Resources:
               - "sts:AssumeRole"
             Condition:
               StringEquals:
-                sts:ExternalId: endles2d4c9aa6_role_external_id
+                sts:ExternalId: endles0e6b06da_role_external_id
       Policies:
         -
-          PolicyName: endles2d4c9aa6-sns-policy
+          PolicyName: endles0e6b06da-sns-policy
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -197,6 +230,7 @@ Resources:
                 Action:
                   - "sns:Publish"
                 Resource: "*"
+   
   # BEGIN USER POOL RESOURCES
   UserPool:
   # Created upon user selection
@@ -206,6 +240,9 @@ Resources:
     Properties:
       UserPoolName: !If [ShouldNotCreateEnvResources, !Ref userPoolName, !Join ['',[!Ref userPoolName, '-', !Ref env]]]
       
+      
+      UsernameConfiguration:
+        CaseSensitive: false
       
       Schema:
         
@@ -236,11 +273,14 @@ Resources:
       
       
       MfaConfiguration: !Ref mfaConfiguration
+        
+       
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsAuthenticationMessage: !Ref smsAuthenticationMessage
       SmsConfiguration:
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: endles2d4c9aa6_role_external_id
+        ExternalId: endles0e6b06da_role_external_id
+      
     
   
   UserPoolClientWeb:
@@ -248,7 +288,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: endles2d4c9aa6_app_clientWeb
+      ClientName: endles0e6b06da_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -258,7 +298,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: endles2d4c9aa6_app_client
+      ClientName: endles0e6b06da_app_client
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -269,7 +309,7 @@ Resources:
   # Created to execute Lambda which gets userpool app client config values
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '2d4c9aa6', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '0e6b06da', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -323,7 +363,7 @@ Resources:
   # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: endles2d4c9aa6_userpoolclient_lambda_iam_policy
+      PolicyName: endles0e6b06da_userpoolclient_lambda_iam_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -340,7 +380,7 @@ Resources:
   # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: endles2d4c9aa6_userpoolclient_lambda_log_policy
+      PolicyName: endles0e6b06da_userpoolclient_lambda_log_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -524,17 +564,13 @@ Resources:
             - '    AttributeMapping: providerMeta.AttributeMapping,'
             - '   };'
             - '   if (providerMeta.ProviderName === ''SignInWithApple'') {'
-            - '     if (providerCreds.client_id && providerCreds.team_id && providerCreds.key_id && providerCreds.private_key) {'
-            - '      requestParams.ProviderDetails = {'
-            - '       ''client_id'': providerCreds.client_id,'
-            - '       ''team_id'': providerCreds.team_id,'
-            - '       ''key_id'': providerCreds.key_id,'
-            - '       ''private_key'': providerCreds.private_key,'
-            - '       ''authorize_scopes'': providerMeta.authorize_scopes,'
-            - '      };'
-            - '     } else {'
-            - '       requestParams = null;'
-            - '     }'
+            - '    requestParams.ProviderDetails = {'
+            - '     ''client_id'': providerCreds.client_id,'
+            - '     ''team_id'': providerCreds.team_id,'
+            - '     ''key_id'': providerCreds.key_id,'
+            - '     ''private_key'': providerCreds.private_key ? providerCreds.private_key : null,'
+            - '     ''authorize_scopes'': providerMeta.authorize_scopes,'
+            - '    };'
             - '   } else {'
             - '    requestParams.ProviderDetails = {'
             - '     ''client_id'': providerCreds.client_id,'
@@ -546,17 +582,11 @@ Resources:
             - '  };'
             - '  let createIdentityProvider = (providerName) => {'
             - '   let requestParams = getRequestParams(providerName);'
-            - '   if (!requestParams) {'
-            - '     return Promise.resolve();'
-            - '   }'
             - '   requestParams.ProviderType = requestParams.ProviderName;'
             - '   return identity.createIdentityProvider(requestParams).promise();'
             - '  };'
             - '  let updateIdentityProvider = (providerName) => {'
             - '   let requestParams = getRequestParams(providerName);'
-            - '   if (!requestParams) {'
-            - '     return Promise.resolve();'
-            - '   }'
             - '   return identity.updateIdentityProvider(requestParams).promise();'
             - '  };'
             - '  let deleteIdentityProvider = (providerName) => {'
@@ -750,7 +780,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties:
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'endlesscmpe281_identitypool_2d4c9aa6', !Join ['',['endlesscmpe281_identitypool_2d4c9aa6', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'endlesscognito_identitypool_76605b37', !Join ['',['endlesscognito_identitypool_76605b37', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient
@@ -814,6 +844,10 @@ Outputs :
   AppClientSecret:
     Value: !GetAtt UserPoolClientInputs.appSecret
     Condition: ShouldOutputAppClientSecrets
+  
+  CreatedSNSRole:
+    Value: !GetAtt SNSRole.Arn
+    Description: role arn
   
   
   
