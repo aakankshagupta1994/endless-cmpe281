@@ -21,12 +21,29 @@
              <input type="text" name="recipeName" placeholder="My Recipe" [(ngModel)]="recipeName"/> 
           </div> 
         </div> 
+
+        
         <div class="item">
           <p>Enter Recipe ingridient details</p>
-          <div class="name-item">
-            <input type="text" name="ingridient" placeholder="Ingridient" [(ngModel)]="ingridient"/>
-            <input type="text" name="quantity" placeholder="Quantity" [(ngModel)]="quantity"/>
-            <input type="text" name="macros" placeholder="Macros" [(ngModel)]="macros"/>
+          <div >          
+            
+              <button type="button" class="btn btn-primary mb-2" (click)="addIngridient()">Add Ingridient</button>
+            
+            <section *ngFor="let ingridient of ingridients; let i = index;">             
+                
+            <table class="ingred">
+              <thead><h4>Ingridient {{i + 1}}</h4></thead>
+              <tr>
+                <td><input type="text" name="ingridient_{{ingridient.id}}" placeholder="Ingridient" [(ngModel)]="ingridient.ingridient"/></td>
+                <td> <input type="text" name="quantity_{{ingridient.id}}" placeholder="Quantity" [(ngModel)]="ingridient.quantity"/></td>
+                <td><input type="text" name="macros_{{ingridient.id}}" placeholder="Macros" [(ngModel)]="ingridient.macros"/> </td>
+                <div class="col-6 text-right">
+                  <button type="button" class="btn btn-danger btn-sm" (click)="removeIngridient(i)">Remove</button>
+              </div>
+              </tr>
+            </table>
+          </section>
+          
           </div>
         </div>
         
