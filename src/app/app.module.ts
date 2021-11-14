@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 /* import AmplifyUIAngularModule  */
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
@@ -19,6 +19,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { MyPlansComponent } from './components/my-plans/my-plans.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MealPlansComponent } from './components/meal-plans/meal-plans.component';
+import { AxiosConfigFactory, AxiosInterceptorService } from './services/axios-interceptor.service';
 import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.interceptor';
 
 @NgModule({
@@ -46,10 +47,11 @@ import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.in
     HttpClientModule
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorInterceptor,
+    provide: APP_INITIALIZER,
+    useFactory: AxiosConfigFactory,
+    deps: [AxiosInterceptorService],
     multi: true
-  }],
+}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
