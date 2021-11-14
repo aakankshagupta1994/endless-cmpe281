@@ -1,9 +1,23 @@
 {
   "function": {
-    "manageEndlessAPIs": {
+    "apiversion": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "mealplanservice": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "apiversion",
+          "attributes": [
+            "Name"
+          ]
+        }
+      ]
     }
   },
   "auth": {
@@ -33,13 +47,21 @@
     }
   },
   "api": {
-    "endlessApiList": {
+    "endlessapi": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "manageEndlessAPIs",
+          "resourceName": "apiversion",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "mealplanservice",
           "attributes": [
             "Name",
             "Arn"

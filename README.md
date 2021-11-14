@@ -1,6 +1,13 @@
 # EndlessCmpe281
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
+## Amplify Setup
+
+Run Amplify init once cloned and use the existing config.
+
+```
+amplify init
+```
 
 ## Development server
 
