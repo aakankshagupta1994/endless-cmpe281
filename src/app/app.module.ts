@@ -28,6 +28,9 @@ import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SampleComponent } from './sample/sample.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     NavComponent,
     RecipeComponent,
-    CreateRecipeComponent
+    CreateRecipeComponent,
+    SampleComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSortModule,
     MatInputModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
