@@ -10,7 +10,7 @@ import { MealPlanService } from 'src/app/services/meal-plan.service';
 })
 export class MealPlanComponent implements OnInit {
   private mealPlanId?:string;
-  private mealPlan?:Mealplan;
+  mealPlan?:Mealplan;
   constructor(private activatedRoute:ActivatedRoute,private router:Router,private mealPlanService:MealPlanService) { }
 
   ngOnInit(): void {
@@ -19,5 +19,6 @@ export class MealPlanComponent implements OnInit {
       this.mealPlan=await this.mealPlanService.getMealPlan(this.mealPlanId);
     });
   }
+
 
 }

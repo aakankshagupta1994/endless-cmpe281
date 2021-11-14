@@ -10,6 +10,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './modules/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CreateMealPlanComponent } from './components/create-meal-plan/create-meal-plan.component';
 import { MealPlanComponent } from './components/meal-plan/meal-plan.component';
 import { CreateRecipeComponent } from './components/create-recipe/create-recipe.component';
@@ -39,7 +41,8 @@ import { MealPlansComponent } from './components/meal-plans/meal-plans.component
     NoopAnimationsModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
