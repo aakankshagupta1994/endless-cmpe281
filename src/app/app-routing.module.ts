@@ -4,6 +4,7 @@ import { CreateMealPlanComponent } from './components/create-meal-plan/create-me
 import { CreateRecipeComponent } from './components/create-recipe/create-recipe.component';
 import { HomeComponent } from './components/home/home.component';
 import { MealPlanComponent } from './components/meal-plan/meal-plan.component';
+import { MealPlansComponent } from './components/meal-plans/meal-plans.component';
 import { MyPlansComponent } from './components/my-plans/my-plans.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
@@ -14,7 +15,10 @@ const routes: Routes = [{
   path: 'createmealplan', component: CreateMealPlanComponent
 },
 {
-  path: 'mealplan',  component:MealPlanComponent
+  path: 'mealplan/:id',  component:MealPlanComponent
+},
+{
+  path: 'mealplans',  component:MealPlansComponent
 },
 {
   path: 'createrecipe', component:CreateRecipeComponent
