@@ -25,6 +25,10 @@
         "apiversion": {
           "deploymentBucketName": "amplify-endlesscmpe281-dev-164341-deployment",
           "s3Key": "amplify-builds/apiversion-785244653061362f3568-build.zip"
+        },
+        "mealplanservice": {
+          "deploymentBucketName": "amplify-endlesscmpe281-dev-164341-deployment",
+          "s3Key": "amplify-builds/mealplanservice-3653714d6d46384c625a-build.zip"
         }
       }
     }
