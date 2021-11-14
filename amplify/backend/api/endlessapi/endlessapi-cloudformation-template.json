@@ -8,15 +8,15 @@
         },
     
     
-          "functionmanageEndlessAPIsName": {
+          "functionapiversionName": {
             "Type": "String",
-            "Default": "functionmanageEndlessAPIsName"
+            "Default": "functionapiversionName"
           },
 
           
-          "functionmanageEndlessAPIsArn": {
+          "functionapiversionArn": {
             "Type": "String",
-            "Default": "functionmanageEndlessAPIsArn"
+            "Default": "functionapiversionArn"
           }
 
           
@@ -37,16 +37,16 @@
         
         
         
-      "endlessApiList": {
+      "endlessapi": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "endlessApiList",
+          "Name": "endlessapi",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "endlessApiList"
+              "title": "endlessapi"
             },
             "host": {
                 "Fn::Join": [
@@ -82,7 +82,7 @@
             ],
             "paths": {
               
-              "/diets": {
+              "/version": {
                 "options": {
                   "consumes": [
                     "application/json"
@@ -149,12 +149,6 @@
                       }
                     }
                   },
-                  
-                    "security": [
-                        {
-                          "sigv4": []
-                        }
-                      ],
                   
                   "x-amazon-apigateway-integration": {
                     "responses": {
@@ -174,7 +168,7 @@
                             
                             {
 
-                                "Ref": "functionmanageEndlessAPIsArn"
+                                "Ref": "functionapiversionArn"
                             },
                             
                             "/invocations"
@@ -187,7 +181,7 @@
                   }
                 }
               },
-              "/diets/{proxy+}": {
+              "/version/{proxy+}": {
                 "options": {
                   "consumes": [
                     "application/json"
@@ -255,12 +249,6 @@
                     }
                   },
                   
-                    "security": [
-                        {
-                          "sigv4": []
-                        }
-                      ],
-                  
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -279,7 +267,7 @@
                           
                           {
 
-                            "Ref": "functionmanageEndlessAPIsArn"
+                            "Ref": "functionapiversionArn"
                           },
                           
                           "/invocations"
@@ -336,12 +324,12 @@
       
         
 
-        "functionmanageEndlessAPIsPermissionendlessApiList": {
+        "functionapiversionPermissionendlessapi": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functionmanageEndlessAPIsName"
+                        "Ref":  "functionapiversionName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
@@ -360,7 +348,7 @@
                             },
                             ":",
                             {
-                                "Ref": "endlessApiList"
+                                "Ref": "endlessapi"
                             },
                             "/*/*/*"
                         ]
@@ -371,7 +359,7 @@
         
         
 
-      "DeploymentAPIGWendlessApiList": {
+      "DeploymentAPIGWendlessapi9075098e": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
@@ -385,7 +373,7 @@
             ]
           },
           "RestApiId": {
-            "Ref": "endlessApiList"
+            "Ref": "endlessapi"
           }
         }
       }
@@ -393,15 +381,15 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "endlessApiList"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "endlessapi"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
         },
         "ApiName": {
           "Description": "API Friendly name",
-          "Value": "endlessApiList"
+          "Value": "endlessapi"
         },
         "ApiId": {
           "Description": "API ID (prefix of API URL)",
-          "Value": {"Ref": "endlessApiList"}
+          "Value": {"Ref": "endlessapi"}
         }
     }
   }

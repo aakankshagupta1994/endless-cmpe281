@@ -1,0 +1,36 @@
+{
+    "paths": [
+        {
+            "name": "/version",
+            "lambdaFunction": "apiversion",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/version"
+        }
+    ],
+    "resourceName": "endlessapi",
+    "apiName": "endlessapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "apiversion"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-endlesscmpe281-dev-164341-authRole",
+        "unAuthRoleName": "amplify-endlesscmpe281-dev-164341-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "apiversion",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "9075098e"
+}
