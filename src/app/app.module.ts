@@ -20,6 +20,7 @@ import { MyPlansComponent } from './components/my-plans/my-plans.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MealPlansComponent } from './components/meal-plans/meal-plans.component';
 import { AxiosConfigFactory, AxiosInterceptorService } from './services/axios-interceptor.service';
+import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.interceptor';
 
 @NgModule({
   declarations: [
