@@ -22,15 +22,18 @@
           </div> 
         </div> 
 
+        <div class="item">
+          <p>Veg/Non-Veg</p>
+          <div class="name-item">
+             <input type="text" name="type" placeholder="Veg/Non-veg" [(ngModel)]="type"/> 
+          </div> 
+        </div>
         
         <div class="item">
           <p>Enter Recipe ingridient details</p>
-          <div >          
-            
+          <div >      
               <button type="button" class="btn btn-primary mb-2" (click)="addIngridient()">Add Ingridient</button>
-            
-            <section *ngFor="let ingridient of ingridients; let i = index;">             
-                
+          <section *ngFor="let ingridient of ingridients; let i = index;">    
             <table class="ingred">
               <thead><h4>Ingridient {{i + 1}}</h4></thead>
               <tr>
@@ -38,7 +41,7 @@
                 <td> <input type="text" name="quantity_{{ingridient.id}}" placeholder="Quantity" [(ngModel)]="ingridient.quantity"/></td>
                 <td><input type="text" name="macros_{{ingridient.id}}" placeholder="Macros" [(ngModel)]="ingridient.macros"/> </td>
                 <div class="col-6 text-right">
-                  <button type="button" class="btn btn-danger btn-sm" (click)="removeIngridient(i)">Remove</button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeIngridient(i)">Remove</button>
               </div>
               </tr>
             </table>
@@ -47,11 +50,29 @@
           </div>
         </div>
         
-       
         <div class="item">
+          <p>Enter steps for the recipe</p>
+          <div>      
+            <button type="button" class="btn btn-primary mb-2" (click)="addStep()">Add Step</button>
+          <section *ngFor="let step of steps; let j = index;">    
+            <table class="ingred">
+              <thead><h4 >Step {{j + 1}}</h4></thead>
+              <tr>
+                <td><input type="text" name="step_{{step.id}}" placeholder="Step" [(ngModel)]="step.step"/></td>
+                <div class="col-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeStep(j)">Remove</button>
+              </div>
+              </tr>
+            </table>
+          </section>
+          
+          </div>
+        </div>
+       
+        <!-- <div class="item">
           <p>Procedure</p>
           <textarea rows="3" [(ngModel)]="procedure"></textarea>
-        </div>
+        </div> -->
       
         <div class="btn-block">
           <button  (click)="onSubmit()" >Submit</button>
