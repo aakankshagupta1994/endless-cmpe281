@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>Create-Recipe</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    
+    <link rel="stylesheet"  integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <!-- <style>
       
     </style> -->
@@ -18,17 +18,13 @@
         <div class="item">
           <p>Enter Recipe Name</p>
           <div class="name-item">
-             <input type="text" name="recipeName" placeholder="My Recipe" [(ngModel)]="recipeName"/> 
+           <input type="text" name="recipeName" placeholder="My Recipe" [(ngModel)]="recipeName"/> 
+           
           </div> 
         </div> 
+        Veg <input type="radio" id="options1" name="function" [(ngModel)]="type" value="Veg">
+        Non-Veg <input type="radio" id="options2" name="function" [(ngModel)]="type" value="Non-Veg">
 
-        <div class="item">
-          <p>Veg/Non-Veg</p>
-          <div class="name-item">
-             <input type="text" name="type" placeholder="Veg/Non-veg" [(ngModel)]="type"/> 
-          </div> 
-        </div>
-        
         <div class="item">
           <p>Enter Recipe ingridient details</p>
           <div >      
@@ -68,11 +64,6 @@
           
           </div>
         </div>
-       
-        <!-- <div class="item">
-          <p>Procedure</p>
-          <textarea rows="3" [(ngModel)]="procedure"></textarea>
-        </div> -->
       
         <div class="btn-block">
           <button  (click)="onSubmit()" >Submit</button>

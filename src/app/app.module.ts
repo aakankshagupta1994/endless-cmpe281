@@ -20,23 +20,8 @@ import { MyPlansComponent } from './components/my-plans/my-plans.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MealPlansComponent } from './components/meal-plans/meal-plans.component';
 import { AxiosConfigFactory, AxiosInterceptorService } from './services/axios-interceptor.service';
-import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.interceptor';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatInputModule } from '@angular/material/input';
-import { MatRadioModule } from '@angular/material/radio';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -66,24 +51,6 @@ import { MatListModule } from '@angular/material/list';
     /* configure app with AmplifyUIAngularModule */
     AmplifyUIAngularModule,
     NoopAnimationsModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
-    MatRadioModule,
-    ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
     MaterialModule,
