@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="testbox">
-      <form>
+      <form ngNativeValidate>
         <div class="banner">
           <h1>Create Recipe</h1>
         </div>
@@ -18,12 +18,12 @@
         <div class="item">
           <p>Enter Recipe Name</p>
           <div class="name-item">
-           <input type="text" name="recipeName" placeholder="My Recipe" [(ngModel)]="recipeName"/> 
+           <input required type="text" name="recipeName" placeholder="My Recipe" [(ngModel)]="recipeName"/> 
            
           </div> 
         </div> 
-        Veg <input type="radio" id="options1" name="function" [(ngModel)]="type" value="Veg">
-        Non-Veg <input type="radio" id="options2" name="function" [(ngModel)]="type" value="Non-Veg">
+        Veg <input required type="radio" id="options1" name="function" [(ngModel)]="type" value="Veg">
+        Non-Veg <input required type="radio" id="options2" name="function" [(ngModel)]="type" value="Non-Veg">
 
         <div class="item">
           <p>Enter Recipe ingridient details</p>
@@ -33,9 +33,9 @@
             <table class="ingred">
               <thead><h4>Ingridient {{i + 1}}</h4></thead>
               <tr>
-                <td><input type="text" name="ingridient_{{ingridient.id}}" placeholder="Ingridient" [(ngModel)]="ingridient.ingridient"/></td>
-                <td> <input type="text" name="quantity_{{ingridient.id}}" placeholder="Quantity" [(ngModel)]="ingridient.quantity"/></td>
-                <td><input type="text" name="macros_{{ingridient.id}}" placeholder="Macros" [(ngModel)]="ingridient.macros"/> </td>
+                <td><input required type="text" name="ingridient_{{ingridient.id}}" placeholder="Ingridient" [(ngModel)]="ingridient.ingridient"/></td>
+                <td> <input required type="text" name="quantity_{{ingridient.id}}" placeholder="Quantity" [(ngModel)]="ingridient.quantity"/></td>
+                <td><input required type="text" name="macros_{{ingridient.id}}" placeholder="Macros" [(ngModel)]="ingridient.macros"/> </td>
                 <div class="col-6 text-right">
                 <button type="button" class="btn btn-danger btn-sm" (click)="removeIngridient(i)">Remove</button>
               </div>
@@ -54,7 +54,7 @@
             <table class="ingred">
               <thead><h4 >Step {{j + 1}}</h4></thead>
               <tr>
-                <td><input type="text" name="step_{{step.id}}" placeholder="Step" [(ngModel)]="step.step"/></td>
+                <td><input required type="text" name="step_{{step.id}}" placeholder="Step" [(ngModel)]="step.step"/></td>
                 <div class="col-6 text-right">
                 <button type="button" class="btn btn-danger btn-sm" (click)="removeStep(j)">Remove</button>
               </div>
