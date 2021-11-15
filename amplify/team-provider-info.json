@@ -32,5 +32,45 @@
         }
       }
     }
+  },
+  "lexbot": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-endlesscmpe281-lexbot-95350-authRole",
+      "UnauthRoleArn": "arn:aws:iam::486806635132:role/amplify-endlesscmpe281-lexbot-95350-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::486806635132:role/amplify-endlesscmpe281-lexbot-95350-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-endlesscmpe281-lexbot-95350-deployment",
+      "UnauthRoleName": "amplify-endlesscmpe281-lexbot-95350-unauthRole",
+      "StackName": "amplify-endlesscmpe281-lexbot-95350",
+      "StackId": "arn:aws:cloudformation:us-west-2:486806635132:stack/amplify-endlesscmpe281-lexbot-95350/fe417ed0-463c-11ec-b743-02c0b9020c29",
+      "AmplifyAppId": "d2f27et41k6nl7"
+    },
+    "categories": {
+      "auth": {
+        "endlesscognito": {}
+      },
+      "function": {
+        "apiversion": {
+          "deploymentBucketName": "amplify-endlesscmpe281-lexbot-95350-deployment",
+          "s3Key": "amplify-builds/apiversion-785244653061362f3568-build.zip"
+        },
+        "mealplanservice": {
+          "deploymentBucketName": "amplify-endlesscmpe281-lexbot-95350-deployment",
+          "s3Key": "amplify-builds/mealplanservice-3653714d6d46384c625a-build.zip"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2f27et41k6nl7",
+          "type": "manual"
+        }
+      },
+      "interactions": {
+        "endlessbot": {
+          "deploymentBucketName": "amplify-endlesscmpe281-lexbot-95350-deployment",
+          "s3Key": "amplify-builds/endlessbot-3370785a787739466651-build.zip"
+        }
+      }
+    }
   }
 }
