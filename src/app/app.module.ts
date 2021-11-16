@@ -22,6 +22,7 @@ import { MealPlansComponent } from './components/meal-plans/meal-plans.component
 import { AxiosConfigFactory, AxiosInterceptorService } from './services/axios-interceptor.service';
 import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LayoutModule,
     MaterialModule,
     HttpClientModule, 
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [{
     provide: APP_INITIALIZER,
