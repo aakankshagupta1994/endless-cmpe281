@@ -1,59 +1,27 @@
-<!-- Menu -->
-<div id="menu" class="w3-container w3-black w3-xxlarge w3-padding-64">
-    <h1 class="w3-center w3-jumbo w3-padding-32">Recipe Book</h1>
-    <div class="w3-row w3-center w3-border w3-border-dark-grey">
-    </div>
+<!DOCTYPE html>
+  <html>
+  <head>
+  </head>
+  <body>
+  
+  <h1>Available Recipes</h1>
+  
+  <table id="customers">
+    <thead>
+        <tr>
+          <th>recipeName</th>
+          <th>type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let recipe of recipes">
+          <td><span>{{recipe.recipeName}}</span></td>
+          <td><span>{{recipe.type}}</span></td>
+          
+        </tr>
+        </tbody>
     
-    <div id="pizza" class="w3-container w3-white w3-padding-32">
-    <h1><b>Beef Soup</b> <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Beef roast, dried italian dressing, water</p>
-    <hr>
-    
-    <h1><b>Fry Corn Syrup</b> <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Corn, veg soup</p>
-    <hr>
-    
-    <h1><b>Butter Croissant</b> <span class="w3-tag w3-red w3-round"></span>
-    <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">fresh dough, butter</p>
-    </div>
-    
-    
-    <div class="w3-container w3-white w3-padding-32">
-    
-    <h1><b>Lemon Water</b> <span class="w3-tag w3-grey w3-round"></span>
-    <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Lemon pieces, water</p>
-    <hr>
-    
-    <h1><b>Peanut Butter Sandwhich</b> <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Bread spread with peanut butter</p>
-    <hr>
-    
-    <h1><b>Vegetable Soup</b> <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Corn, Veg Soup</p>
-    </div>
-    
-    
-    <div class="w3-container w3-white w3-padding-32">
-    
-    <h1><b>Avacado Sandwhich</b> <span class="w3-tag w3-grey w3-round"></span>
-    <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Avacado, bread</p>
-    <hr>
-    
-    <h1><b>Toasted Peanut Butter Sandwhich</b> <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Toasted bread with peanut butter</p>
-    <hr>
-    
-    <h1><b>Vegetable Toast</b> <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Toasted bread, vegetables, spread</p>
-    <hr>
-
-    <h1><b>Apple Soup</b> <span class="w3-right w3-tag w3-dark-grey w3-round"></span></h1>
-    <p class="w3-text-grey">Apple, milk</p>
-    <hr>
-
-    </div>
-    </div>
-
+  </table>
+  
+  </body>
+  </html>

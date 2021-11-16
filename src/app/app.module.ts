@@ -22,6 +22,7 @@ import { MealPlansComponent } from './components/meal-plans/meal-plans.component
 import { AxiosConfigFactory, AxiosInterceptorService } from './services/axios-interceptor.service';
 import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RecipeComponent,
     MyPlansComponent,
     ProfileComponent,
-    MealPlansComponent
+    MealPlansComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     BrowserModule,
