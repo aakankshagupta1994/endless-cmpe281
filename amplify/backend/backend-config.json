@@ -18,6 +18,11 @@
           ]
         }
       ]
+    },
+    "endlessfullfillment": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "auth": {
@@ -62,6 +67,14 @@
         {
           "category": "function",
           "resourceName": "mealplanservice",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "endlessfullfillment",
           "attributes": [
             "Name",
             "Arn"

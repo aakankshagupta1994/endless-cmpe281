@@ -15,6 +15,14 @@
                 "open": true
             },
             "policyResourceName": "/mealplan"
+        },
+        {
+            "name": "/endlessbotv1",
+            "lambdaFunction": "endlessfullfillment",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/endlessbotv1"
         }
     ],
     "resourceName": "endlessapi",
@@ -25,13 +33,16 @@
         },
         {
             "lambdaFunction": "mealplanservice"
+        },
+        {
+            "lambdaFunction": "endlessfullfillment"
         }
     ],
     "privacy": {
         "auth": 0,
         "unauth": 0,
-        "authRoleName": "amplify-endlesscmpe281-dev-164341-authRole",
-        "unAuthRoleName": "amplify-endlesscmpe281-dev-164341-unauthRole"
+        "authRoleName": "amplify-endlesscmpe281-lexbot-95350-authRole",
+        "unAuthRoleName": "amplify-endlesscmpe281-lexbot-95350-unauthRole"
     },
     "dependsOn": [
         {
@@ -49,7 +60,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "endlessfullfillment",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "65898c95"
+    "uuid": "cce377a2"
 }

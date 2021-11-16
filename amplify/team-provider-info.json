@@ -57,6 +57,10 @@
         "mealplanservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-lexbot-95350-deployment",
           "s3Key": "amplify-builds/mealplanservice-3653714d6d46384c625a-build.zip"
+        },
+        "endlessfullfillment": {
+          "deploymentBucketName": "amplify-endlesscmpe281-lexbot-95350-deployment",
+          "s3Key": "amplify-builds/endlessfullfillment-6962534157364a6a5075-build.zip"
         }
       },
       "hosting": {
