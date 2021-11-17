@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
+  userRole:string='';
   showChat:boolean=false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -19,7 +21,14 @@ export class NavComponent {
     );
   @Output() 
   fullfillment = new EventEmitter<any>();
-  constructor(private breakpointObserver: BreakpointObserver,private _snackBar: MatSnackBar) {}
+  constructor(private breakpointObserver: BreakpointObserver,private _snackBar: MatSnackBar,private userService:UserService) {}
+  ngOnInit(){
+    this.userService.getUserDetails().then((data)=>{
+        this.userRole=data.role;
+    }).catch((err)=>{
+      console.log(err);
+    });
+  }
   onBotComplete(event: Event) {
       console.log('chat completed ',event);
       const { data, err } = (event as any).detail;
@@ -36,5 +45,8 @@ export class NavComponent {
   };
   toggleChat(){
     this.showChat=!this.showChat;
+  }
+  checkUserRole(userRoles:string[]){
+    return userRoles.indexOf(this.userRole)!=-1?true:false;
   }
 }

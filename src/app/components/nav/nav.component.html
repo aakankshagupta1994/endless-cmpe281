@@ -6,11 +6,11 @@
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
         <a mat-list-item href="/">Home</a>
-        <a mat-list-item href="#">Diets</a>
-        <a mat-list-item routerLink="/mealplan/1">Sample Meal Plan</a>
-        <a mat-list-item routerLink="/mealplans">Meal Plans</a>
-        <a mat-list-item routerLink="/recipe">Read Recipe</a>
-        <a mat-list-item routerLink="createrecipe">Create Recipe</a>
+       <!-- <a mat-list-item href="#" *ngIf="checkUserRole(['',''])">Diets</a>-->
+        <a mat-list-item routerLink="/mealplan/1" *ngIf="checkUserRole(['user','dietitian','admin'])">Sample Meal Plan</a>
+        <a mat-list-item routerLink="/mealplans" *ngIf="checkUserRole(['user','dietitian','admin'])">Meal Plans</a>
+        <a mat-list-item routerLink="/recipe" *ngIf="checkUserRole(['user','dietitian','admin'])">Read Recipe</a>
+        <a mat-list-item routerLink="createrecipe" *ngIf="checkUserRole(['admin','dietitian'])">Create Recipe</a>
         <!-- <a mat-list-item href="#">Link 3</a> -->
       </mat-nav-list>
     </mat-sidenav>
@@ -53,6 +53,7 @@
 
         <amplify-chatbot bot-name="lexbot_devmain" 
         bot-title="Meal Plan Chatbot"
+        clearOnComplete="true"
         welcome-message="Hello, how can I help you? you can ask me to suggest a meal plan." (chatCompleted)="onBotComplete($event)" class="chat"></amplify-chatbot>
        
       </div>
