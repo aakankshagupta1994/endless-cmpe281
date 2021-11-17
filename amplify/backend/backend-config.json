@@ -76,5 +76,12 @@
       "providerPlugin": "awscloudformation",
       "type": "manual"
     }
+  },
+  "interactions": {
+    "endlessbot": {
+      "service": "Lex",
+      "providerPlugin": "awscloudformation",
+      "build": true
+    }
   }
 }
