@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
+import Auth from '@aws-amplify/auth';
 
 
 @Component({
@@ -48,5 +49,17 @@ export class NavComponent {
   }
   checkUserRole(userRoles:string[]){
     return userRoles.indexOf(this.userRole)!=-1?true:false;
+  }
+  async logout(){
+    try{
+      await Auth.signOut();
+      this.userRole='';
+  this.showChat=false;
+      location.reload();
+      }
+      catch(Err){
+        console.log(Err);
+        console.log('Error Signing Out');
+      }
   }
 }
