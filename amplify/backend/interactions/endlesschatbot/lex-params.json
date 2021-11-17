@@ -1,0 +1,36 @@
+{
+    "resourceName": "endlesschatbot",
+    "botName": "endlesschatbot",
+    "intents": [
+        {
+            "slots": [
+                {
+                    "name": "MealType",
+                    "type": "MealType",
+                    "prompt": "Which type of meal? ex: Vegan, Meat, Vegetarian",
+                    "required": true,
+                    "customType": true
+                }
+            ],
+            "utterances": [
+                "Suggest a meal plan",
+                "suggest a vegan meal plan"
+            ],
+            "intentName": "mealplanintent",
+            "newSlotTypes": [
+                {
+                    "slotType": "MealType",
+                    "slotTypeDescription": "meal type like vegan, meat",
+                    "slotValues": [
+                        "vegan",
+                        "meat",
+                        "vegetarian "
+                    ]
+                }
+            ]
+        }
+    ],
+    "outputVoice": false,
+    "sessionTimeout": 5,
+    "coppa": false
+}

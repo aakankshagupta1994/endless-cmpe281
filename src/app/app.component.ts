@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'endless-cmpe281';
+  onChatCompleted(data:any){
+    console.log('chat response : ',data);
+  }
 }

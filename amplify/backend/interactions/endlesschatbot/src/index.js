@@ -13,7 +13,7 @@ exports.handler = function(event, context) {
         
         {
             "name": "MealType",
-            "description": "type of meal",
+            "description": "meal type like vegan, meat",
             "enumerationValues": [
                 
                 {
@@ -25,7 +25,7 @@ exports.handler = function(event, context) {
                 },
                 
                 {
-                    "value": "highprotein"
+                    "value": "vegetarian "
                 },
                 
             ]
@@ -36,49 +36,20 @@ exports.handler = function(event, context) {
     let intentParams = [
         
         {
-            "name": "mealtypeintent" + "_" + process.env.ENV,
-            
-            "confirmationPrompt": {
-                "maxAttempts": 2, 
-                "messages": [
-                    {
-                        "content": "Do you want to me show {MealType} meal plans?", 
-                        "contentType": "PlainText"
-                    }
-                ]
-            }, 
+            "name": "mealplanintent" + "_" + process.env.ENV,
             
             
-            "rejectionStatement": {
-                "messages": [
-                    {
-                    "content": "oky. will not show search for that.", 
-                    "contentType": "PlainText"
-                    }
-                ]
-            }, 
-        
             "sampleUtterances": [
             
                 "Suggest a meal plan",
             
-                "Suggest me a vegan meal plan",
+                "suggest a vegan meal plan",
             
             ],
         
-            "fulfillmentLambda": {
-                "region": "us-west-2",
-                "accountId": "486806635132",
-                "lambdaArn": "arn:aws:lambda:us-west-2:486806635132:function:apiversion-dev",
-                "lambdaName": "apiversion-dev",
-            },
             "fulfillmentActivity": {
-                "type": "CodeHook",
-                "codeHook": {
-                    "messageVersion": "1.0",
-                    "uri": "arn:aws:lambda:us-west-2:486806635132:function:apiversion-dev"
-                }
-            }, 
+                "type": "ReturnIntent"
+            },
         
             "slots": [
                 
@@ -92,7 +63,7 @@ exports.handler = function(event, context) {
                         "maxAttempts": 3,
                         "messages": [
                             {
-                                "content": "What type of meal? ex:vegan, vegetarian",
+                                "content": "Which type of meal? ex: Vegan, Meat, Vegetarian",
                                 "contentType": "PlainText"
                             }
                         ]
@@ -103,7 +74,7 @@ exports.handler = function(event, context) {
         },
         
     ];
-    let botName = "endlessbot";
+    let botName = "endlesschatbot";
     if(process.env.ENV && process.env.ENV !== "NONE") {
       botName = botName + '_' + process.env.ENV;
     }
@@ -113,7 +84,7 @@ exports.handler = function(event, context) {
         "intents": [
         
             {
-                "intentName": "mealtypeintent" + "_" + process.env.ENV,
+                "intentName": "mealplanintent" + "_" + process.env.ENV,
                 "intentVersion": "$LATEST"
             },
         
@@ -147,7 +118,7 @@ exports.handler = function(event, context) {
         }, 
         
         
-        "idleSessionTTLInSeconds": "600"
+        "idleSessionTTLInSeconds": "300"
         
     };
     
@@ -295,7 +266,7 @@ function ensureLambdaFunctionAccess(intent){
 
         const params = {
             FunctionName: lambdaName,
-            StatementId: `Lex-${intent.name}`+ "057418ec",
+            StatementId: `Lex-${intent.name}`+ "ee2d41e1",
             Action: 'lambda:InvokeFunction',
             Principal: 'lex.amazonaws.com',
             SourceArn: `arn:aws:lex:${region}:${accountId}:intent:${intent.name}:*`,

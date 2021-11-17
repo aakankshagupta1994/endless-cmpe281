@@ -91,7 +91,7 @@
     }
   },
   "interactions": {
-    "endlessbot": {
+    "endlesschatbot": {
       "service": "Lex",
       "providerPlugin": "awscloudformation",
       "build": true

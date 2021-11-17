@@ -70,9 +70,9 @@
         }
       },
       "interactions": {
-        "endlessbot": {
+        "endlesschatbot": {
           "deploymentBucketName": "amplify-endlesscmpe281-lexbot-95350-deployment",
-          "s3Key": "amplify-builds/endlessbot-3370785a787739466651-build.zip"
+          "s3Key": "amplify-builds/endlesschatbot-73346349515a616b6d50-build.zip"
         }
       }
     }

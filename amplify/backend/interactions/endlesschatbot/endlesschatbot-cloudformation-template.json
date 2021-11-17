@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lex chatbot creation from Amplify CLI",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"7.3.4\",\"stackType\":\"interactions-Lex\",\"metadata\":{}}",
   "Parameters": {
     "authRoleName": {
       "Type": "String"
@@ -117,12 +117,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "endlesscmpe281_cfnlambda_057418ec",
+            "endlesscmpe281_cfnlambda_ee2d41e1",
             {
               "Fn::Join": [
                 "",
                 [
-                  "endlesscmpe281_cfnlambda_057418ec",
+                  "endlesscmpe281_cfnlambda_ee2d41e1",
                   "-",
                   {
                     "Ref": "env"
@@ -163,12 +163,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lexLambdaRole057418ec",
+            "lexLambdaRoleee2d41e1",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lexLambdaRole057418ec",
+                  "lexLambdaRoleee2d41e1",
                   "-",
                   {
                     "Ref": "env"
@@ -196,7 +196,7 @@
         },
         "Policies": [
           {
-            "PolicyName": "cloudWatchPolicy057418ec",
+            "PolicyName": "cloudWatchPolicyee2d41e1",
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
@@ -213,7 +213,7 @@
             }
           },
           {
-            "PolicyName": "lexPolicy057418ec",
+            "PolicyName": "lexPolicyee2d41e1",
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
@@ -243,7 +243,7 @@
             }
           },
           {
-            "PolicyName": "lambdaPolicy057418ec",
+            "PolicyName": "lambdaPolicyee2d41e1",
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
@@ -260,7 +260,7 @@
         ]
       }
     },
-    "LambdaFunctionOutputs057418ec": {
+    "LambdaFunctionOutputsee2d41e1": {
       "Type": "Custom::LambdaCallout",
       "Properties": {
         "ServiceToken": {
@@ -286,7 +286,7 @@
     "CognitoUnauthPolicy": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": "lex_amplify_057418ec",
+        "PolicyName": "lex_amplify_ee2d41e1",
         "Roles": [
           {
             "Ref": "unauthRoleName"
@@ -328,12 +328,12 @@
                       {
                         "Fn::If": [
                           "ShouldNotCreateEnvResources",
-                          "endlessbot",
+                          "endlesschatbot",
                           {
                             "Fn::Join": [
                               "",
                               [
-                                "endlessbot",
+                                "endlesschatbot",
                                 "_",
                                 {
                                   "Ref": "env"
@@ -356,7 +356,7 @@
     "CognitoAuthPolicy": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": "lex_amplify_057418ec",
+        "PolicyName": "lex_amplify_ee2d41e1",
         "Roles": [
           {
             "Ref": "authRoleName"
@@ -398,12 +398,12 @@
                       {
                         "Fn::If": [
                           "ShouldNotCreateEnvResources",
-                          "endlessbot",
+                          "endlesschatbot",
                           {
                             "Fn::Join": [
                               "",
                               [
-                                "endlessbot",
+                                "endlesschatbot",
                                 "_",
                                 {
                                   "Ref": "env"
@@ -440,12 +440,12 @@
       "Value": {
         "Fn::If": [
           "ShouldNotCreateEnvResources",
-          "endlessbot",
+          "endlesschatbot",
           {
             "Fn::Join": [
               "",
               [
-                "endlessbot",
+                "endlesschatbot",
                 "_",
                 {
                   "Ref": "env"

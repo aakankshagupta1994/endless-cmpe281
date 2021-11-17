@@ -49,7 +49,9 @@
       <router-outlet></router-outlet>
       <div class="chatcontainer">
 
-        <amplify-chatbot bot-name="endlessbot_lexbot" class="chat"></amplify-chatbot>
+        <amplify-chatbot bot-name="endlesschatbot_lexbot" 
+        bot-title="Meal Plan Chatbot"
+        welcome-message="Hello, how can I help you? you can ask me to suggest a meal plan." (chatCompleted)="onBotComplete($event)" class="chat"></amplify-chatbot>
       </div>
   
     </mat-sidenav-content>
