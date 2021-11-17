@@ -1,0 +1,111 @@
+.leftMargin
+{
+    margin-left: 250px !important;
+
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 95%; /* Should be removed. Only for demonstration */
+    /* margin : 15px; */
+    /* background-color: grey !important; */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+.color
+{
+  background-color: grey !important;
+}
+  .imageCSS{
+    width: 60% !important ;
+    height: 50% !important ;
+    margin-left: 165px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .float-layout {
+    padding: 5px 5px;
+    float: left;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    margin: 0;
+  }
+  
+  .card-container {
+    overflow: hidden;
+  }
+  
+  .card {
+    background-color: gray;
+    color: black;
+    min-height: 100%; /*replace this it in width: 100%*/
+    width:15%;
+    float: right;
+  }
+  
+  .card-title {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 20px;
+  }
+  
+  .card-desc {
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+  }
+  
+  /*add this it*/
+  .card-image {
+    display: flex;
+  }
+  /*-------------*/
+  
+  div.card-image img {
+    width: 50%;
+    height: auto;
+  }
+  
+ .topMargin{
+    margin-top: 200px !important;
+    
+ }
+ .carouselCSS{
+    top: 40%;
+    color: brown;
+    font-size: x-large;
+ }
+ .carousel-inner img {
+    margin: auto;
+  }
+
+  .grid-container {
+    margin: 20px;
+  }
+  
+  .dashboard-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+  
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  
+  .dashboard-card-content {
+    text-align: center;
+  }
+  
