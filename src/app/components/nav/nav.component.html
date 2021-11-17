@@ -28,7 +28,7 @@
         <!-- <input type="text" value='search'> -->
         <span class="header-spacer"></span>
         <div style="margin: auto;">
-          <input matInput placeholder="Placeholder">
+          <input matInput placeholder="Search Meal Plans">
           <mat-icon matSuffix>search</mat-icon>
         </div>
   
@@ -48,7 +48,10 @@
       </mat-toolbar>
   
       <!-- Add Content Here -->
+      <div class="content">
+
       <router-outlet></router-outlet>
+      </div>
       <div class="chatcontainer" *ngIf="showChat">
 
         <amplify-chatbot bot-name="lexbot_devmain" 

@@ -15,7 +15,9 @@
     top: 0;
     z-index: 1;
   }
-
+.content{
+  height: max-content;
+}
   .chatcontainer{
     position: fixed;
     background: white;
