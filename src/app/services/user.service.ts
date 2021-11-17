@@ -14,5 +14,9 @@ export class UserService {
     }).catch((err)=>{
       console.log(err);
     });
+    return {
+      username:'varun',
+      role:'admin'
+    };
   }
 }
