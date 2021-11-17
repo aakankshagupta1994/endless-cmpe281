@@ -1,1 +1,27 @@
-<p>recipe works!</p>
+<!DOCTYPE html>
+  <html>
+  <head>
+  </head>
+  <body>
+  
+  <h1>Available Recipes</h1>
+  
+  <table id="customers">
+    <thead>
+        <tr>
+          <th>recipeName</th>
+          <th>type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let recipe of recipes">
+          <td><span>{{recipe.recipeName}}</span></td>
+          <td><span>{{recipe.type}}</span></td>
+          
+        </tr>
+        </tbody>
+    
+  </table>
+  
+  </body>
+  </html>
