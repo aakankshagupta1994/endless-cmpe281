@@ -1,0 +1,14 @@
+{
+  "resourceName": "mealplan",
+  "tableName": "mealplan",
+  "partitionKey": {
+    "fieldName": "mealplanid",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "mealplantype",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
