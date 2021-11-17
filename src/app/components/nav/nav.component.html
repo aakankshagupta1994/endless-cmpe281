@@ -49,7 +49,19 @@
   
       <!-- Add Content Here -->
       <router-outlet></router-outlet>
-  
+      <div class="chatcontainer" *ngIf="showChat">
+
+        <amplify-chatbot bot-name="lexbot_devmain" 
+        bot-title="Meal Plan Chatbot"
+        welcome-message="Hello, how can I help you? you can ask me to suggest a meal plan." (chatCompleted)="onBotComplete($event)" class="chat"></amplify-chatbot>
+       
+      </div>
+      
+      <div class="chatcontainerdab">
+        <button mat-fab color="primary" aria-label="chatbot" (click)="toggleChat()">
+          <mat-icon>chat</mat-icon>
+        </button>
+      </div>
   
     </mat-sidenav-content>
   </mat-sidenav-container>

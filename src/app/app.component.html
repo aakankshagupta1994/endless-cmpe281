@@ -1,10 +1,17 @@
-
+<!--
 <amplify-auth-container>
   <amplify-authenticator usernameAlias="email">
     <div>
-      <!-- <app-home></app-home -->
-        <app-nav></app-nav>
-      <!-- <amplify-sign-out></amplify-sign-out> -->
+      <app-nav></app-nav>
     </div>
   </amplify-authenticator>
 </amplify-auth-container>
+-->
+<amplify-auth-container>
+  <amplify-authenticator *ngIf="authState !== 'signedin'" usernameAlias="email">
+  
+  </amplify-authenticator>
+  </amplify-auth-container>
+  <div *ngIf="authState === 'signedin' && user" >
+      <app-nav></app-nav>
+  </div>
