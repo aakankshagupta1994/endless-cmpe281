@@ -43,6 +43,13 @@ export type AmplifyDependentResourcesAttributes = {
             "ApiId": "string"
         }
     },
+    "interactions": {
+        "chatbots": {
+            "Region": "string",
+            "BotName": "string",
+            "FunctionArn": "string"
+        }
+    },
     "storage": {
         "users": {
             "Name": "string",
