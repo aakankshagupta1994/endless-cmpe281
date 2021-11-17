@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "endlesscmpe28139dc59d9_identitypool_39dc59d9",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "endles39dc59d9",
     "userPoolName": "endlesscmpe28139dc59d9_userpool_39dc59d9",
     "autoVerifiedAttributes": [

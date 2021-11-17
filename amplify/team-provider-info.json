@@ -45,7 +45,8 @@
       },
       "auth": {
         "endlesscmpe28139dc59d9": {},
-        "userPoolGroups": {}
+        "userPoolGroups": {},
+        "true": {}
       },
       "function": {
         "recipeservice": {
@@ -59,6 +60,12 @@
         "mealplanservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
           "s3Key": "amplify-builds/mealplanservice-472b6d76656847465447-build.zip"
+        }
+      },
+      "interactions": {
+        "chatbots": {
+          "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+          "s3Key": "amplify-builds/chatbots-4e64516a4e616e65656d-build.zip"
         }
       }
     }
