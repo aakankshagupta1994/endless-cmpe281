@@ -1,1 +1,74 @@
-<p>create-recipe works!</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create-Recipe</title>
+    
+    <link rel="stylesheet"  integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- <style>
+      
+    </style> -->
+  </head>
+  <body>
+    <div class="testbox">
+      <form ngNativeValidate>
+        <div class="banner">
+          <h1>Create Recipe</h1>
+        </div>
+
+        <div class="item">
+          <p>Enter Recipe Name</p>
+          <div class="name-item">
+           <input required type="text" name="recipeName" placeholder="My Recipe" [(ngModel)]="recipeName"/> 
+           
+          </div> 
+        </div> 
+        Veg <input required type="radio" id="options1" name="function" [(ngModel)]="type" value="Veg">
+        Non-Veg <input required type="radio" id="options2" name="function" [(ngModel)]="type" value="Non-Veg">
+
+        <div class="item">
+          <p>Enter Recipe ingridient details</p>
+          <div >      
+              <button type="button" class="btn btn-primary mb-2" (click)="addIngridient()">Add Ingridient</button>
+          <section *ngFor="let ingridient of ingridients; let i = index;">    
+            <table class="ingred">
+              <thead><h4>Ingridient {{i + 1}}</h4></thead>
+              <tr>
+                <td><input required type="text" name="ingridient_{{ingridient.id}}" placeholder="Ingridient" [(ngModel)]="ingridient.ingridient"/></td>
+                <td> <input required type="text" name="quantity_{{ingridient.id}}" placeholder="Quantity" [(ngModel)]="ingridient.quantity"/></td>
+                <td><input required type="text" name="macros_{{ingridient.id}}" placeholder="Macros" [(ngModel)]="ingridient.macros"/> </td>
+                <div class="col-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeIngridient(i)">Remove</button>
+              </div>
+              </tr>
+            </table>
+          </section>
+          
+          </div>
+        </div>
+        
+        <div class="item">
+          <p>Enter steps for the recipe</p>
+          <div>      
+            <button type="button" class="btn btn-primary mb-2" (click)="addStep()">Add Step</button>
+          <section *ngFor="let step of steps; let j = index;">    
+            <table class="ingred">
+              <thead><h4 >Step {{j + 1}}</h4></thead>
+              <tr>
+                <td><input required type="text" name="step_{{step.id}}" placeholder="Step" [(ngModel)]="step.step"/></td>
+                <div class="col-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeStep(j)">Remove</button>
+              </div>
+              </tr>
+            </table>
+          </section>
+          
+          </div>
+        </div>
+      
+        <div class="btn-block">
+          <button  (click)="onSubmit()" >Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
