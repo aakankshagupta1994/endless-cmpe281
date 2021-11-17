@@ -17,16 +17,16 @@ export class MealPlanComponent  {
       if (matches) {
         return [
           // this block is for handset view
-          { title: 'Breakfast', cols: 1, rows: 1 ,imageSrc:'assets/img/Breakfast.jpg/', titles:'AvocadoToast'},
-          { title: 'Lunch', cols: 1, rows: 1,imageSrc:'assets/img/Lunch.jpg/' ,titles:'Whole Wheat Bread'},
-          { title: 'Dinner', cols: 1, rows: 1 ,imageSrc:'assets/img/Dinner.jpg/',titles:'Peel and mash avocado'}
+          { title: 'Breakfast', cols: 1, rows: 1 ,imageSrc:'assets/img/Breakfast.jpg', titles:'AvocadoToast'},
+          { title: 'Lunch', cols: 1, rows: 1,imageSrc:'assets/img/Lunch.jpg' ,titles:'Whole Wheat Bread'},
+          { title: 'Dinner', cols: 1, rows: 1 ,imageSrc:'assets/img/Dinner.jpg',titles:'Peel and mash avocado'}
         ];
       }
 
       return [
-        { title: 'Breakfast', cols: 1, rows: 1, imageSrc:'assets/img/Breakfast.jpg/', titles:'Avocado Toast' },
-        { title: 'Lunch', cols: 1, rows: 1,imageSrc:'assets/img/Lunch.jpg/',titles:'Whole Wheat Bread' },
-        { title: 'Dinner', cols: 1, rows: 1,imageSrc:'assets/img/Dinner.jpg/',titles:'Peel and mash avocado' }
+        { title: 'Breakfast', cols: 1, rows: 1, imageSrc:'assets/img/Breakfast.jpg', titles:'Avocado Toast' },
+        { title: 'Lunch', cols: 1, rows: 1,imageSrc:'assets/img/Lunch.jpg',titles:'Whole Wheat Bread' },
+        { title: 'Dinner', cols: 1, rows: 1,imageSrc:'assets/img/Dinner.jpg',titles:'Peel and mash avocado' }
       ];
     })
   );
