@@ -41,6 +41,9 @@
           "appId": "d2f27et41k6nl7",
           "type": "manual"
         }
+      },
+      "auth": {
+        "endlesscmpe28139dc59d9": {}
       }
     }
   }
