@@ -14,14 +14,16 @@ export class HomeComponent {
       if (matches) {
         return [
           // this block is for handset view
-          { title: 'Diet 1', cols: 1, rows: 1 },
-          { title: 'Diet 2', cols: 1, rows: 1 }
+          { title: 'Breakfast', cols: 1, rows: 1 ,imageSrc:'assets/img/Breakfast.jpg/', titles:'AvocadoToast'},
+          { title: 'Lunch', cols: 1, rows: 1,imageSrc:'assets/img/Lunch.jpg/' ,titles:'Whole Wheat Bread'},
+          { title: 'Dinner', cols: 1, rows: 1 ,imageSrc:'assets/img/Dinner.jpg/',titles:'Peel and mash avocado'}
         ];
       }
 
       return [
-        { title: 'Diet 1', cols: 1, rows: 1 },
-        { title: 'Diet 2', cols: 1, rows: 1 }
+        { title: 'Breakfast', cols: 1, rows: 1, imageSrc:'assets/img/Breakfast.jpg/', titles:'Avocado Toast' },
+        { title: 'Lunch', cols: 1, rows: 1,imageSrc:'assets/img/Lunch.jpg/',titles:'Whole Wheat Bread' },
+        { title: 'Dinner', cols: 1, rows: 1,imageSrc:'assets/img/Dinner.jpg/',titles:'Peel and mash avocado' }
       ];
     })
   );

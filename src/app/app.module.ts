@@ -23,6 +23,7 @@ import { AxiosConfigFactory, AxiosInterceptorService } from './services/axios-in
 import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     LayoutModule,
     MaterialModule,
     HttpClientModule, 
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [{
     provide: APP_INITIALIZER,
