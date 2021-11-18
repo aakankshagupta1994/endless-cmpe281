@@ -21,7 +21,7 @@ export class RecipeComponent implements OnInit {
 
       // this.activatedRoute.paramMap.subscribe(async (params)=>{
         
-      //   var response =   await this.recipeService.getRecipes();
+      //   let response =   await this.recipeService.getRecipes();
           
       //   this.recipes = response.products;
 
