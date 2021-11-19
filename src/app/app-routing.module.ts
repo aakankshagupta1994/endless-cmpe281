@@ -19,7 +19,7 @@ const routes: Routes = [{
   } 
 },
 {
-  path: 'mealplan/:id',  component:MealPlanComponent, canActivate:[AuthorizationGuardGuard],
+  path: 'mealplans/:id',  component:MealPlanComponent, canActivate:[AuthorizationGuardGuard],
   data: { 
     expectedRole: ['admin','dietitian','user']
   } 
