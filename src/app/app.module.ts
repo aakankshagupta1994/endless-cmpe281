@@ -24,6 +24,7 @@ import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.in
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FlexLayoutModule,
     /* configure app with AmplifyUIAngularModule */
     AmplifyUIAngularModule,
     NoopAnimationsModule,
