@@ -86,3 +86,12 @@
  .carousel-inner img {
     margin: auto;
   }
+
+  .paraStyle
+  {
+    width: 350px !important;
+  }
+
+  .mealplan-card {
+    width: 400px;
+  }
