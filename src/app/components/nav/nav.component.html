@@ -11,6 +11,7 @@
         <a mat-list-item routerLink="/mealplans" *ngIf="checkUserRole(['user','dietitian','admin'])">Meal Plans</a>
         <a mat-list-item routerLink="/recipe" *ngIf="checkUserRole(['user','dietitian','admin'])">Read Recipe</a>
         <a mat-list-item routerLink="createrecipe" *ngIf="checkUserRole(['admin','dietitian'])">Create Recipe</a>
+        <a mat-list-item routerLink="/userupdate" *ngIf="checkUserRole(['admin'])">Add Dietitian</a>
         <!-- <a mat-list-item href="#">Link 3</a> -->
       </mat-nav-list>
     </mat-sidenav>

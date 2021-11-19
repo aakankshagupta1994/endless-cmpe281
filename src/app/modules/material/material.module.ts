@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatTableModule} from '@angular/material/table';
 
 const materialModules=[
   MatToolbarModule,
@@ -27,7 +28,8 @@ const materialModules=[
   MatFormFieldModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatDividerModule];
+  MatDividerModule,
+  MatTableModule];
 @NgModule({
   declarations: [],
   imports: [

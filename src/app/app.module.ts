@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { UserupdateComponent } from './components/userupdate/userupdate.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MyPlansComponent,
     ProfileComponent,
     MealPlansComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    UserupdateComponent
   ],
   imports: [
     BrowserModule,
