@@ -2,8 +2,8 @@ import { Ingridient } from "./ingridient";
 
 export interface Recipe {
  
-        recipeId: string,
-        dietecianId: string,
+        recipeid: string,
+        dietitianid: string,
         recipeName:string,
         type:string,
         procedure: string[],
@@ -12,8 +12,8 @@ export interface Recipe {
 }
 export interface CreateRecipeRequest {
 
-    recipeId: string,
-    dietecianId: string,
+    recipeid: string,
+    dietitianid: string,
     recipeName:string,
     type:string,
     procedure: string[],

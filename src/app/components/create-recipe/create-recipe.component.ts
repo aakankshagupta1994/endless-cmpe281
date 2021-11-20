@@ -60,7 +60,7 @@ export class CreateRecipeComponent implements OnInit {
 
     // let recipeId = this.recipeName.concat(generateString(5));
     // dietecianId will be fetched from the users profile details
-    let dietecianId = 'd102';
+    let dietitianid = 'd102';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     function generateString(length: number) {
@@ -73,8 +73,8 @@ export class CreateRecipeComponent implements OnInit {
     }
 
     let recipe: CreateRecipeRequest = {
-      recipeId: (this.recipeName.substr(0, this.recipeName.indexOf(' ')).trim().concat(generateString(5))),
-      dietecianId: dietecianId,
+      recipeid: generateString(5),
+      dietitianid: dietitianid,
       recipeName: this.recipeName,
       type: this.type,
       procedure: this.steps,
@@ -82,8 +82,8 @@ export class CreateRecipeComponent implements OnInit {
     };
 
     // let body = {"recipeId":(this.recipeName.substr(0,this.recipeName.indexOf(' ')).trim().concat(generateString(5))), "recipeName": this.recipeName,"dietecianId": dietecianId,"type":this.type,"procedure":this.steps , "ingridients":this.ingridients };
-
-    this.recipeService.createRecipe(recipe);
+     let req = { "body" : recipe}
+    this.recipeService.createRecipe(req);
 
   }
 

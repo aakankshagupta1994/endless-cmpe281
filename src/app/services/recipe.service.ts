@@ -12,7 +12,7 @@ export class RecipeService {
 
   async getRecipes() {
     var recipes;
-    API.get('endlessapi', '/recipes', {}).then(resp => {
+    API.get('endlessapi', '/recipe/all', {}).then(resp => {
       recipes = resp;
       console.log(resp);
     }).catch(err => {
@@ -22,7 +22,16 @@ export class RecipeService {
     return recipes;
   }
 
-
+  async getRecipe(recipeId: string) {
+    return API.get('endlessapi', '/recipe/' + recipeId, {}).then(resp => {
+      console.log(resp);
+      debugger;
+      return resp;
+    }).catch(err => {
+      console.log(err);
+    });
+   
+  }
 
 
   async createRecipe(body: object) {
