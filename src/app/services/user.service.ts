@@ -6,42 +6,56 @@ import API from '@aws-amplify/api';
   providedIn: 'root'
 })
 export class UserService {
-loggedInUser : any;
-  constructor(httpClient:HttpClient) { }
-  async getUserDetails(){
-    API.get('endlessapi','/user',{}).then((data)=>{
+  loggedInUser: any;
+  constructor(httpClient: HttpClient) { }
+  async getUserDetails() {
+    API.get('endlessapi', '/user', {}).then((data) => {
       console.log(data);
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err);
     });
     return {
-      username:'varun',
-      role:'admin'
+      username: 'varun',
+      role: 'admin'
     };
   }
 
-  async getLoggedInUser(mealPlanId: string) {
+  async getLoggedInUser() {
     this.loggedInUser = await API.get('endlessapi', '/user/aakanksha.gupta@sjsu.edu', {}).then(resp => {
       return resp;
     }).catch(err => {
       console.log(err);
     });
+    debugger;
+    console.log(this.loggedInUser);
     return this.loggedInUser;
   }
 
-  async UpdateMealPlanForUser(mealPlanId: string) {
+  async UpdateMealPlanForUser(mealPlanId: string, user: any) {
+
     let body = {
       'username' : 'aakanksha.gupta@sjsu.edu', 
-      'userId' : 'aakanksha.gupta@sjsu.edu', 
-      'plans' : {
+      'usertype' : 'User',
+      'plans' : [{
         "mealtype" : mealPlanId, 
         "active" : true, 
         "subscribedOn" : new Date().toDateString()
-      }
-
-      
+      }]
     }
-    this.loggedInUser = await API.put('endlessapi', '/user', body).then(resp => {
+
+    if (user) {
+      user.plans.map((item: any) => { return item.active = false; });
+      user.plans.push(body.plans[0]);
+      
+      body = user;
+
+    }
+    
+    let myInit = {
+      body: body, // replace this with attributes you need
+      headers: {}, // OPTIONAL
+    };
+    this.loggedInUser = await API.put('endlessapi', '/user', myInit).then(resp => {
       return resp;
     }).catch(err => {
       console.log(err);
