@@ -20,3 +20,15 @@
     background-color: #04AA6D;
     color: white;
   }
+  table {background-color: #ddd;}
+
+  .example-card {
+    max-width: 400px;
+  }
+  .content {
+    padding: 16px;
+}
+
+.content > mat-card {
+    width: 200px;
+}

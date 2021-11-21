@@ -12,12 +12,8 @@ export class RecipeService {
 
      async getRecipes(){
     var recipes;
-    API.get('endlessapi','/recipes',{}).then(resp=>{
-      recipes= resp;
-      console.log(resp);
-    }).catch(err=>{
-      console.log(err);
-    });
+    recipes= await API.get('endlessapi','/recipes',{});
+     
     
     return recipes;
   }
