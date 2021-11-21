@@ -1,1 +1,113 @@
-<p>create-meal-plan works!</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Meal Plan</title>
+
+  </head>
+  <body style="color: white;">
+   
+   
+    
+    <div class="testbox">
+      
+    <form>
+      <h1 >Create Meal Plan</h1>
+        <div class="item">
+        <p>Enter the Meal Plan </p>
+        <div class="name-item">
+         <input required type="text" name=" mealplanname " placeholder =" Meal Plan Name" [(ngModel)]="name" style="color: black;">
+         </div> 
+        </div>
+        <br>
+         <div class="item">
+             <p>Enter the Meal Plan Type</p>
+             
+             <div class="name-item">
+         <input required type="text" name=" mealplantype " placeholder =" Meal Plan Type" [(ngModel)]="mealPlanType" style="color: black;">
+         </div>
+         <br>
+         </div>
+         <div class="item">
+             <p>Enter the Meal Plan Details</p>
+
+             
+                <textarea matInput placeholder="About the meal plan.." rows="4" cols="60" [(ngModel)]="description" style = "color: black;"></textarea>
+            
+                <br>
+                <div class="item">
+                  <p>Create the week long plan </p>
+     
+                  
+                </div>
+                     <br>
+                    
+          <div >      
+              <button type="button" class="btn btn-info" (click)="addDay()">Add Meal for another day</button>
+          <section *ngFor="let mealtype of mealtypes; let i = index;">    
+            <table class="ingred">
+              <thead><h4>Day {{i + 1}}</h4></thead>
+              
+              <tr>
+                <!-- <td><input required type="text"  placeholder="Breakfast" [(ngModel)]="mealtype.breakfast"/></td> &nbsp; &nbsp; -->
+                
+               <td> 
+                <mat-form-field appearance="fill">
+                  <mat-label>Breakfast</mat-label>
+                  <mat-select [(ngModel)]="mealtype.breakfast"  name="breakfast">
+                    <mat-option  *ngFor="let recipe of recipes" [value]="recipe.recipeId" >
+                      {{recipe.recipeName}}
+                      
+                    </mat-option>
+                    </mat-select>
+                  
+                </mat-form-field>
+              </td> &nbsp; 
+                <td>
+                <mat-form-field appearance="fill" >
+                  <mat-label>Lunch</mat-label>
+                  <mat-select [(ngModel)]="mealtype.lunch" name="lunch"   >
+                    <mat-option *ngFor="let recipe of recipes" [value]="recipe.recipeId">
+                      {{recipe.recipeName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field></td> &nbsp; 
+                <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Dinner</mat-label>
+                  <mat-select [(ngModel)]="mealtype.dinner" name="dinner">
+                    <mat-option *ngFor="let recipe of recipes" [value]="recipe.recipeId">
+                      {{recipe.recipeName}}
+                    </mat-option>
+                  </mat-select></mat-form-field></td> &nbsp; 
+                   
+                
+                  
+                 <!-- </mat-form-field></td>  -->
+
+                <!-- <td> <input required type="text"  placeholder="Lunch" [(ngModel)]="mealtype.lunch"/></td> &nbsp; &nbsp;
+                <td><input required type="text"  placeholder="Dinner" [(ngModel)]="mealtype.dinner"/> </td> -->
+                
+                  <div class="col-6 text-right">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeDay(i)">Remove</button>
+              </div>
+            </tr>
+            </table>
+        </section>
+        
+          <br>
+          </div>
+          <div class="btn-block">
+            <button type = "button" class="btn btn-success" (click)="onSubmit()" >Submit</button>
+          </div>
+                    
+
+                
+                    
+         </div>     
+                
+                
+       
+         </form>
+    </div>
+  </body>
+</html> 

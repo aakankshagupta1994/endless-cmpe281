@@ -1,19 +1,20 @@
 import { Recipe } from "./recipe";
 
 export interface Mealplan {
-    mealPlanId?:string,
+    mealplanid?:string,
     name:string,
     description: string,
     suggestedBy:string,
-    mealPlanType:string,
+    mealplantype:string,
     duration:number,
     recipes?:Recipe[]
 }
 export interface CreateMealplanRequest {
+    mealplanid?:string,
     name:string,
     description: string,
     suggestedBy:string,
-    mealPlanType:string,
+    mealplantype:string,
     duration:number,
     recipes?:Recipe[]
 }

@@ -7,8 +7,9 @@ import { Mealplan } from '../interfaces/mealplan';
 })
 export class MealPlanService {
 
+  mealPlanList?: Mealplan[];
   constructor(httpClient:HttpClient) { }
-  async getMealPlan(mealPlanId:string){
+  async getMealPlan(mealplanid:string){
     API.get('endlessapi','/mealplan',{}).then(resp=>{
       console.log(resp);
     }).catch(err=>{
@@ -16,12 +17,32 @@ export class MealPlanService {
     });
     let mealPlan:Mealplan={
       name:'Vegan Plan',
-      duration:28,
+      duration:7,
       description:'',
       suggestedBy:'',
-      mealPlanType:'',
-      mealPlanId:mealPlanId
+      mealplantype:'',
+      mealplanid:mealplanid
     };
     return mealPlan;
   }
+  
+  async getList() {
+
+    this.mealPlanList = await API.get('endlessapi', '/mealplan/all', {}).then(resp => {
+      return resp;
+    }).catch(err => {
+      console.log(err);
+    });
+    console.log(this.mealPlanList);
+    return this.mealPlanList;
+  }
+
+  async createMealPlan(body:object){
+    
+    API.post('endlessapi','/mealplan', body).then(resp=>{
+      console.log(resp);
+    }).catch(err=>{
+      console.log(err);
+    });
+}
 }

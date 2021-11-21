@@ -1,4 +1,5 @@
-
+<div *ngIf="display; else elseTemplate">
+  
 <div class="grid-container">
   
   <mat-grid-list cols="7" rowHeight="100px">
@@ -17,6 +18,7 @@
                
                  <button mat-button color="primary"><h2> {{card.title}}</h2></button>
                  <a mat-list-item routerLink="breakfast">
+
                  <button mat-button color="accent"> {{card.titles}}</button></a>
                 
                 
@@ -42,6 +44,24 @@
       <a mat-list-item routerLink="/mealplans/"><button mat-button color="primary">Subscibe to new DietPlan</button></a>
   
     </div>
+</div>
+    <ng-template #elseTemplate>
+
+          <div class="carousel-caption" style=" top: 55%; color:black; font-size: x-large;">
+                    <h1>Eat Better Not</h1>
+                    <h1>LESS !!</h1>
+                    
+          </div>
+      <div>
+        <h1>You are not subscribed to any Meal Plan <a mat-list-item routerLink="/mealplans/"><button mat-button color="primary">Start your journey today</button></a></h1>
+        <div>
+          <img class="imageCSS"
+              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/assorted-fruits-and-vegetables-background-royalty-free-image-512628566-1533328851.jpg?resize=980:*">
+      </div>
+      
+        
+      </div>
+   </ng-template>
     
     
     
