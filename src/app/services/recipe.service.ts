@@ -27,7 +27,7 @@ export class RecipeService {
   async getRecipe(recipeId: string) {
     return API.get('endlessapi', '/recipe/' + recipeId, {}).then(resp => {
       console.log(resp);
-      debugger;
+      // debugger;
       return resp;
     }).catch(err => {
       console.log(err);

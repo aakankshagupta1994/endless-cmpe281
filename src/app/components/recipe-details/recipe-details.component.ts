@@ -13,47 +13,40 @@ import { CreateRecipeRequest } from 'src/app/interfaces/recipe';
 export class RecipeDetailsComponent implements OnInit {
 
   constructor(private activatedRoute:ActivatedRoute,private recipeService:RecipeService, private http:HttpClient) { }
-
-  recipe?:CreateRecipeRequest;
+  // recipe?:CreateRecipeRequest;
+  
   // singleRecipe?:CreateRecipeRequest;
+
+  //mocking the recipeid which we will get when redirecting to this page
+  recipeid : string ='hdKwR';
   recipeName: string = '';
   type: string = '';
-  // type: this.type,
-  procedure: string = ''
-  ingridients: string=''
+  // // type: this.type,
+  // procedure: string[] = ''
+  // ingridients: string=''
   
-     ngOnInit(): void{
-
-      // we need the working recipeId API to get a single recipe by Id
-      this.http.get<any>('https://r76zppz36k.execute-api.us-west-2.amazonaws.com/dev/recipe/id').subscribe((res) => {
-      
-    console.log("response : "+res);
-      this.recipe= res.products;
-      console.log(this.recipe);
-
-      this.recipeName  = res.products.recipeName;
-      this.type  = res.products.type;
-      
-      // to get the procedure out of the response recipe
-
-      // 
-  
-
-    });
-
-
-      // this.activatedRoute.paramMap.subscribe(async (params)=>{
-        
-      //   var response =   await this.recipeService.getRecipes();
-          
-      //   this.recipes = response.products;
-
-      // });
-   
-
+     async ngOnInit(){
+     let recipe:CreateRecipeRequest;
     
+      //  recipe = await this.recipeService.getRecipe(this.recipeid);
 
-      
+      //  this.recipeName = recipe.recipeName;
+      //  this.type = recipe.type;
+      //  this.procedure = recipe.procedure;
+      //  this.ingredients = recipe.ingredients;
+
+
+      this.activatedRoute.paramMap.subscribe(async (params)=>{
+        
+        var response =   await this.recipeService.getRecipe(this.recipeid);
+          
+        recipe = response.products;
+        this.recipeName = recipe.recipeName;
+        this.type = recipe.type;
+        // this.procedure = recipe.procedure;
+        // this.ingredients = recipe.ingredients;
+ 
+      });  
 
 
   }

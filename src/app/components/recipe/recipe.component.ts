@@ -28,7 +28,7 @@ export class RecipeComponent implements OnInit {
       // });
    
       this.recipes = await this.recipeService.getRecipes();
-     console.log("All Recipes  " + this.recipes);
+      console.log("All Recipes  " + this.recipes);
 
     // this.http.get<any>('https://r76zppz36k.execute-api.us-west-2.amazonaws.com/dev/recipes').subscribe((res) => {
       
