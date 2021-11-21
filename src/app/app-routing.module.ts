@@ -8,6 +8,7 @@ import { MealPlanComponent } from './components/meal-plan/meal-plan.component';
 import { MealPlansComponent } from './components/meal-plans/meal-plans.component';
 import { MyPlansComponent } from './components/my-plans/my-plans.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 const routes: Routes = [{
   path: '', component: HomeComponent
@@ -52,7 +53,13 @@ const routes: Routes = [{
   path:'profile', component:ProfileComponent, canActivate:[AuthorizationGuardGuard],
   data: { 
     expectedRole: ['admin','dietitian','user']
-  } 
+  }
+},
+  {
+    path:'recipe-details', component:RecipeDetailsComponent, canActivate:[AuthorizationGuardGuard],
+    data: { 
+      expectedRole: ['admin','dietitian','user']
+    }
 }];
 
 @NgModule({

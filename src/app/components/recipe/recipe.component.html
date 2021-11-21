@@ -1,11 +1,40 @@
-<!DOCTYPE html>
-  <html>
-  <head>
-  </head>
-  <body>
+
   
   <h1>Available Recipes</h1>
-  
+  <div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid" >
+      <div style="display:flex; flex-direction: row;"></div>
+      
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%"  *ngFor="let recipe of recipes">
+    
+  <mat-card class="mat-elevation-z4" > 
+
+    <mat-card-title><p style="color:pink;">{{recipe.recipeId}}</p></mat-card-title>
+    <mat-card-subtitle><p style="color:green;">{{recipe.type}}</p></mat-card-subtitle> 
+    
+    <p>
+    <mat-card-subtitle><u>Ingredients:</u></mat-card-subtitle>
+    </p>  
+    <mat-card-subtitle>{{recipe.ingridients}}</mat-card-subtitle>
+    <mat-card-subtitle><u>Recipe Procedure:</u></mat-card-subtitle>
+    <p>
+    <mat-card-subtitle>{{recipe.procedure}}</mat-card-subtitle>
+    </p>
+    
+   
+    
+    <mat-card-content>
+      
+      
+    </mat-card-content>
+    <mat-card-actions>
+      
+    </mat-card-actions>
+  </mat-card>
+  </div>
+  </div>
+  </div>
+ <!--
   <table id="customers">
     <thead>
         <tr>
@@ -22,6 +51,6 @@
         </tbody>
     
   </table>
-  
-  </body>
-  </html>
+  <a mat-list-item routerLink="/recipe-details/"><button mat-button color="primary">Recipes of these meals(Click Here)</button></a>
+
+ -->
