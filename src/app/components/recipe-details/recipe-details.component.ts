@@ -15,6 +15,10 @@ export class RecipeDetailsComponent implements OnInit {
 
   constructor(private activatedRoute:ActivatedRoute,private recipeService:RecipeService, private http:HttpClient) { }
   // recipe?:CreateRecipeRequest;
+
+  images = ['https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg', 'https://forgetsugarfriday.com/wp-content/uploads/2019/05/keto-diet-meal-plan-featured.png?resize=980:*', 'https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg'];
+  // selectedImage = this.images.random();
+  item = this.images[Math.floor(Math.random() * this.images.length)];
   
   // singleRecipe?:CreateRecipeRequest;
 
