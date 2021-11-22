@@ -57,6 +57,38 @@ const convertUrlType = (param, type) => {
 /********************************
  * HTTP Get method for list objects *
  ********************************/
+app.get(path,function(req,res) {
+  console.log("In recipe list lambda fnc")
+    // if (userIdPresent && req.apiGateway) {
+      const queryParams = {
+        TableName: tableName
+      }
+    // }
+    // else {
+    //   try {
+    //     queryParams = {
+    //       TableName: tableName
+    //     }
+    //   } catch (err) {
+    //     res.statusCode = 500;
+    //     res.json({ error: 'Wrong column type ' + err });
+    //   }
+    // }
+    console.log(queryParams);
+    dynamodb.scan(queryParams, (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.json({ error: 'Could not load items: ' + err });
+      } else {
+        res.json(data.Items);
+      }
+    });
+});
+
+app.get(path + "/:id"  ,function(req,res) {
+
+});
+
 
 app.get(path + hashKeyPath, function(req, res) {
   console.log(req);

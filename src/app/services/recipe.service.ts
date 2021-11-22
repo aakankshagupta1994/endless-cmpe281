@@ -10,26 +10,29 @@ export class RecipeService {
   receipeList : any;
   constructor(httpClient: HttpClient) { }
 
-  async getRecipes() {
+  async getRecipe(recipeId : string) {
     var recipes;
-    API.get('endlessapi', '/recipes', {}).then(resp => {
-      recipes = resp;
+    return await API.get('endlessapi', '/recipe/' + recipeId, {}).then(resp => {
+      // recipes = resp;
+      return resp;
       console.log(resp);
     }).catch(err => {
       console.log(err);
     });
-
+debugger;
     return recipes;
   }
 
   async getRecipeList() {
    debugger;
     this.receipeList = await API.get('endlessapi', '/recipe/all', {}).then(resp => {
-      return resp;
+      // return resp;
     }).catch(err => {
       console.log(err);
     });
+    debugger;
     console.log(this.receipeList);
+
     return this.receipeList;
   }
 

@@ -1,346 +1,91 @@
+<cdk-accordion class="example-accordion">
+  <cdk-accordion-item
+    *ngFor="let item of items; let index = index;"
+    #accordionItem="cdkAccordionItem"
+    class="example-accordion-item"
+    role="button"
+    tabindex="0"
+    [attr.id]="'accordion-header-' + index"
+    [attr.aria-expanded]="accordionItem.expanded"
+    [attr.aria-controls]="'accordion-body-' + index">
+    <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+     Day {{ item.id }}
+      <span class="example-accordion-item-description">
+        Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+      </span>
+    </div>
+    <div
+      class="example-accordion-item-body"
+      role="region"
+      [style.display]="accordionItem.expanded ? '' : 'none'"
+      [attr.id]="'accordion-body-' + index"
+      [attr.aria-labelledby]="'accordion-header-' + index">
 
-<div class="container">
-    <h2>Seven Day Meal Plan</h2>  
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-        <li data-target="#myCarousel" data-slide-to="4"></li>
-        <li data-target="#myCarousel" data-slide-to="5"></li>
-        <li data-target="#myCarousel" data-slide-to="6"></li>
-      </ol>
-  
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <!-- <div class="item active">
-          <img src="https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg" alt="Los Angeles" style="width:100%;">
-        </div> -->
-        <div class="item active">
-            <!-- <div>
-                <img class="imageCSS"
-                    src="https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg">
-            </div>
-            <div class="color">
-                <div>
-
-                    <div class="card-desc ">
-                        Whether you're just trying out the vegan diet or looking to simplify your routine, this easy
-                        vegan diet meal plan has something for everyone. You'll find plenty of easy vegan recipes with
-                        simple steps and short ingredient lists. We focus on whole-food vegan ingredients like beans,
-                        nuts and quinoa, while limiting processed meat substitutes to keep things healthy and delicious.
-                    </div>
-                </div>
-            </div>
-         
-            <button style="float: right; width: 100%;" class="btn btn-primary"> Subscribe </button>
-            <div class="carousel-caption" style=" top: 40%; color: brown; font-size: x-large;">
-                <h3>Nutritional Meal Plan</h3>
-                <p>Maintains a Balanced Diet</p>
-            </div> -->
-            <h1>Day 1 </h1>
-            <mat-grid-list cols="3" rowHeight="400px">
-                <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-                  <mat-card class="dashboard-card">
-                    <mat-card-header>
-                      <mat-card-title>
-                       
-                         <button mat-button color="primary"><h2><h2> {{card.title}}</h2></h2></button>
-                         <a mat-list-item routerLink="breakfast">
-                         <button mat-button color="accent">{{card.titles}}</button></a>
-                        
-                        
-                        <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                         
-                          <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu" xPosition="before">
-                          <button mat-menu-item>Details</button>
-                          <button mat-menu-item>Remove</button>
-                        </mat-menu>
-                      </mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content class="dashboard-card-content">
-                      <div><img src={{card.imageSrc}} width="360" height="200"/>
-                       
-                      </div>
-                      
-                    </mat-card-content>
-                  </mat-card>
-                </mat-grid-tile>
-              </mat-grid-list>
-        </div>
-        <div class = "item">
-            <h1>Day 2 </h1>
-        <mat-grid-list cols="3" rowHeight="400px">
-            <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-              <mat-card class="dashboard-card">
-                <mat-card-header>
-                  <mat-card-title>
-                   
-                     <button mat-button color="primary"><h2><h2> {{card.title}}</h2></h2></button>
-                     <a mat-list-item routerLink="breakfast">
-                     <button mat-button color="accent">{{card.titles}}</button></a>
-                    
-                    
-                    <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                     
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu" xPosition="before">
-                      <button mat-menu-item>Details</button>
-                      <button mat-menu-item>Remove</button>
-                    </mat-menu>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                  <div><img src={{card.imageSrc}} width="360" height="200"/>
-                   
-                  </div>
-                  
-                </mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-    </div>
-    <div class = "item">
-        <h1>Day 3 </h1>
-        <mat-grid-list cols="3" rowHeight="400px">
-            <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-              <mat-card class="dashboard-card">
-                <mat-card-header>
-                  <mat-card-title>
-                   
-                     <button mat-button color="primary"><h2><h2> {{card.title}}</h2></h2></button>
-                     <a mat-list-item routerLink="breakfast">
-                     <button mat-button color="accent">{{card.titles}}</button></a>
-                    
-                    
-                    <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                     
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu" xPosition="before">
-                      <button mat-menu-item>Details</button>
-                      <button mat-menu-item>Remove</button>
-                    </mat-menu>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                  <div><img src={{card.imageSrc}} width="360" height="200"/>
-                   
-                  </div>
-                  
-                </mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-    </div>
-    <div class = "item">
-        <h1>Day 4 </h1>
-        <mat-grid-list cols="3" rowHeight="400px">
-            <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-              <mat-card class="dashboard-card">
-                <mat-card-header>
-                  <mat-card-title>
-                   
-                     <button mat-button color="primary"><h2><h2> {{card.title}}</h2></h2></button>
-                     <a mat-list-item routerLink="breakfast">
-                     <button mat-button color="accent">{{card.titles}}</button></a>
-                    
-                    
-                    <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                     
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu" xPosition="before">
-                      <button mat-menu-item>Details</button>
-                      <button mat-menu-item>Remove</button>
-                    </mat-menu>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                  <div><img src={{card.imageSrc}} width="360" height="200"/>
-                   
-                  </div>
-                  
-                </mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-    </div>
-    <div class = "item">
-        <h1>Day 5 </h1>
-        <mat-grid-list cols="3" rowHeight="400px">
-            <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-              <mat-card class="dashboard-card">
-                <mat-card-header>
-                  <mat-card-title>
-                   
-                     <button mat-button color="primary"><h2><h2> {{card.title}}</h2></h2></button>
-                     <a mat-list-item routerLink="breakfast">
-                     <button mat-button color="accent">{{card.titles}}</button></a>
-                    
-                    
-                    <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                     
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu" xPosition="before">
-                      <button mat-menu-item>Details</button>
-                      <button mat-menu-item>Remove</button>
-                    </mat-menu>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                  <div><img src={{card.imageSrc}} width="360" height="200"/>
-                   
-                  </div>
-                  
-                </mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-    </div>
-    <div class = "item">
-        <h1>Day 6 </h1>
-        <mat-grid-list cols="3" rowHeight="400px">
-            <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-              <mat-card class="dashboard-card">
-                <mat-card-header>
-                  <mat-card-title>
-                   
-                     <button mat-button color="primary"><h2><h2> {{card.title}}</h2></h2></button>
-                     <a mat-list-item routerLink="breakfast">
-                     <button mat-button color="accent">{{card.titles}}</button></a>
-                    
-                    
-                    <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                     
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu" xPosition="before">
-                      <button mat-menu-item>Details</button>
-                      <button mat-menu-item>Remove</button>
-                    </mat-menu>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                  <div><img src={{card.imageSrc}} width="360" height="200"/>
-                   
-                  </div>
-                  
-                </mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-    </div>
-    <div class = "item">
-        <h1>Day 7 </h1>
-        <mat-grid-list cols="3" rowHeight="400px">
-            <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-              <mat-card class="dashboard-card">
-                <mat-card-header>
-                  <mat-card-title>
-                   
-                     <button mat-button color="primary"><h2><h2> {{card.title}}</h2></h2></button>
-                     <a mat-list-item routerLink="breakfast">
-                     <button mat-button color="accent">{{card.titles}}</button></a>
-                    
-                    
-                    <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                     
-                      <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu" xPosition="before">
-                      <button mat-menu-item>Details</button>
-                      <button mat-menu-item>Remove</button>
-                    </mat-menu>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                  <div><img src={{card.imageSrc}} width="360" height="200"/>
-                   
-                  </div>
-                  
-                </mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-    </div>
+   
      
-         
-        
-<!-- 
-        <div class="item">
-            <div>
-                <img class="imageCSS"
-                    src="https://forgetsugarfriday.com/wp-content/uploads/2019/05/keto-diet-meal-plan-featured.png?resize=980:*">
-            </div>
-            <div class="color">
-                <div>
+      <mat-grid-list cols="3" rowHeight="350px">
+        <!-- <mat-grid-tile> -->
+            <mat-card class="mealplan-card" >
+                <mat-card-header>
+                    <mat-card-title> {{ item.meals[0].recipeName }}
+                    </mat-card-title>
+                    <mat-card-subtitle>{{ item.meals[0].dietitianid }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                    <div>
+                        <p style="width: 350px;">
+                            {{ item.meals[0].description }}  
+                        </p>
+                        <!-- <img [src]="item"
+                            width="360" height="200" /> -->
 
-                    <div class="card-desc ">
-                        Very low carb plan that includes lean protein (fish, chicken, turkey, eggs, cheese, lean pork and beef), low-carb vegetables, and moderate amounts of fat (nuts, seeds, avocado, olive oil, olives). Ketogenic meal plans lead to nutritional ketosis which helps decrease appetite.
                     </div>
-                </div>
-            </div>
-         
-            <button style="float: right; width: 100%;" class="btn btn-primary"> Subscribe </button>
-            <div class="carousel-caption" style=" top: 40%; color: brown; font-size: x-large;">
-                <h3>Ketogenic Meal Plan</h3>
-                <p>Instant Weight Loss Plan</p>
-            </div>
-        </div>
 
-        <div class="item">
-            <div>
-                <img class="imageCSS"
-                    src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/assorted-fruits-and-vegetables-background-royalty-free-image-512628566-1533328851.jpg?resize=980:*">
-            </div>
-            <div class="color">
+                </mat-card-content>
+              
+            </mat-card>
+             <mat-card class="mealplan-card" >
+              <mat-card-header>
+                  <mat-card-title>{{ item.meals[1].recipeName }}
+                  </mat-card-title>
+                  <mat-card-subtitle>{{ item.meals[1].dietitianid }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content class="dashboard-card-content">
+                  <div>
+                      <p style="width: 350px;">
+                          {{ item.meals[1].description }}  
+                      </p>
+                      <!-- <img [src]="item"
+                          width="360" height="200" />  -->
+
+                   </div>
+
+              </mat-card-content>
+            
+          </mat-card> 
+          <mat-card class="mealplan-card" >
+            <mat-card-header>
+                <mat-card-title>{{ item.meals[2].recipeName }}
+                </mat-card-title>
+                <mat-card-subtitle>{{ item.meals[2].dietitianid }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
                 <div>
+                    <p style="width: 350px;">
+                        {{ item.meals[2].description }}  
+                    </p>
+                    <!-- <img [src]="item"
+                        width="360" height="200" />  -->
 
-                    <div class="card-desc ">
-                        Very low carb plan that includes lean protein (fish, chicken, turkey, eggs, cheese, lean pork and beef), low-carb vegetables, and moderate amounts of fat (nuts, seeds, avocado, olive oil, olives). Ketogenic meal plans lead to nutritional ketosis which helps decrease appetite.
-                    </div>
-                </div>
-            </div>
-         
-            <button style="float: right; width: 100%;" class="btn btn-primary"> Subscribe </button>
-            <div class="carousel-caption" style=" top: 40%; color: brown; font-size: x-large;">
-                <h3>Raw Food Meal Plan</h3>
-                <p>Vegan Diet</p>
-            </div>
-        </div> -->
-  
-        <!-- <div class="item">
-          <img src="https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg" alt="Chicago" style="width:100%;">
-        </div>
-      
-        <div class="item">
-          <img src="https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg" alt="New york" style="width:100%;">
-        </div>
-      </div> -->
-  
-      <!-- Left and right controls -->
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
-      </a>
+                 </div>
+
+            </mat-card-content>
+          
+        </mat-card>  
+
+        <!-- </mat-grid-tile> -->
+    </mat-grid-list>
     </div>
-    <a mat-list-item routerLink="/mealplans/"><button mat-button color="primary">Subscribe to Diet Plan</button></a>
-    
-  </div>
+  </cdk-accordion-item>
+</cdk-accordion>
 
-
-
-
-
-  

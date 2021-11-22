@@ -24,7 +24,9 @@ import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.in
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { FormsModule } from '@angular/forms';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,10 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     HttpClientModule, 
     NgbModule,
-    FormsModule
+    FormsModule, 
+    MatCardModule, 
+    MatExpansionModule, 
+    CdkAccordionModule
 
   ],
   providers: [{
