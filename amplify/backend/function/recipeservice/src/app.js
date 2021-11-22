@@ -108,6 +108,8 @@ app.get(path + hashKeyPath, function(req, res) {
     KeyConditions: condition
   }
 
+
+  
   dynamodb.query(queryParams, (err, data) => {
     if (err) {
       res.statusCode = 500;

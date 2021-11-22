@@ -1,1 +1,51 @@
-<p>my-plans works!</p>
+
+
+<div class="content">
+  <div *ngIf="activeMealPlan">
+    <h1>
+      My Active Plan
+    </h1>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxLayoutAlign="stretch" >
+    <mat-card class="mat-elevation-z4">
+      <mat-card-subtitle>{{activeMealPlan.mealtype}}</mat-card-subtitle>
+      <mat-card-title>{{activeMealPlan.name}}</mat-card-title>
+      <mat-card-content>
+        <p>Sample Content for the meal plan. By {{activeMealPlan.dietitian}}</p>
+       
+      </mat-card-content>
+      <mat-divider inset></mat-divider>
+      <mat-card-actions>
+        <button mat-button>ACTIVATE</button>
+      </mat-card-actions>
+      <mat-card-footer>
+       
+      </mat-card-footer>
+    </mat-card>
+    </div>
+    </div>
+  </div>
+  <h1>
+    My Plans
+  </h1>
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxLayoutAlign="stretch" *ngFor="let meal of mealPlans">
+    
+      <mat-card class="mat-elevation-z4">
+        <mat-card-subtitle>{{meal.mealtype}}</mat-card-subtitle>
+        <mat-card-title>{{meal.name}}</mat-card-title>
+        <mat-card-content>
+          <p>Sample Content for the meal plan. By {{meal.dietitian}}</p>
+         
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>ACTIVATE</button>
+        </mat-card-actions>
+        <mat-card-footer>
+         
+        </mat-card-footer>
+      </mat-card>
+    </div>
+    </div>
+</div>

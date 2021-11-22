@@ -1,21 +1,23 @@
 import { Recipe } from "./recipe";
 
 export interface Mealplan {
-    mealPlanId?:string,
+    mealplanid?:string,
     name:string,
     description: string,
     suggestedBy:string,
-    mealPlanType:string,
+    chart:[],
     duration:number,
-    recipes?:Recipe[]
+    //recipes?:Recipe[]
 }
 export interface CreateMealplanRequest {
+    mealplanid?:string,
     name:string,
     description: string,
     suggestedBy:string,
-    mealPlanType:string,
+    chart:any,
     duration:number,
-    recipes?:Recipe[]
+    mealplantype: string
+    //recipes?:Recipe[]
 }
 export interface CreateMealplanResponse {
 

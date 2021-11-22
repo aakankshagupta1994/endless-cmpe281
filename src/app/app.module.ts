@@ -24,6 +24,8 @@ import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.in
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { UserupdateComponent } from './components/userupdate/userupdate.component';
 
 
 @NgModule({
@@ -38,11 +40,13 @@ import { FormsModule } from '@angular/forms';
     MyPlansComponent,
     ProfileComponent,
     MealPlansComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    UserupdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FlexLayoutModule,
     /* configure app with AmplifyUIAngularModule */
     AmplifyUIAngularModule,
     NoopAnimationsModule,

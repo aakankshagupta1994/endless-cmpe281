@@ -10,6 +10,7 @@ import { MyPlansComponent } from './components/my-plans/my-plans.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { UserupdateComponent } from './components/userupdate/userupdate.component';
 const routes: Routes = [{
   path: '', component: HomeComponent
 },
@@ -58,6 +59,12 @@ const routes: Routes = [{
   path:'recipe/:id', component:RecipeDetailsComponent, canActivate:[AuthorizationGuardGuard],
   data: { 
     expectedRole: ['admin','dietitian','user']
+  },
+},
+{
+  path:'userupdate', component:UserupdateComponent, canActivate:[AuthorizationGuardGuard],
+  data:{
+    expectedRole:['admin']
   }
 }];
 

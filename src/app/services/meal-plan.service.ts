@@ -38,4 +38,19 @@ export class MealPlanService {
     console.log(this.mealplanList);
     return this.mealplanList;
   }
+
+  async createMealPlan(mealplan: any) {
+    let myInit = {
+      body : mealplan, 
+      headers: {},
+    }
+
+    this.mealplanList = await API.post('endlessapi', '/mealplan', myInit).then(resp => {
+      return resp;
+    }).catch(err => {
+      console.log(err);
+    });
+    console.log(this.mealplanList);
+    return this.mealplanList;
+  }
 }

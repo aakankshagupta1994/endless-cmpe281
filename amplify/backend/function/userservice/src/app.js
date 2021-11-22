@@ -55,8 +55,9 @@ const convertUrlType = (param, type) => {
 }
 
 app.get(path,function(req,res){
-  res.json({username:'varun'});
+  // res.json({username:'varun'});
 });
+
 
 /********************************
  * HTTP Get method for list objects *
