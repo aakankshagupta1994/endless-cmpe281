@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { CreateRecipeRequest } from 'src/app/interfaces/recipe';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'createrecipe',
@@ -10,7 +11,7 @@ import { CreateRecipeRequest } from 'src/app/interfaces/recipe';
 })
 export class CreateRecipeComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private recipeService: RecipeService) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router,private userService: UserService, private recipeService: RecipeService) { }
 
   ngOnInit(): void {
   }
@@ -51,16 +52,18 @@ export class CreateRecipeComponent implements OnInit {
   }
   recipe?: CreateRecipeRequest;
   recipeName: string = '';
+  type: string = '';
+  existingUser : any;
 
-  type: string = ''
-
-  onSubmit(): void {
+  async onSubmit() {
 
     // alert(this.ingridients);
 
     // let recipeId = this.recipeName.concat(generateString(5));
+
+    this.existingUser = await this.userService.getLoggedInUser();
     // dietecianId will be fetched from the users profile details
-    let dietecianId = 'd102';
+    let dietitianid = this.existingUser;
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     function generateString(length: number) {
@@ -73,17 +76,17 @@ export class CreateRecipeComponent implements OnInit {
     }
 
     let recipe: CreateRecipeRequest = {
-      recipeId: (this.recipeName.substr(0, this.recipeName.indexOf(' ')).trim().concat(generateString(5))),
-      dietecianId: dietecianId,
+      recipeid: generateString(5),
+      dietitianid: dietitianid,
       recipeName: this.recipeName,
       type: this.type,
       procedure: this.steps,
-      ingridients: this.ingridients
+      ingredients: this.ingridients
     };
 
     // let body = {"recipeId":(this.recipeName.substr(0,this.recipeName.indexOf(' ')).trim().concat(generateString(5))), "recipeName": this.recipeName,"dietecianId": dietecianId,"type":this.type,"procedure":this.steps , "ingridients":this.ingridients };
-
-    this.recipeService.createRecipe(recipe);
+     let req = { "body" : recipe}
+    this.recipeService.createRecipe(req);
 
   }
 

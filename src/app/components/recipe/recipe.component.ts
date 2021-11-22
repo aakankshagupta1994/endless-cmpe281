@@ -16,25 +16,26 @@ export class RecipeComponent implements OnInit {
 
   recipes?:CreateRecipeRequest[];
   
-     ngOnInit(): void{
+    async ngOnInit(){
 
 
       // this.activatedRoute.paramMap.subscribe(async (params)=>{
         
-      //   var response =   await this.recipeService.getRecipes();
+      //   let response =   await this.recipeService.getRecipes();
           
       //   this.recipes = response.products;
 
       // });
    
+      this.recipes = await this.recipeService.getRecipes();
+      console.log("All Recipes  " + this.recipes);
 
-    this.http.get<any>('https://r76zppz36k.execute-api.us-west-2.amazonaws.com/dev/recipes').subscribe((res) => {
+    // this.http.get<any>('https://r76zppz36k.execute-api.us-west-2.amazonaws.com/dev/recipes').subscribe((res) => {
       
-    console.log("response : "+res);
-      this.recipes = res.products;
-      console.log(this.recipes);
-
-    });
+    // console.log("response : "+res);
+    //   this.recipes = res.products;
+    //   console.log(this.recipes);
+    // });
 
   }
 

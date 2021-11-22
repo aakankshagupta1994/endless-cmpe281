@@ -1,4 +1,4 @@
-export interface Ingridient {
+export interface ingredient{
 
     
     ingridient: string,
