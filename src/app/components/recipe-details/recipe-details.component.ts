@@ -3,6 +3,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient,HttpClientModule } from '@angular/common/http';
 import { CreateRecipeRequest } from 'src/app/interfaces/recipe';
+import { ingredient } from 'src/app/interfaces/ingredient';
 
 
 @Component({
@@ -18,12 +19,12 @@ export class RecipeDetailsComponent implements OnInit {
   // singleRecipe?:CreateRecipeRequest;
 
   //mocking the recipeid which we will get when redirecting to this page
-  recipeid : string ='iy5XX';
+  recipeid : string ='hdKwR';
   recipeName: string = '';
   type: string = '';
   // // type: this.type,
-  // procedure: string[] = ''
-  // ingridients: string=''
+  procedure: any;
+  ingredients?: ingredient[];
   
      async ngOnInit(){
      let recipe:CreateRecipeRequest;
@@ -38,14 +39,15 @@ export class RecipeDetailsComponent implements OnInit {
 
       this.activatedRoute.paramMap.subscribe(async (params)=>{
         console.log(this.recipeid);
-        debugger;
+        // debugger;
         var response =   await this.recipeService.getRecipe(this.recipeid);
           
-        recipe = response.products;
+        recipe = response[0];
         this.recipeName = recipe.recipeName;
         this.type = recipe.type;
-        // this.procedure = recipe.procedure;
-        // this.ingredients = recipe.ingredients;
+        this.procedure = recipe.procedure;
+        this.ingredients = recipe.ingredients;
+        
  
       });  
 

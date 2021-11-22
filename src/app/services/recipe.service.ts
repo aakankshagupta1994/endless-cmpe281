@@ -26,10 +26,10 @@ export class RecipeService {
   }
 
   async getRecipe(recipeId: string) {
-    debugger;
-    this.recipe = await API.get('endlessapi', '/recipe/iy5XX' , {}).then(resp => {
+    // debugger;
+    this.recipe = await API.get('endlessapi', '/recipe/' + recipeId, {}).then(resp => {
       console.log(resp);
-      debugger;
+      // debugger;
       return resp;
     }).catch(err => {
       console.log(err);
@@ -39,8 +39,11 @@ export class RecipeService {
 
 
   async createRecipe(body: object) {
-
-    API.post('endlessapi', '/recipe', body).then(resp => {
+    let myInit = {
+      body: body, // replace this with attributes you need
+      headers: {}, // OPTIONAL
+    };
+    API.post('endlessapi', '/recipe', myInit).then(resp => {
       console.log(resp);
     }).catch(err => {
       console.log(err);
