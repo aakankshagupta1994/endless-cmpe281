@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "function": {
+      "userservice": [
+        "create",
+        "read",
+        "update"
+      ]
+    },
+    "storage": {
+      "users": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "userlayer",
+      "environmentVariableName": "userlayer"
+    }
+  ]
+}
