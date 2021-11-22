@@ -6,22 +6,51 @@ import { Mealplan } from '../interfaces/mealplan';
   providedIn: 'root'
 })
 export class MealPlanService {
+  mealplanList: any;
 
-  constructor(httpClient:HttpClient) { }
-  async getMealPlan(mealPlanId:string){
-    API.get('endlessapi','/mealplan',{}).then(resp=>{
+  constructor(httpClient: HttpClient) { }
+  async getMealPlan(mealPlanId: string) {
+    return API.get('endlessapi', '/mealplan/' + mealPlanId, {}).then(resp => {
       console.log(resp);
-    }).catch(err=>{
+      debugger;
+      return resp;
+    }).catch(err => {
       console.log(err);
     });
-    let mealPlan:Mealplan={
-      name:'Vegan Plan',
-      duration:28,
-      description:'',
-      suggestedBy:'',
-      mealPlanType:'',
-      mealPlanId:mealPlanId
-    };
-    return mealPlan;
+    // let mealPlan:Mealplan={
+    //   name:'Vegan Plan',
+    //   duration:28,
+    //   description:'',
+    //   suggestedBy:'',
+    //   mealPlanType:'',
+    //   mealPlanId:mealPlanId
+    // };
+    // return mealPlan;
+  }
+
+  async getList() {
+
+    this.mealplanList = await API.get('endlessapi', '/mealplan/all', {}).then(resp => {
+      return resp;
+    }).catch(err => {
+      console.log(err);
+    });
+    console.log(this.mealplanList);
+    return this.mealplanList;
+  }
+
+  async createMealPlan(mealplan: any) {
+    let myInit = {
+      body : mealplan, 
+      headers: {},
+    }
+
+    this.mealplanList = await API.post('endlessapi', '/mealplan', myInit).then(resp => {
+      return resp;
+    }).catch(err => {
+      console.log(err);
+    });
+    console.log(this.mealplanList);
+    return this.mealplanList;
   }
 }

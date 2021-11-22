@@ -51,15 +51,15 @@
       "function": {
         "recipeservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/recipeservice-5671566e514350556b56-build.zip"
+          "s3Key": "amplify-builds/recipeservice-596137367a6b33424a57-build.zip"
         },
         "userservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/userservice-594c6b594c6b5464716a-build.zip"
+          "s3Key": "amplify-builds/userservice-344954392f6a562f4832-build.zip"
         },
         "mealplanservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/mealplanservice-472b6d76656847465447-build.zip"
+          "s3Key": "amplify-builds/mealplanservice-4b67766f7759524d386f-build.zip"
         }
       },
       "interactions": {

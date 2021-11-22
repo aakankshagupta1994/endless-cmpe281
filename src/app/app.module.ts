@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UserupdateComponent } from './components/userupdate/userupdate.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { UserupdateComponent } from './components/userupdate/userupdate.componen
     HttpClientModule, 
     NgbModule,
     FormsModule
+
   ],
   providers: [{
     provide: APP_INITIALIZER,

@@ -78,6 +78,7 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
+          
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "endless-cmpe281:build"
@@ -95,8 +96,8 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.css"
+              "src/styles.css", 
+              "src/theme.scss"
             ],
             "scripts": []
           }

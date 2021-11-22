@@ -1,5 +1,5 @@
 // import { HttpClient } from '@angular/common/http';
-import { HttpClient,HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API } from 'aws-amplify';
 
@@ -7,34 +7,43 @@ import { API } from 'aws-amplify';
   providedIn: 'root'
 })
 export class RecipeService {
+  receipeList : any;
+  constructor(httpClient: HttpClient) { }
 
-  constructor(httpClient:HttpClient) { }
-
-     async getRecipes(){
+  async getRecipes() {
     var recipes;
-    API.get('endlessapi','/recipes',{}).then(resp=>{
-      recipes= resp;
+    API.get('endlessapi', '/recipes', {}).then(resp => {
+      recipes = resp;
       console.log(resp);
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err);
     });
-    
+
     return recipes;
+  }
+
+  async getRecipeList() {
+   debugger;
+    this.receipeList = await API.get('endlessapi', '/recipe/all', {}).then(resp => {
+      return resp;
+    }).catch(err => {
+      console.log(err);
+    });
+    console.log(this.receipeList);
+    return this.receipeList;
+  }
+
+
+  async createRecipe(body: object) {
+
+    API.post('endlessapi', '/recipe', body).then(resp => {
+      console.log(resp);
+    }).catch(err => {
+      console.log(err);
+    });
+
   }
 
 
 
-
-  async createRecipe(body:object){
-    
-      API.post('endlessapi','/recipe', body).then(resp=>{
-        console.log(resp);
-      }).catch(err=>{
-        console.log(err);
-      });
-
-   } 
-
-   
-  
 }

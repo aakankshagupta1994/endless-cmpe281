@@ -5,6 +5,8 @@ import { MealPlanService } from 'src/app/services/meal-plan.service';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 
+
+
 @Component({
   selector: 'app-meal-plan',
   templateUrl: './meal-plan.component.html',
@@ -31,7 +33,7 @@ export class MealPlanComponent  {
     })
   );
   constructor(private breakpointObserver: BreakpointObserver) { }
+  
+  }
 
 
-
-}
