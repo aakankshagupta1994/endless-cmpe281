@@ -14,29 +14,26 @@ export class RecipeComponent implements OnInit {
 
   constructor(private activatedRoute:ActivatedRoute,private recipeService:RecipeService, private http:HttpClient) { }
 
-  recipes?:CreateRecipeRequest[];
+  // both of the below syntax work. declaring interface will strictly bind our recipe structure to the one in interface
+  // recipes?:CreateRecipeRequest[];
+  recipes?:any;
   
     async ngOnInit(){
 
-
-      // this.activatedRoute.paramMap.subscribe(async (params)=>{
-        
-      //   let response =   await this.recipeService.getRecipes();
-          
-      //   this.recipes = response.products;
-
-      // });
    
       this.recipes = await this.recipeService.getRecipes();
       console.log("All Recipes  " + this.recipes);
 
-    // this.http.get<any>('https://r76zppz36k.execute-api.us-west-2.amazonaws.com/dev/recipes').subscribe((res) => {
+  //   this.http.get<any>('https://r76zppz36k.execute-api.us-west-2.amazonaws.com/dev/recipes').subscribe((res) => {
       
-    // console.log("response : "+res);
-    //   this.recipes = res.products;
-    //   console.log(this.recipes);
-    // });
+  //   console.log("response : "+res);
+  //     this.recipes = res.products;
+  //     console.log(this.recipes);
+  //   });
 
   }
+
+
+  
 
 }

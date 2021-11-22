@@ -19,7 +19,7 @@ export class RecipeDetailsComponent implements OnInit {
   // singleRecipe?:CreateRecipeRequest;
 
   //mocking the recipeid which we will get when redirecting to this page
-  recipeid : string ='hdKwR';
+  recipeid : string ='';
   recipeName: string = '';
   type: string = '';
   // // type: this.type,
@@ -38,8 +38,12 @@ export class RecipeDetailsComponent implements OnInit {
 
 
       this.activatedRoute.paramMap.subscribe(async (params)=>{
-        console.log(this.recipeid);
+        console.log("Printing the id we get from recipe list page");
+        console.log(this.activatedRoute.snapshot.params);
+
+        var arg = (Object)(this.activatedRoute.snapshot.params).id;
         // debugger;
+        this.recipeid = arg;
         var response =   await this.recipeService.getRecipe(this.recipeid);
           
         recipe = response[0];

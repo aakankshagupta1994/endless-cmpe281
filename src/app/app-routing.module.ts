@@ -55,7 +55,7 @@ const routes: Routes = [{
     expectedRole: ['admin','dietitian','user']
   } 
 },{
-  path:'recipe-details', component:RecipeDetailsComponent, canActivate:[AuthorizationGuardGuard],
+  path:'recipe/:id', component:RecipeDetailsComponent, canActivate:[AuthorizationGuardGuard],
   data: { 
     expectedRole: ['admin','dietitian','user']
   }
