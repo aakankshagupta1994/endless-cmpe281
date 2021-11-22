@@ -7,7 +7,7 @@ import { API } from 'aws-amplify';
   providedIn: 'root'
 })
 export class RecipeService {
-
+  receipeList : any;
   constructor(httpClient: HttpClient) { }
 
   async getRecipes() {
@@ -22,7 +22,16 @@ export class RecipeService {
     return recipes;
   }
 
-
+  async getRecipeList() {
+   debugger;
+    this.receipeList = await API.get('endlessapi', '/recipe/all', {}).then(resp => {
+      return resp;
+    }).catch(err => {
+      console.log(err);
+    });
+    console.log(this.receipeList);
+    return this.receipeList;
+  }
 
 
   async createRecipe(body: object) {

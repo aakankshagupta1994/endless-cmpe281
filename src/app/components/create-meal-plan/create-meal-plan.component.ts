@@ -18,29 +18,32 @@ import {CreateMealplanRequest, Mealplan} from 'src/app/interfaces/mealplan'
 export class CreateMealPlanComponent implements OnInit {
 
   selectedValue: string='';
-
+  mealList : any;
   public name ='';
   public type='';
   public description='';
     suggestedBy='';
-    mealPlanType='';
-    duration=1;
+    mealPlanType: any;
+    duration=7;
 
-  constructor( recipeService:RecipeService, private http:HttpClient,private MealPlanService:MealPlanService ) { 
+  constructor( private recipeService:RecipeService, private http:HttpClient,private MealPlanService:MealPlanService ) { 
   }
   recipes?:CreateRecipeRequest[];
   
 
-  ngOnInit(): void {
+  async ngOnInit() {
     
-    this.http.get<any>('https://r76zppz36k.execute-api.us-west-2.amazonaws.com/dev/recipes').subscribe((res) => {
+    // this.http.get<any>('https://r76zppz36k.execute-api.us-west-2.amazonaws.com/dev/recipes').subscribe((res) => {
       
-      console.log("response : "+res);
-        this.recipes = res.products;
-        console.log(this.recipes);
+    //   console.log("response : "+res);
+    //     this.recipes = res.products;
+    //     console.log(this.recipes);
 
-      });
+    //   });
   //  this.mealPlanList =  this.MealPlanService.getList();
+
+  this.recipes = await this.recipeService.getRecipeList();
+  console.log("Receipe List " + this.recipes);
 
   }
   
@@ -69,7 +72,7 @@ export class CreateMealPlanComponent implements OnInit {
     let dietitianid = 'd102';
     let duration = 7;
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
+    debugger;
     function generateString(length: number) {
       let result = ' ';
       const charactersLength = characters.length;
@@ -80,18 +83,19 @@ export class CreateMealPlanComponent implements OnInit {
     }
 
     let mealplan: CreateMealplanRequest = {
-      mealplanid:generateString(5),
+      mealplanid: generateString(5).trim(),
       suggestedBy: dietitianid,
       name: this.name,
-      mealplantype: this.mealPlanType,
+      chart: this.mealtypes,
       description: this.description,
-      duration:duration,
-      recipes: this.recipes
+      duration: duration,
+      mealplantype: this.mealPlanType
+      //recipes: this.recipes
     };
-
+     
     // let body = {"recipeId":(this.recipeName.substr(0,this.recipeName.indexOf(' ')).trim().concat(generateString(5))), "recipeName": this.recipeName,"dietecianId": dietecianId,"type":this.type,"procedure":this.steps , "ingridients":this.ingridients };
-    let req = {"body" : mealplan};
-    this.MealPlanService.createMealPlan(req);
+    // let req = {"body" : mealplan};
+    this.MealPlanService.createMealPlan(mealplan);
 
   }
 

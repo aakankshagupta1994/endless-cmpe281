@@ -73,7 +73,7 @@ export class CreateRecipeComponent implements OnInit {
     }
 
     let recipe: CreateRecipeRequest = {
-      recipeId: (this.recipeName.substr(0, this.recipeName.indexOf(' ')).trim().concat(generateString(5))),
+      recipeid: (this.recipeName.substr(0, this.recipeName.indexOf(' ')).trim().concat(generateString(5))),
       dietecianId: dietecianId,
       recipeName: this.recipeName,
       type: this.type,

@@ -23,7 +23,7 @@
              <p>Enter the Meal Plan Type</p>
              
              <div class="name-item">
-         <input required type="text" name=" mealplantype " placeholder =" Meal Plan Type" [(ngModel)]="mealPlanType" style="color: black;">
+         <input required type="text" name="mealplantype" placeholder =" Meal Plan Type" [(ngModel)]="mealPlanType" style="color: black;">
          </div>
          <br>
          </div>
@@ -54,7 +54,7 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Breakfast</mat-label>
                   <mat-select [(ngModel)]="mealtype.breakfast"  name="breakfast">
-                    <mat-option  *ngFor="let recipe of recipes" [value]="recipe.recipeId" >
+                    <mat-option  *ngFor="let recipe of recipes" [value]="recipe.recipeid" >
                       {{recipe.recipeName}}
                       
                     </mat-option>
@@ -66,7 +66,7 @@
                 <mat-form-field appearance="fill" >
                   <mat-label>Lunch</mat-label>
                   <mat-select [(ngModel)]="mealtype.lunch" name="lunch"   >
-                    <mat-option *ngFor="let recipe of recipes" [value]="recipe.recipeId">
+                    <mat-option *ngFor="let recipe of recipes" [value]="recipe.recipeid">
                       {{recipe.recipeName}}
                     </mat-option>
                   </mat-select>
@@ -75,7 +75,7 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Dinner</mat-label>
                   <mat-select [(ngModel)]="mealtype.dinner" name="dinner">
-                    <mat-option *ngFor="let recipe of recipes" [value]="recipe.recipeId">
+                    <mat-option *ngFor="let recipe of recipes" [value]="recipe.recipeid">
                       {{recipe.recipeName}}
                     </mat-option>
                   </mat-select></mat-form-field></td> &nbsp; 
