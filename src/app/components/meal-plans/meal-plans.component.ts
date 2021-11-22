@@ -1,4 +1,8 @@
+import { MealPlanService } from './../../services/meal-plan.service';
 import { Component, OnInit } from '@angular/core';
+
+import { UserService } from 'src/app/services/user.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-meal-plans',
@@ -6,10 +10,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./meal-plans.component.css']
 })
 export class MealPlansComponent implements OnInit {
+  mealList: any;
+  existingUser : any;
+  images = ['https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg', 'https://forgetsugarfriday.com/wp-content/uploads/2019/05/keto-diet-meal-plan-featured.png?resize=980:*', 'https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg'];
+  // selectedImage = this.images.random();
+  item = this.images[Math.floor(Math.random() * this.images.length)];
 
-  constructor() { }
+  constructor(private mealplanservice: MealPlanService, private userService: UserService, private route: ActivatedRoute,
+    private router: Router ) {
 
-  ngOnInit(): void {
+  }
+
+  async ngOnInit() {
+    
+    this.mealList = await this.mealplanservice.getList();
+    console.log("mealplans component  " + this.mealList);
+  }
+
+  async subscribeMealPlan(mealplanid : any)
+  {
+    this.existingUser = await this.userService.getLoggedInUser();
+    debugger;
+    console.log("Logged in User" + this.existingUser[0]);
+    
+    this.mealList = await this.userService.UpdateMealPlanForUser(mealplanid,this.existingUser[0])
+    console.log("Diet updated");
+    this.router.navigate(['/']);
   }
 
 }

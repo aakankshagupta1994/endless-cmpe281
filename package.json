@@ -27,6 +27,7 @@
     "aws-amplify-angular": "^6.0.24",
     "bootstrap": "^5.1.3",
     "rxjs": "~6.6.0",
+    "tsc-ui": "^0.0.6",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

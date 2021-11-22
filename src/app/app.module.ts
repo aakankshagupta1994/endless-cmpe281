@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule, 
     NgbModule,
     FormsModule
+
   ],
   providers: [{
     provide: APP_INITIALIZER,

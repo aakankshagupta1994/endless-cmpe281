@@ -59,7 +59,7 @@
         },
         "mealplanservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/mealplanservice-472b6d76656847465447-build.zip"
+          "s3Key": "amplify-builds/mealplanservice-4b67766f7759524d386f-build.zip"
         }
       },
       "interactions": {
