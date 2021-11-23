@@ -28,7 +28,7 @@ export class UserService {
       'plans' : [{
         "mealtype" : mealPlanId, 
         "active" : true, 
-        "subscribedOn" : new Date().toDateString()
+        "subscribedOn" :  ((new Date().getMonth()+1).toString())+ '/'+( new Date().getDate().toString()) +'/' + (new Date().getFullYear().toString())
       }]
     }
 
