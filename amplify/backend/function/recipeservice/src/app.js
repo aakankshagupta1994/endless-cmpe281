@@ -59,38 +59,35 @@ const convertUrlType = (param, type) => {
  ********************************/
 
 app.get(path + hashKeyPath, function(req, res) {
-  console.log(req);
   if (req.path === '/recipe/all') {
-    console.log("In recipe list lambda fnc")
-    // if (userIdPresent && req.apiGateway) {
-      const queryParams = {
+    if (userIdPresent && req.apiGateway) {
+      let queryParams = {
         TableName: tableName
       }
-    // }
-    // else {
-    //   try {
-    //     queryParams = {
-    //       TableName: tableName
-    //     }
-    //   } catch (err) {
-    //     res.statusCode = 500;
-    //     res.json({ error: 'Wrong column type ' + err });
-    //   }
-    // }
-    console.log(queryParams);
+    }
+    else {
+      try {
+        queryParams = {
+          TableName: tableName
+        }
+      } catch (err) {
+        res.statusCode = 500;
+        res.json({ error: 'Wrong column type ' + err });
+      }
+    }
+
     dynamodb.scan(queryParams, (err, data) => {
       if (err) {
         res.statusCode = 500;
         res.json({ error: 'Could not load items: ' + err });
       } else {
+        console.log(data);
         res.json(data.Items);
       }
     });
 
   }
-  else {
- 
-  var condition = {}
+  else {var condition = {}
   condition[partitionKeyName] = {
     ComparisonOperator: 'EQ'
   }
@@ -121,7 +118,7 @@ app.get(path + hashKeyPath, function(req, res) {
       res.json(data.Items);
     }
   });
-}
+ }
 });
 
 /*****************************************
