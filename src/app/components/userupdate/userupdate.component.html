@@ -18,10 +18,9 @@
                         <ng-container matColumnDef="action">
                             <th mat-header-cell *matHeaderCellDef> Action</th>
                             <td mat-cell *matCellDef="let element">
-                                <mat-icon>description</mat-icon>
     
-                                <mat-icon>verified_user</mat-icon>
-                                <mat-icon>clear</mat-icon>
+                                <mat-icon (click)="action(element.username,'approve')">verified_user</mat-icon>
+                                <mat-icon (click)="action(element.username,'reject')">clear</mat-icon>
                             </td>
                         </ng-container>
     

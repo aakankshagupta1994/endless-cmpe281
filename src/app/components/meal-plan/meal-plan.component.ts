@@ -66,7 +66,7 @@ export class MealPlanComponent {
       this.items = this.mealplandetail[0].chart;
       this.mealplanname = this.mealplandetail[0].name;
       
-      //this.mealplantype = this.mealplandetail[0];
+      this.mealplantype = this.mealplandetail[0].mealplantype;
       this.mealplandietician = this.mealplandetail[0].suggestedBy;
      
       this.mealplandescription = this.mealplandetail[0].description;
