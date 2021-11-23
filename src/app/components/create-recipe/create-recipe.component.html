@@ -26,18 +26,18 @@
         Non-Veg <input required type="radio" id="options2" name="function" [(ngModel)]="type" value="Non-Veg">
 
         <div class="item">
-          <p>Enter Recipe ingridient details</p>
+          <p>Enter Recipe ingredient details</p>
           <div >      
-              <button type="button" class="btn btn-primary mb-2" (click)="addIngridient()">Add Ingridient</button>
-          <section *ngFor="let ingridient of ingridients; let i = index;">    
+              <button type="button" class="btn btn-primary mb-2" (click)="addIngredient()">Add IIngredient</button>
+          <section *ngFor="let ingredient of ingredients; let i = index;">    
             <table class="ingred">
-              <thead><h4>Ingridient {{i + 1}}</h4></thead>
+              <thead><h4>ingredient {{i + 1}}</h4></thead>
               <tr>
-                <td><input required type="text" name="ingridient_{{ingridient.id}}" placeholder="Ingridient" [(ngModel)]="ingridient.ingridient"/></td>
-                <td> <input required type="text" name="quantity_{{ingridient.id}}" placeholder="Quantity" [(ngModel)]="ingridient.quantity"/></td>
-                <td><input required type="text" name="macros_{{ingridient.id}}" placeholder="Macros" [(ngModel)]="ingridient.macros"/> </td>
+                <td><input required type="text" name="ingredient_{{ingredient.id}}" placeholder="Ingredient" [(ngModel)]="ingredient.ingredient"/></td>
+                <td> <input required type="text" name="quantity_{{ingredient.id}}" placeholder="Quantity" [(ngModel)]="ingredient.quantity"/></td>
+                <td><input required type="text" name="macros_{{ingredient.id}}" placeholder="Macros" [(ngModel)]="ingredient.macros"/> </td>
                 <div class="col-6 text-right">
-                <button type="button" class="btn btn-danger btn-sm" (click)="removeIngridient(i)">Remove</button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeIngredient(i)">Remove</button>
               </div>
               </tr>
             </table>

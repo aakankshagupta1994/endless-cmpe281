@@ -1,22 +1,22 @@
-import { Ingridient } from "./ingridient";
+import { ingredient } from "./ingredient";
 
 export interface Recipe {
  
         recipeid: string,
-        dietecianId: string,
+        dietitianid: string,
         recipeName:string,
         type:string,
         procedure: string[],
-        ingridients: Ingridient[]
+        ingredients: ingredient[]
         
 }
 export interface CreateRecipeRequest {
 
     recipeid: string,
-    dietecianId: string,
+    dietitianid: string,
     recipeName:string,
     type:string,
     procedure: string[],
-    ingridients: Ingridient[]
+    ingredients: ingredient[]
 
 }

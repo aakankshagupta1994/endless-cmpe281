@@ -5,8 +5,9 @@ export interface Mealplan {
     name:string,
     description: string,
     suggestedBy:string,
-    chart:[],
+    chart:any[],
     duration:number,
+    mealplantype: string
     //recipes?:Recipe[]
 }
 export interface CreateMealplanRequest {
@@ -14,7 +15,7 @@ export interface CreateMealplanRequest {
     name:string,
     description: string,
     suggestedBy:string,
-    chart:any,
+    chart:any[],
     duration:number,
     mealplantype: string
     //recipes?:Recipe[]
