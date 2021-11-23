@@ -8,6 +8,7 @@ import { UserService } from '../services/user.service';
 })
 export class AuthorizationGuardGuard implements CanActivate {
   constructor(public userService: UserService, public router: Router) {}
+
   
    async canActivate(
     route: ActivatedRouteSnapshot,
@@ -31,6 +32,6 @@ export class AuthorizationGuardGuard implements CanActivate {
       if(allowedRoles.indexOf('dietitian')!=-1&&user){
         return user.isdietitian;
       }
-      else true;
+      else false;
   }
 }

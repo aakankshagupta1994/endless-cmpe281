@@ -2,20 +2,11 @@ var aws = require('aws-sdk');
 let docClient=new aws.DynamoDB.DocumentClient();
 let dynamoDB=new aws.DynamoDB({apiVersion: '2012-08-10'});
 
-
 let cognitoClient;
 function assignClient(region){
     cognitoClient = new aws.CognitoIdentityServiceProvider({ region: region });
 }
 async function getItem(params){
-    try {
-        
-      const data = await docClient.query(params).promise();
-      return data.Items[0];
-    } catch (err) {
-      return err
-    }
-}async function getItems(params){
     try {
         
       const data = await docClient.query(params).promise();
@@ -34,19 +25,6 @@ async function addUser(params){
    catch(err)
    {
        console.log('adding user error',err);
-       return {status:'failure',err:err};
-   }
-}
-async function updateUser(params){
-    try{
-       
-        let data= await docClient.update(params).promise();
-        console.log(data);
-        return {status:"success",data:data};
-   }
-   catch(err)
-   {
-       console.log('updating user error',err);
        return {status:'failure',err:err};
    }
 }
@@ -77,32 +55,6 @@ async function fetchUser(usertable,username){
      let user=await getItem(params);
       console.log("Success", user);
       return user;
-    }   
-    catch(Err){
-    
-        console.log("Error", Err);
-        return null;
-    }
-}
-async function fetchDietitianReqs(usertable){
-    console.log("Fetching Users with dietitian request true ",usertable);
-    var params = {
-        TableName: usertable,
-        KeyConditionExpression: "#a = :val",
-        ExpressionAttributeNames: {
-              "#a": "dietitianreq"
-          },
-          ExpressionAttributeValues: {
-              ":val": true
-          },
-          Limit:30
-    }
-    console.log(params);
-    // Call DynamoDB to read the item from the table
-    try{
-     let users=await getItems(params);
-      console.log("Success", users);
-      return users;
     }   
     catch(Err){
     
@@ -159,7 +111,5 @@ module.exports={
     getUserOfAuthenticatedUser,
     assignClient,
     getEmailFromCognitoDetails,
-    userMiddleWare,
-    updateUser,
-    fetchDietitianReqs
+    userMiddleWare
 }

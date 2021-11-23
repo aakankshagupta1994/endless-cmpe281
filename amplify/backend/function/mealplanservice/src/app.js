@@ -80,10 +80,6 @@ app.get(path+"/user",async function(req,res){
   console.log('usercontext ',req.users);
   return res.json(req.users);
 });
-
-
-
-
 /********************************
  * HTTP Get method for list objects *
  ********************************/
