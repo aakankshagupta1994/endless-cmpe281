@@ -28,7 +28,7 @@ export class UserService {
       'plans' : [{
         "mealtype" : mealPlanId, 
         "active" : true, 
-        "subscribedOn" : new Date().toDateString()
+        "subscribedOn" :  ((new Date().getMonth()+1).toString())+ '/'+( new Date().getDate().toString()) +'/' + (new Date().getFullYear().toString())
       }]
     }
 
@@ -50,5 +50,25 @@ export class UserService {
       console.log(err);
     });
     return this.loggedInUser;
+  }
+  async upgradeUser(){
+    let res= await API.post('endlessapi', '/user/dietitianreq',{
+      body: {}, 
+      headers: {}, 
+    });
+    return res;
+  }
+  async subscribe(mealplanId:string){
+    let res= await API.post('endlessapi', '/user/subscribe',{
+      body: {
+        mealplanId:mealplanId
+      }, 
+      headers: {}, 
+    });
+    return res;
+  }
+  async getDietitianReqs(){
+    let res= API.get('endlessapi', '/user/dietitianreqs',{});
+    return res;
   }
 }

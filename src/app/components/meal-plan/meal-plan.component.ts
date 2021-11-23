@@ -66,7 +66,7 @@ export class MealPlanComponent {
       this.items = this.mealplandetail[0].chart;
       this.mealplanname = this.mealplandetail[0].name;
       
-      this.mealplantype = this.mealplandetail[0].mealplantype;
+      //this.mealplantype = this.mealplandetail[0];
       this.mealplandietician = this.mealplandetail[0].suggestedBy;
      
       this.mealplandescription = this.mealplandetail[0].description;
@@ -77,6 +77,8 @@ export class MealPlanComponent {
       
     }
 
+    debugger; 
+    this.mealplandetail = await this.mealplanservice.filterMeals("mealplantype=vegan");
    
     
     // return this.items;

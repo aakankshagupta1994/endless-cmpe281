@@ -30,9 +30,9 @@
          <div class="item">
              <p>Enter the Meal Plan Details</p>
 
-<!--              
-                <textarea matInput placeholder="About the meal plan.." rows="4" cols="60" [(ngModel)]="description" style = "color: black;"></textarea> -->
-                <input required type="text" name="description" placeholder =" About the meal plan" [(ngModel)]="description" style="color: black;">
+             <input required type="text" name="description" placeholder =" About the meal plan" [(ngModel)]="description" style="color: black;">
+                <!-- <textarea matInput placeholder="About the meal plan.." rows="4" cols="60" [(ngModel)]="description" style = "color: black;"></textarea> -->
+            
                 <br>
                 <div class="item">
                   <p>Create the week long plan </p>
@@ -48,7 +48,7 @@
               <thead><h4>Day {{i + 1}}</h4></thead>
               
               <tr>
-                <!-- <td><input required type="text"  placeholder="Breakfast" [(ngModel)]="mealtype.breakfast"/></td> &nbsp; &nbsp; -->
+                
                 
                <td> 
                 <mat-form-field appearance="fill">
@@ -81,11 +81,7 @@
                   </mat-select></mat-form-field></td> &nbsp; 
                    
                 
-                  
-                 <!-- </mat-form-field></td>  -->
-
-                <!-- <td> <input required type="text"  placeholder="Lunch" [(ngModel)]="mealtype.lunch"/></td> &nbsp; &nbsp;
-                <td><input required type="text"  placeholder="Dinner" [(ngModel)]="mealtype.dinner"/> </td> -->
+                 
                 
                   <div class="col-6 text-right">
                 <button type="button" class="btn btn-danger btn-sm" (click)="removeDay(i)">Remove</button>

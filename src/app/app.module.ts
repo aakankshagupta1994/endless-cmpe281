@@ -29,6 +29,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UserupdateComponent } from './components/userupdate/userupdate.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { UserupdateComponent } from './components/userupdate/userupdate.componen
     ProfileComponent,
     MealPlansComponent,
     RecipeDetailsComponent,
-    UserupdateComponent
+    UserupdateComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
