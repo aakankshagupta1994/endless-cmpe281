@@ -24,6 +24,9 @@ import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.in
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UserupdateComponent } from './components/userupdate/userupdate.component';
 
@@ -55,7 +58,10 @@ import { UserupdateComponent } from './components/userupdate/userupdate.componen
     MaterialModule,
     HttpClientModule, 
     NgbModule,
-    FormsModule
+    FormsModule, 
+    MatCardModule, 
+    MatExpansionModule, 
+    CdkAccordionModule
 
   ],
   providers: [{
