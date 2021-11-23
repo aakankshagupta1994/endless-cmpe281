@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "function": {
+      "userservice": [
+        "create",
+        "read",
+        "update"
+      ]
+    },
+    "storage": {
+      "users": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "endlesscmpe281useroperations",
+      "env": "devmain",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ]
+}
