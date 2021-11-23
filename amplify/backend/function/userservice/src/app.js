@@ -2,6 +2,9 @@
 	AUTH_ENDLESSCMPE28139DC59D9_USERPOOLID
 	ENV
 	REGION
+	STORAGE_MEALPLAN_ARN
+	STORAGE_MEALPLAN_NAME
+	STORAGE_MEALPLAN_STREAMARN
 	STORAGE_USERS_ARN
 	STORAGE_USERS_NAME
 	STORAGE_USERS_STREAMARN
@@ -19,6 +22,7 @@ const AWS = require('aws-sdk')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
+const _util=require('underscore');
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 const usercode=require('/opt/user');
@@ -67,11 +71,49 @@ const convertUrlType = (param, type) => {
 }
 
 app.get(path,async function(req,res){
+
   console.log('usercontext ',req.users);
-  return res.json(req.users);
+  let response=req.users;
+  response.identityid="";
+  return res.json(response);
 });
+app.get('/myplans',async function(req,res){
+  console.log('usercontext ',req.users);
+  return res.json({activeplan:req.users.activeplan,plans:req.users.plans});
+});
+app.post('/subscribe',async function(req,res){
+  let input=req.body;
+  //check plan exists in user object?
+  if(req.users.activeplan&&req.users.activeplan.planid==input.mealplanId){
+    return res.json({"status":"Already Subscribed and Active"});
+  }
+  if(req.users.plans){
+   let mealplan= _util.find(req.users.plans,function(plan){return plan.mealid==input.mealplanId});
+   if(mealplan){
+     //change current active
+     return res.json({"status":"Activated the meal plan"});
+   }
+  }
+  //if yes make it active
+  //else
+  //check plan exists
 
+  //if yes add it to user object and update
+  //else reject
 
+  console.log('usercontext ',req.users);
+  return res.json({activeplan:req.users.activeplan,plans:req.users.plans});
+});
+app.post('/dietitianreq',function(req,res){
+  if(req.users.usertype==="dietitian"){
+      return res.json({status:"success",msg:"Already Dietitian"});
+  }
+  let user=usercode.fetchUser(process.env.STORAGE_USERS_NAME,req.user.username);
+  if(user.hasOwnProperty('dietitianreq')&&user.dietitianreq){
+    return res.json({status:"success",msg:"Already Requested for upgrade toDietitian"});
+  }
+  //update user
+});
 app.listen(3000, function() {
     console.log("App started")
 });

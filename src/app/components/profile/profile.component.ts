@@ -17,5 +17,8 @@ export class ProfileComponent implements OnInit {
       this.user=null;
     });
   }
+  async upgradeUser(event:any){
+
+  }
 
 }
