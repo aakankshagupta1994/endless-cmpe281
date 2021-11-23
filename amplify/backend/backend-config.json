@@ -6,16 +6,27 @@
       "service": "Lambda",
       "dependsOn": [
         {
+          "category": "auth",
+          "resourceName": "endlesscmpe28139dc59d9",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
           "category": "storage",
           "resourceName": "users",
           "attributes": [
             "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "endlesscmpe281useroperations",
+          "attributes": [
             "Arn"
-          ],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
+          ]
         }
       ]
     },
@@ -174,14 +185,6 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "userservice",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
           "resourceName": "mealplanservice",
           "attributes": [
             "Name",
@@ -191,6 +194,14 @@
         {
           "category": "function",
           "resourceName": "recipeservice",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "userservice",
           "attributes": [
             "Name",
             "Arn"
