@@ -51,7 +51,7 @@
       "function": {
         "recipeservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/recipeservice-2f56386c2b6d536a7261-build.zip"
+          "s3Key": "amplify-builds/recipeservice-4b362f444574302b4f75-build.zip"
         },
         "userservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",

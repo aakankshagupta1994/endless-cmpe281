@@ -9,35 +9,14 @@ export class UserService {
   loggedInUser: any;
   constructor(httpClient: HttpClient) { }
   async getUserDetails() {
-    API.get('endlessapi', '/user', {}).then((data) => {
-      console.log(data);
-    }).catch((err) => {
-      console.log(err);
-    });
-    API.get('endlessapi', '/mealplan/user', {}).then((data) => {
-      console.log('mealplan user ',data);
-    }).catch((err) => {
-      console.log(err);
-    });
-    API.get('endlessapi', '/recipe/user', {}).then((data) => {
-      console.log('recpie user ',data);
-    }).catch((err) => {
-      console.log(err);
-    });
-    return {
-      username: 'varun',
-      role: 'admin'
-    };
+    if(!this.loggedInUser)
+      this.loggedInUser= await API.get('endlessapi', '/user', {});
+    
+    return this.loggedInUser;
   }
 
   async getLoggedInUser() {
-    this.loggedInUser = await API.get('endlessapi', '/user/aakanksha.gupta@sjsu.edu', {}).then(resp => {
-      return resp;
-    }).catch(err => {
-      console.log(err);
-    });
-    debugger;
-    console.log(this.loggedInUser);
+    this.loggedInUser = await API.get('endlessapi', '/user', {});
     return this.loggedInUser;
   }
 
