@@ -55,7 +55,7 @@
         },
         "userservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/userservice-74666d5863723036692b-build.zip"
+          "s3Key": "amplify-builds/userservice-4e5938595479722f7832-build.zip"
         },
         "mealplanservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",

@@ -60,10 +60,10 @@ export class UserService {
     return res;
   }
   async approval(username:string,approval:string){
-    let res= await API.post('endlessapi', '/user/dietitianreq',{
+    let res= await API.post('endlessapi', '/user/approvedietitian',{
       body: {
         username:username,
-        approval:approval
+        approve:approval
       }, 
       headers: {}, 
     });
