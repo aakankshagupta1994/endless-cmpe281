@@ -52,16 +52,24 @@ export class UserService {
     return this.loggedInUser;
   }
   async upgradeUser(){
-    let res= await API.post('endlessapi', '/user',{
+    let res= await API.post('endlessapi', '/user/dietitianreq',{
       body: {}, 
       headers: {}, 
     });
     return res;
   }
   async subscribe(mealplanId:string){
-    let res= await API.post('endlessapi', '/user',{
+    let res= await API.post('endlessapi', '/user/subscribe',{
       body: {
         mealplanId:mealplanId
+      }, 
+      headers: {}, 
+    });
+    return res;
+  }
+  async getDietitianReqs(){
+    let res= await API.post('endlessapi', '/user/dietitianreqs',{
+      body: {
       }, 
       headers: {}, 
     });

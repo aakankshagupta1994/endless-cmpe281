@@ -16,6 +16,7 @@
                 </div>
                 <p class="p"><b>{{user?.username ?? ''}}</b></p>
                 <p class="p">{{user?.usertype ?? ''}} </p>
+                <button class="btn-follow" (click)="upgradeUser($event)">Upgrade to Dietitian</button>
                 <div class="icons">
                 </div>
 
@@ -26,7 +27,7 @@
                     </div>
                 </div>
                 <div class="card-footer" *ngIf="user&&user.usertype==='user'">
-                    <button class="btn-follow" (click)="upgradeUser($event)">Upgrade to Dietitian</button>
+                    
                 </div>
             </div>
         </div>

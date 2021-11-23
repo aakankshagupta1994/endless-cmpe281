@@ -1,68 +1,114 @@
 var aws = require('aws-sdk');
-let docClient=new aws.DynamoDB.DocumentClient();
-let dynamoDB=new aws.DynamoDB({apiVersion: '2012-08-10'});
+let docClient = new aws.DynamoDB.DocumentClient();
+let dynamoDB = new aws.DynamoDB({ apiVersion: '2012-08-10' });
+
 
 let cognitoClient;
-function assignClient(region){
+function assignClient(region) {
     cognitoClient = new aws.CognitoIdentityServiceProvider({ region: region });
 }
-async function getItem(params){
+async function getItem(params) {
     try {
-        
-      const data = await docClient.query(params).promise();
-      return data.Items[0];
+
+        const data = await docClient.query(params).promise();
+        return data.Items[0];
     } catch (err) {
-      return err
+        return err
+    }
+} async function getItems(params) {
+    try {
+
+        const data = await docClient.query(params).promise();
+        return data.Items[0];
+    } catch (err) {
+        return err
     }
 }
-async function addUser(params){
-   try{
-       
-        let data= await docClient.put(params).promise();
+async function addUser(params) {
+    try {
+
+        let data = await docClient.put(params).promise();
         console.log(data);
-        return {status:"success",data:data};
-   }
-   catch(err)
-   {
-       console.log('adding user error',err);
-       return {status:'failure',err:err};
-   }
+        return { status: "success", data: data };
+    }
+    catch (err) {
+        console.log('adding user error', err);
+        return { status: 'failure', err: err };
+    }
 }
-function getEmailFromCognitoDetails(cognitoUserObj){
-    let email="";
-    for(let userAtt of cognitoUserObj.Attributes){
-        if(userAtt.Name==="email")
-            email=userAtt.Value;
+async function updateUser(params) {
+    try {
+
+        let data = await docClient.update(params).promise();
+        console.log(data);
+        return { status: "success", data: data };
+    }
+    catch (err) {
+        console.log('updating user error', err);
+        return { status: 'failure', err: err };
+    }
+}
+function getEmailFromCognitoDetails(cognitoUserObj) {
+    let email = "";
+    for (let userAtt of cognitoUserObj.Attributes) {
+        if (userAtt.Name === "email")
+            email = userAtt.Value;
     }
     return email;
 }
-async function fetchUser(usertable,username){
-    console.log("Fetching User ",usertable,username);
+async function fetchUser(usertable, username) {
+    console.log("Fetching User ", usertable, username);
     var params = {
         TableName: usertable,
         KeyConditionExpression: "#username = :username",
         ExpressionAttributeNames: {
-              "#username": "username"
-          },
-          ExpressionAttributeValues: {
-              ":username": username
-          },
-          Limit:1
+            "#username": "username"
+        },
+        ExpressionAttributeValues: {
+            ":username": username
+        },
+        Limit: 1
     }
     console.log(params);
     // Call DynamoDB to read the item from the table
-    try{
-     let user=await getItem(params);
-      console.log("Success", user);
-      return user;
-    }   
-    catch(Err){
-    
+    try {
+        let user = await getItem(params);
+        console.log("Success", user);
+        return user;
+    }
+    catch (Err) {
+
         console.log("Error", Err);
         return null;
     }
 }
-function fetchUserPoolDetails(request){
+async function fetchDietitianReqs(usertable) {
+    console.log("Fetching Users with dietitian request true ", usertable);
+    var params = {
+        TableName: usertable,
+        KeyConditionExpression: "#a = :val",
+        ExpressionAttributeNames: {
+            "#a": "dietitianreq"
+        },
+        ExpressionAttributeValues: {
+            ":val": true
+        },
+        Limit: 30
+    }
+    console.log(params);
+    // Call DynamoDB to read the item from the table
+    try {
+        let users = await getItems(params);
+        console.log("Success", users);
+        return users;
+    }
+    catch (Err) {
+
+        console.log("Error", Err);
+        return null;
+    }
+}
+function fetchUserPoolDetails(request) {
     const authProvider = request.apiGateway.event.requestContext.identity.cognitoAuthenticationProvider;
     console.log(authProvider);
     const parts = authProvider.split(':');
@@ -73,12 +119,12 @@ function fetchUserPoolDetails(request){
     console.log(userPoolId);
     const userPoolUserId = parts[parts.length - 1];
     console.log(userPoolUserId);
-    return {userPoolId,userPoolUserId};
+    return { userPoolId, userPoolUserId };
 }
 async function getUserOfAuthenticatedUser(request) {
     // Get the unique ID given by cognito for this user, it is passed to lambda as part of a large string in event.requestContext.identity.cognitoAuthenticationProvider
-    let result =  fetchUserPoolDetails(request);
-    console.log('user pool details : ',result);
+    let result = fetchUserPoolDetails(request);
+    console.log('user pool details : ', result);
     let req = {
         UserPoolId: result.userPoolId,
         Filter: `sub = "${result.userPoolUserId}"`,
@@ -90,26 +136,55 @@ async function getUserOfAuthenticatedUser(request) {
     console.log("got user:", response.Users[0])
     return response.Users[0];
 }
-async function userMiddleWare(req,res,next){
-    console.log('request ',req.apiGateway.event.requestContext);
-    try{
-    let cuser=await getUserOfAuthenticatedUser(req);
-    let email=getEmailFromCognitoDetails(cuser);
-    let user=await fetchUser(process.env.STORAGE_USERS_NAME,email);
-    req.users=user;
-    next();
+async function userMiddleWare(req, res, next) {
+    console.log('request ', req.apiGateway.event.requestContext);
+    try {
+        let cuser = await getUserOfAuthenticatedUser(req);
+        let email = getEmailFromCognitoDetails(cuser);
+        let user = await fetchUser(process.env.STORAGE_USERS_NAME, email);
+        req.users = user;
+        next();
     }
-    catch(Err){
+    catch (Err) {
         console.log(Err);
-        res.status(503).json({'Status':'Err'});
+        res.status(503).json({ 'Status': 'Err' });
     }
 }
-module.exports={
+async function fetchMealPlan(mealplantable, mealplanid) {
+    console.log("Fetching User ", mealplantable, mealplanid);
+    var params = {
+        TableName: mealplantable,
+        KeyConditionExpression: "#a = :b",
+        ExpressionAttributeNames: {
+            "#a": "mealplanid"
+        },
+        ExpressionAttributeValues: {
+            ":b": mealplanid
+        },
+        Limit: 1
+    }
+    console.log(params);
+    // Call DynamoDB to read the item from the table
+    try {
+        let mealplan = await getItem(params);
+        console.log("Success mealplan", mealplan);
+        return mealplan;
+    }
+    catch (Err) {
+
+        console.log("Error", Err);
+        return null;
+    }
+}
+module.exports = {
     fetchUser,
     addUser,
     fetchUserPoolDetails,
     getUserOfAuthenticatedUser,
     assignClient,
     getEmailFromCognitoDetails,
-    userMiddleWare
+    userMiddleWare,
+    updateUser,
+    fetchDietitianReqs,
+    fetchMealPlan
 }
