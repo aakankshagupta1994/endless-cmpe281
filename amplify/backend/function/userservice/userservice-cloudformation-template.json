@@ -35,6 +35,18 @@
     "authendlesscmpe28139dc59d9UserPoolId": {
       "Type": "String",
       "Default": "authendlesscmpe28139dc59d9UserPoolId"
+    },
+    "storagemealplanName": {
+      "Type": "String",
+      "Default": "storagemealplanName"
+    },
+    "storagemealplanArn": {
+      "Type": "String",
+      "Default": "storagemealplanArn"
+    },
+    "storagemealplanStreamArn": {
+      "Type": "String",
+      "Default": "storagemealplanStreamArn"
     }
   },
   "Conditions": {
@@ -101,6 +113,15 @@
             },
             "AUTH_ENDLESSCMPE28139DC59D9_USERPOOLID": {
               "Ref": "authendlesscmpe28139dc59d9UserPoolId"
+            },
+            "STORAGE_MEALPLAN_NAME": {
+              "Ref": "storagemealplanName"
+            },
+            "STORAGE_MEALPLAN_ARN": {
+              "Ref": "storagemealplanArn"
+            },
+            "STORAGE_MEALPLAN_STREAMARN": {
+              "Ref": "storagemealplanStreamArn"
             }
           }
         },
@@ -287,6 +308,9 @@
             {
               "Effect": "Allow",
               "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
                 "dynamodb:Get*",
                 "dynamodb:BatchGetItem",
                 "dynamodb:List*",
@@ -306,6 +330,33 @@
                     [
                       {
                         "Ref": "storageusersArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagemealplanArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagemealplanArn"
                       },
                       "index/*"
                     ]

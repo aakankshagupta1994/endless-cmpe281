@@ -77,6 +77,8 @@ export class MealPlanComponent {
       
     }
 
+    debugger; 
+    this.mealplandetail = await this.mealplanservice.filterMeals("mealplantype=vegan");
    
     
     // return this.items;

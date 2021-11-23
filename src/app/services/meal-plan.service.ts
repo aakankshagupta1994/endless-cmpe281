@@ -39,9 +39,28 @@ export class MealPlanService {
     return this.mealplanList;
   }
 
+  async filterMeals(query: any) {
+    debugger;
+    this.mealplanList = await API.get('endlessapi', '/mealplan?mealplantype=Vegan', {});
+    // this.mealplanList = await API.get('endlessapi', '/mealplan?mealplantype=Vegan' , 
+    // {   'queryStringParameters': {
+    //   'mealplantype': 'Vegan'
+    // }
+    // }
+    // ).then(resp => {
+    //   return resp;
+    // }).catch(err => {
+    //   console.log(err);
+    // });
+    console.log(this.mealplanList);
+    return this.mealplanList;
+  }
+
+
+
   async createMealPlan(mealplan: any) {
     let myInit = {
-      body : mealplan, 
+      body: mealplan,
       headers: {},
     }
 
