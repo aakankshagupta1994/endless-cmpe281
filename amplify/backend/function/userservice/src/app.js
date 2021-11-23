@@ -206,7 +206,7 @@ app.get(path + '/dietitianreqs', async function (req, res) {
 app.post(path + '/approvedietitian',async function (req, res) {
   let input=req.body;
   let isdietitian=false;
-  if(input.approve){
+  if(input.approve=="approve"){
     //approve request;
     isdietitian=true;
   }

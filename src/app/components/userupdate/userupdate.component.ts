@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { UserService } from 'src/app/services/user.service';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
 export interface UserRequest {
   username: string;
 
@@ -24,7 +25,7 @@ export class UserupdateComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private userService:UserService) { 
+  constructor(private userService:UserService,private _snackBar: MatSnackBar) { 
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
   }
 
@@ -47,7 +48,7 @@ export class UserupdateComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  action(username:string,status:string){
+  async action(username:string,status:string){
     
     if(status==='approve'){
     }
@@ -55,5 +56,11 @@ export class UserupdateComponent implements OnInit {
 
     }
     console.log(username+' : '+status);
+    let resp=await this.userService.approval(username,status);
+    this._snackBar.open(resp.msg, 'dismiss', {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      duration:3000
+    });
   }
 }
