@@ -19,6 +19,10 @@ export class MealPlanComponent {
   mealplandetail?: Mealplan[];
   mealplanname?: string;
   mealplantype?: string;
+  mealplandietician?: string;
+  mealplandescription?: string; 
+  mealplanduration?: number;
+
   items?: any[];
   meals: any;
   itemsLength : any;
@@ -62,7 +66,12 @@ export class MealPlanComponent {
       this.items = this.mealplandetail[0].chart;
       this.mealplanname = this.mealplandetail[0].name;
       
-      this.mealplantype = this.mealplandetail[0].name;
+      this.mealplantype = this.mealplandetail[0].mealplantype;
+      this.mealplandietician = this.mealplandetail[0].suggestedBy;
+     
+      this.mealplandescription = this.mealplandetail[0].description;
+      this.mealplanduration = this.mealplandetail[0].duration;
+
       await this.formatItems(this.items);
       console.log(this.items);
       

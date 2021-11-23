@@ -1,5 +1,13 @@
 <div class="container-fluid">
-
+    <div class="container">
+        <h2 class="text-center" id="title">{{ mealplanname }}</h2>
+        <!-- <h3>test </h3> -->
+        <div class=row> 
+        <h2 class="text-left" id="text-center">{{ mealplantype }} </h2>
+        <h2 class="text-right" style="margin-left: 890px;" id="text-center">{{ mealplandietician }} </h2>
+    </div>
+    <h3 class="text-center" id="text-center">{{ mealplandescription }} </h3>
+      </div>
     <cdk-accordion class="example-accordion">
         <cdk-accordion-item
           *ngFor="let item of items; let index = index;"
@@ -44,7 +52,10 @@
                           </div>
       
                       </mat-card-content>
-                    
+                      <mat-card-actions>
+                        <button mat-button [routerLink]="[item.meals[0].mealplanid]">SEE RECIPE</button>
+                        
+                      </mat-card-actions>
                   </mat-card>
                    <mat-card class="mealplan-card" >
                     <mat-card-header>
@@ -63,7 +74,10 @@
                          </div>
       
                     </mat-card-content>
-                  
+                    <mat-card-actions>
+                        <button mat-button [routerLink]="[item.meals[1].mealplanid]">SEE RECIPE</button>
+                        
+                      </mat-card-actions>
                 </mat-card> 
                 <mat-card class="mealplan-card" >
                   <mat-card-header>
@@ -82,7 +96,10 @@
                        </div>
       
                   </mat-card-content>
-                
+                  <mat-card-actions>
+                    <button mat-button [routerLink]="[item.meals[2].mealplanid]" >SEE RECIPE</button>
+                    
+                  </mat-card-actions>
               </mat-card>  
       
               <!-- </mat-grid-tile> -->
