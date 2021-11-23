@@ -3,9 +3,9 @@
     {
       "type": "ProjectLayer",
       "resourceName": "endlesscmpe281useroperations",
+      "env": "devmain",
       "version": "Always choose latest version",
-      "isLatestVersionSelected": true,
-      "env": "devmain"
+      "isLatestVersionSelected": true
     }
   ],
   "permissions": {

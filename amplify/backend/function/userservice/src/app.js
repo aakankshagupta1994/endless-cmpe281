@@ -18,7 +18,6 @@ See the License for the specific language governing permissions and limitations 
 
 
 
-const { triggerAsyncId } = require('async_hooks');
 const AWS = require('aws-sdk')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
@@ -78,52 +77,27 @@ app.get(path, async function (req, res) {
   response.identityid = "";
   return res.json(response);
 });
-app.get(path + '/myplans', async function (req, res) {
+app.get(path+'/myplans', async function (req, res) {
   console.log('usercontext ', req.users);
   return res.json({ activeplan: req.users.activeplan, plans: req.users.plans });
 });
-app.post(path + '/subscribe', async function (req, res) {
+app.post(path+'/subscribe', async function (req, res) {
   let input = req.body;
   //check plan exists in user object?
   if (req.users.activeplan && req.users.activeplan.planid == input.mealplanId) {
-    return res.json({ "status": "success", "msg": "Already Subscribed and Active" });
+    return res.json({ "status": "Already Subscribed and Active" });
   }
   if (req.users.plans) {
-    let mealplan = _util.find(req.users.plans, function (plan) { return plan.mealplanId == input.mealplanId });
+    let mealplan = _util.find(req.users.plans, function (plan) { return plan.mealid == input.mealplanId });
     if (mealplan) {
-
-      try {
-        let response = await updateUserPlans(input.mealplanId, req.users.username);
-        return res.json({ "status": "success", "msg": "Activated the meal plan" });
-      }
-      catch (err) {
-        console.log('meal plan activation error ', err);
-        return res.json({ "status": "failure", "msg": "Could not activate meal plan" });
-      }
-
+      //change current active
+      return res.json({ "status": "Activated the meal plan" });
     }
-
   }
   //if yes make it active
   //else
   //check plan exists
-  try {
 
-    let response = await usercode.fetchMealPlan(process.env.STORAGE_MEALPLAN_NAME, input.mealplanId);
-    if (response) {
-      try {
-        let response = await updateUserPlans(input.mealplanId, req.users.username);
-        return res.json({ "status": "success", "msg": "Activated the meal plan" });
-      }
-      catch (err) {
-        console.log('meal plan activation error ', err);
-        return res.json({ "status": "failure", "msg": "Could not activate meal plan" });
-      }
-    }
-  }
-  catch (Err) {
-    return res.json({ "status": "failure", "msg": "Could not find meal plan" });
-  }
   //if yes add it to user object and update
   //else reject
 
@@ -131,40 +105,8 @@ app.post(path + '/subscribe', async function (req, res) {
   return res.json({ activeplan: req.users.activeplan, plans: req.users.plans });
 });
 
-async function updateUserPlans(mealplanId, user) {
-  //change current active
-  let plan = {
-    activeplan: {
-      mealplanId: mealplanId,
-      activeon: new Date().toDateString()
-    }
-  }
-  var params = {
-    TableName: process.env.STORAGE_USERS_NAME,
-    Key: { 'username': user.username, "usertype": "user" },
-    UpdateExpression: 'set #a = :x',
-    ExpressionAttributeNames: { '#a': 'activeplan' },
-    ExpressionAttributeValues: {
-      ':x': plan.activeplan
-    }
-  };
-  try {
-    console.log('user plan update request ', params);
-    user = await usercode.updateUser(params);
-    if (user) {
-      return res.json({ status: "success", msg: "Sent Request" });
-    }
-    else {
 
-      return res.json({ status: "failure", msg: "Could not process request" });
-    }
-  }
-  catch (err) {
-    console.log('user plan update request error ', err);
-    return res.json({ status: "failure", msg: "Could not process request" });
-  }
-}
-app.post(path + '/dietitianreq', async function (req, res) {
+app.post(path+'/dietitianreq',async function (req, res) {
   if (req.users.usertype === "dietitian") {
     return res.json({ status: "success", msg: "Already Dietitian" });
   }
@@ -175,7 +117,7 @@ app.post(path + '/dietitianreq', async function (req, res) {
   //update user
   var params = {
     TableName: process.env.STORAGE_USERS_NAME,
-    Key: { 'username': user.username, "usertype": "user" },
+    Key: {'username':user.username,"usertype":"user"},
     UpdateExpression: 'set #a = :x',
     ExpressionAttributeNames: { '#a': 'dietitianreq' },
     ExpressionAttributeValues: {
@@ -183,8 +125,8 @@ app.post(path + '/dietitianreq', async function (req, res) {
     }
   };
   try {
-    console.log('user update request ', params);
-    user = await usercode.updateUser(params);
+    console.log('user update request ',params);
+     user = await usercode.updateUser(params);
     if (user) {
       return res.json({ status: "success", msg: "Sent Request" });
     }
@@ -199,43 +141,13 @@ app.post(path + '/dietitianreq', async function (req, res) {
   }
 
 });
-app.get(path + '/dietitianreqs', async function (req, res) {
-  let reqs = await usercode.fetchDietitianReqs(process.env.STORAGE_USERS_NAME);
+app.get(path+'/dietitianreqs',async function (req, res) {
+  let reqs=await fetchDietitianReqs(process.env.STORAGE_USERS_NAME);
   res.json(reqs);
 });
-app.post(path + '/approvedietitian',async function (req, res) {
-  let input=req.body;
-  let isdietitian=false;
-  if(input.approve){
-    //approve request;
-    isdietitian=true;
-  }
-  let params = {
-    TableName: process.env.STORAGE_USERS_NAME,
-    Key: { 'username': input.username, "usertype": "user" },
-    UpdateExpression: 'set #a = :x , #b = :y',
-    ExpressionAttributeNames: { '#a': 'dietitianreq' },
-    ExpressionAttributeValues: {
-      ':x': false,
-      ':y': isdietitian
-    }
-  };
-  try {
-    console.log('user update request approval', params);
-    user = await usercode.updateUser(params);
-    if (user) {
-      return res.json({ status: "success", msg: "Request Processed" });
-    }
-    else {
-      return res.json({ status: "failure", msg: "Could not process request" });
-    }
-  }
-  catch (err) {
-    console.log('user upgrade request approval error ', err);
-    return res.json({ status: "failure", msg: "Could not process request" });
-  }
+app.post(path+'/approvedietitian', function (req, res) {
+  res.json({ status: "ok" });
 });
-
 app.listen(3000, function () {
   console.log("App started")
 });
