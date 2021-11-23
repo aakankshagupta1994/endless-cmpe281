@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { input } from '@aws-amplify/ui';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,8 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
+ 
+  user:any;
   public display : boolean=false;
 
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -30,5 +33,17 @@ export class HomeComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver,private userService:UserService) {
+
+  }
+  ngOnInt(){
+    this.userService.getUserDetails().then(data=>{
+      this.user=data;
+      if(this.user.activeplan){
+        this.display=true;
+      }
+  }).catch(err=>{
+    this.user=null;
+  });
+  }
 }
