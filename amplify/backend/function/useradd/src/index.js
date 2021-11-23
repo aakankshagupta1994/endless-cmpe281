@@ -7,46 +7,43 @@
 	STORAGE_USERS_STREAMARN
 	userlayer
 Amplify Params - DO NOT EDIT */
+const usercode=require('/opt/user');
 const aws = require('aws-sdk');
 let dynamoDB=new aws.DynamoDB({apiVersion: '2012-08-10'});
-exports.handler = async (event) => {
+exports.handler = async (event, context, callback) => {
    
     // Send post authentication data to Cloudwatch logs
-    console.log ("Authentication successful");
 
-    console.log("complete Event",event);
-    console.log("STORAGE_USERS_NAME: ",STORAGE_USERS_NAME);
-   /* var params = {
-        TableName: STORAGE_USERS_NAME,
+    console.log("User Confirmation Event",event);
+    let params = {
+        TableName: process.env.STORAGE_USERS_NAME,
         Item: {
-        "username": {
-                "S": event.userName
-            },
-            "firstname": {
-                "S": event.request.userAttributes.given_name
-            },
-            "isActive": {
-                "BOOL": event.request.userAttributes['cognito:user_status']==='CONFIRMED'?true:false
-             },
-            "lastname": {
-                "S": event.request.userAttributes.family_name
-            },"email": {
-                "S": event.request.userAttributes.email
-            },
-            "Role": {
-                "S": "user"
-            }
+            "username": 
+                event.request.userAttributes.email
+            ,
+            "firstname": ""
+            ,
+            "isActive":  event.request.userAttributes['cognito:user_status'] === 'CONFIRMED' ? true : false
+            ,
+            "lastname":  ""
+            , "email":  event.request.userAttributes.email
+            ,
+            "phone": event.request.userAttributes.phone_number
+        
+            ,
+            "identityid": event.userName
+            ,
+            "usertype":  "user"
+            
         }
     };
-
-    // Call DynamoDB to add the item to the table
-    dynamoDB.putItem(params, function(err, data) {
-    if (err) {
-                console.log("Error", err);
-            } else {
-                console.log("Success", data);
-        }
-    });*/
+    try{
+        console.log('creating user ',params);
+        let data=await usercode.addUser(params);
+    }
+    catch(Err){
+        console.log('Error in user lambda',Err);
+    }
     // Return to Amazon Cognito
     callback(null, event);
 };

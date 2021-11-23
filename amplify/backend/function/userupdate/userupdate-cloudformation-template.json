@@ -35,9 +35,6 @@
     "functionendlesscmpe281useroperationsArn": {
       "Type": "String",
       "Default": "functionendlesscmpe281useroperationsArn"
-    },
-    "userlayer": {
-      "Type": "String"
     }
   },
   "Conditions": {
@@ -70,12 +67,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "useradd",
+            "userupdate",
             {
               "Fn::Join": [
                 "",
                 [
-                  "useradd",
+                  "userupdate",
                   "-",
                   {
                     "Ref": "env"
@@ -104,9 +101,6 @@
             },
             "STORAGE_USERS_STREAMARN": {
               "Ref": "storageusersStreamArn"
-            },
-            "userlayer": {
-              "Ref": "userlayer"
             }
           }
         },
@@ -131,12 +125,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "endlesscmpe281LambdaRolec16e7a01",
+            "endlesscmpe281LambdaRole0f19f718",
             {
               "Fn::Join": [
                 "",
                 [
-                  "endlesscmpe281LambdaRolec16e7a01",
+                  "endlesscmpe281LambdaRole0f19f718",
                   "-",
                   {
                     "Ref": "env"
