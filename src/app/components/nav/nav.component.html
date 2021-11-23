@@ -38,9 +38,9 @@
         <div style="margin: auto;">
           <!-- <h4>profile</h4> -->
         <mat-form-field >
-        <mat-label> profile</mat-label>
+        <mat-label> {{user.username}}</mat-label>
         <mat-select>
-        <mat-option > Settings</mat-option>
+        <mat-option routerLink="/profile" > Settings</mat-option>
         <mat-option  (click)="logout()"> Logout</mat-option>
         </mat-select>
         </mat-form-field>
