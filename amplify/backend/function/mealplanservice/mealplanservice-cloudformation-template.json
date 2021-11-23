@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"7.3.4\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,9 +16,49 @@
     "s3Key": {
       "Type": "String"
     },
-    "functionapiversionName": {
+    "storagemealplanName": {
       "Type": "String",
-      "Default": "functionapiversionName"
+      "Default": "storagemealplanName"
+    },
+    "storagemealplanArn": {
+      "Type": "String",
+      "Default": "storagemealplanArn"
+    },
+    "authendlesscmpe28139dc59d9UserPoolId": {
+      "Type": "String",
+      "Default": "authendlesscmpe28139dc59d9UserPoolId"
+    },
+    "storageusersName": {
+      "Type": "String",
+      "Default": "storageusersName"
+    },
+    "storageusersArn": {
+      "Type": "String",
+      "Default": "storageusersArn"
+    },
+    "storageusersStreamArn": {
+      "Type": "String",
+      "Default": "storageusersStreamArn"
+    },
+    "storagerecipeName": {
+      "Type": "String",
+      "Default": "storagerecipeName"
+    },
+    "storagerecipeArn": {
+      "Type": "String",
+      "Default": "storagerecipeArn"
+    },
+    "storagerecipeStreamArn": {
+      "Type": "String",
+      "Default": "storagerecipeStreamArn"
+    },
+    "storagemealplanStreamArn": {
+      "Type": "String",
+      "Default": "storagemealplanStreamArn"
+    },
+    "functionendlesscmpe281useroperationsArn": {
+      "Type": "String",
+      "Default": "functionendlesscmpe281useroperationsArn"
     }
   },
   "Conditions": {
@@ -74,8 +114,35 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "FUNCTION_APIVERSION_NAME": {
-              "Ref": "functionapiversionName"
+            "AUTH_ENDLESSCMPE28139DC59D9_USERPOOLID": {
+              "Ref": "authendlesscmpe28139dc59d9UserPoolId"
+            },
+            "STORAGE_USERS_NAME": {
+              "Ref": "storageusersName"
+            },
+            "STORAGE_USERS_ARN": {
+              "Ref": "storageusersArn"
+            },
+            "STORAGE_USERS_STREAMARN": {
+              "Ref": "storageusersStreamArn"
+            },
+            "STORAGE_RECIPE_NAME": {
+              "Ref": "storagerecipeName"
+            },
+            "STORAGE_RECIPE_ARN": {
+              "Ref": "storagerecipeArn"
+            },
+            "STORAGE_RECIPE_STREAMARN": {
+              "Ref": "storagerecipeStreamArn"
+            },
+            "STORAGE_MEALPLAN_NAME": {
+              "Ref": "storagemealplanName"
+            },
+            "STORAGE_MEALPLAN_ARN": {
+              "Ref": "storagemealplanArn"
+            },
+            "STORAGE_MEALPLAN_STREAMARN": {
+              "Ref": "storagemealplanStreamArn"
             }
           }
         },
@@ -86,7 +153,11 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [],
+        "Layers": [
+          {
+            "Ref": "functionendlesscmpe281useroperationsArn"
+          }
+        ],
         "Timeout": 25
       }
     },
@@ -96,12 +167,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "endlesscmpe281LambdaRole07e2dfef",
+            "endlesscmpe281LambdaRole2107e20e",
             {
               "Fn::Join": [
                 "",
                 [
-                  "endlesscmpe281LambdaRole07e2dfef",
+                  "endlesscmpe281LambdaRole2107e20e",
                   "-",
                   {
                     "Ref": "env"
@@ -167,6 +238,34 @@
                   }
                 ]
               }
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:DescribeTable",
+                "dynamodb:GetItem",
+                "dynamodb:Query",
+                "dynamodb:Scan",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagemealplanArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagemealplanArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -190,16 +289,27 @@
             {
               "Effect": "Allow",
               "Action": [
-                "lambda:Get*",
-                "lambda:List*",
-                "lambda:Invoke*"
+                "cognito-identity:Describe*",
+                "cognito-identity:Get*",
+                "cognito-identity:List*",
+                "cognito-idp:Describe*",
+                "cognito-idp:AdminGetDevice",
+                "cognito-idp:AdminGetUser",
+                "cognito-idp:AdminList*",
+                "cognito-idp:List*",
+                "cognito-sync:Describe*",
+                "cognito-sync:Get*",
+                "cognito-sync:List*",
+                "iam:ListOpenIdConnectProviders",
+                "iam:ListRoles",
+                "sns:ListPlatformApplications"
               ],
               "Resource": [
                 {
                   "Fn::Join": [
                     "",
                     [
-                      "arn:aws:lambda:",
+                      "arn:aws:cognito-idp:",
                       {
                         "Ref": "AWS::Region"
                       },
@@ -207,10 +317,103 @@
                       {
                         "Ref": "AWS::AccountId"
                       },
-                      ":function:",
+                      ":userpool/",
                       {
-                        "Ref": "functionapiversionName"
+                        "Ref": "authendlesscmpe28139dc59d9UserPoolId"
                       }
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageusersArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageusersArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagerecipeArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagerecipeArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagemealplanArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagemealplanArn"
+                      },
+                      "index/*"
                     ]
                   ]
                 }

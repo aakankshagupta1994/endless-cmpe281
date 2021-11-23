@@ -1,0 +1,36 @@
+{
+    "resourceName": "chatbots",
+    "botName": "lexbot",
+    "intents": [
+        {
+            "slots": [
+                {
+                    "name": "MealType",
+                    "type": "MealType",
+                    "prompt": "what type of meal? ex: vegan, meat, vegetarian",
+                    "required": true,
+                    "customType": true
+                }
+            ],
+            "utterances": [
+                "suggest meal plan",
+                "find me a meal plan"
+            ],
+            "intentName": "mealplan",
+            "newSlotTypes": [
+                {
+                    "slotType": "MealType",
+                    "slotTypeDescription": "types of meals ex: vegan, meat, vegetarian",
+                    "slotValues": [
+                        "vegan",
+                        "meat",
+                        "vegetarian"
+                    ]
+                }
+            ]
+        }
+    ],
+    "outputVoice": false,
+    "sessionTimeout": 5,
+    "coppa": false
+}

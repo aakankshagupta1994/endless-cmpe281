@@ -1,47 +1,70 @@
 {
     "paths": [
         {
-            "name": "/version",
-            "lambdaFunction": "apiversion",
-            "privacy": {
-                "open": true
-            },
-            "policyResourceName": "/version"
-        },
-        {
             "name": "/mealplan",
             "lambdaFunction": "mealplanservice",
             "privacy": {
-                "open": true
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
             },
             "policyResourceName": "/mealplan"
+        },
+        {
+            "name": "/recipe",
+            "lambdaFunction": "recipeservice",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/recipe"
+        },
+        {
+            "name": "/user",
+            "lambdaFunction": "userservice",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH"
+                ]
+            },
+            "policyResourceName": "/user"
         }
     ],
     "resourceName": "endlessapi",
     "apiName": "endlessapi",
     "functionArns": [
         {
-            "lambdaFunction": "apiversion"
+            "lambdaFunction": "mealplanservice"
         },
         {
-            "lambdaFunction": "mealplanservice"
+            "lambdaFunction": "recipeservice"
+        },
+        {
+            "lambdaFunction": "userservice"
         }
     ],
     "privacy": {
-        "auth": 0,
+        "auth": 3,
         "unauth": 0,
-        "authRoleName": "amplify-endlesscmpe281-dev-164341-authRole",
-        "unAuthRoleName": "amplify-endlesscmpe281-dev-164341-unauthRole"
+        "authRoleName": "amplify-endlesscmpe281-devmain-191353-authRole",
+        "unAuthRoleName": "amplify-endlesscmpe281-devmain-191353-unauthRole"
     },
     "dependsOn": [
-        {
-            "category": "function",
-            "resourceName": "apiversion",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
         {
             "category": "function",
             "resourceName": "mealplanservice",
@@ -49,7 +72,23 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "recipeservice",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "userservice",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "65898c95"
+    "uuid": "f7f9fec5"
 }

@@ -1,1 +1,113 @@
-meal-plan works! {{this.mealPlan?.name}}
+<div class="container-fluid">
+    <div class="container">
+        <h2 class="text-center" id="title">{{ mealplanname }}</h2>
+        <!-- <h3>test </h3> -->
+        <div class=row> 
+        <h2 class="text-left" id="text-center">{{ mealplantype }} </h2>
+        <h2 class="text-right" style="margin-left: 890px;" id="text-center">{{ mealplandietician }} </h2>
+    </div>
+    <h3 class="text-center" id="text-center">{{ mealplandescription }} </h3>
+      </div>
+    <cdk-accordion class="example-accordion">
+        <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+           Day {{ item.id }}
+            <span class="example-accordion-item-description">
+              Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+            </span>
+          </div>
+          <div
+            class="example-accordion-item-body"
+            role="region"
+            [style.display]="accordionItem.expanded ? '' : 'none'"
+            [attr.id]="'accordion-body-' + index"
+            [attr.aria-labelledby]="'accordion-header-' + index">
+      
+         
+           
+            <mat-grid-list cols="3" rowHeight="350px">
+              <!-- <mat-grid-tile> -->
+                  <mat-card class="mealplan-card" >
+                      <mat-card-header>
+                          <mat-card-title> {{ item.meals[0].recipeName }}
+                          </mat-card-title>
+                          <mat-card-subtitle>{{ item.meals[0].dietitianid }}</mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content class="dashboard-card-content">
+                          <div>
+                              <p style="width: 350px;">
+                                  {{ item.meals[0].description }}  
+                              </p>
+                              <!-- <img [src]="item"
+                                  width="360" height="200" /> -->
+      
+                          </div>
+      
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button mat-button [routerLink]="[item.meals[0].mealplanid]">SEE RECIPE</button>
+                        
+                      </mat-card-actions>
+                  </mat-card>
+                   <mat-card class="mealplan-card" >
+                    <mat-card-header>
+                        <mat-card-title>{{ item.meals[1].recipeName }}
+                        </mat-card-title>
+                        <mat-card-subtitle>{{ item.meals[1].dietitianid }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content class="dashboard-card-content">
+                        <div>
+                            <p style="width: 350px;">
+                                {{ item.meals[1].description }}  
+                            </p>
+                            <!-- <img [src]="item"
+                                width="360" height="200" />  -->
+      
+                         </div>
+      
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button [routerLink]="[item.meals[1].mealplanid]">SEE RECIPE</button>
+                        
+                      </mat-card-actions>
+                </mat-card> 
+                <mat-card class="mealplan-card" >
+                  <mat-card-header>
+                      <mat-card-title>{{ item.meals[2].recipeName }}
+                      </mat-card-title>
+                      <mat-card-subtitle>{{ item.meals[2].dietitianid }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content class="dashboard-card-content">
+                      <div>
+                          <p style="width: 350px;">
+                              {{ item.meals[2].description }}  
+                          </p>
+                          <!-- <img [src]="item"
+                              width="360" height="200" />  -->
+      
+                       </div>
+      
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button [routerLink]="[item.meals[2].mealplanid]" >SEE RECIPE</button>
+                    
+                  </mat-card-actions>
+              </mat-card>  
+      
+              <!-- </mat-grid-tile> -->
+          </mat-grid-list>
+          </div>
+        </cdk-accordion-item>
+      </cdk-accordion>
+</div>
+
+
+

@@ -21,6 +21,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MealPlansComponent } from './components/meal-plans/meal-plans.component';
 import { AxiosConfigFactory, AxiosInterceptorService } from './services/axios-interceptor.service';
 import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { UserupdateComponent } from './components/userupdate/userupdate.component';
+
 
 @NgModule({
   declarations: [
@@ -33,18 +42,27 @@ import { TokenInterceptorInterceptor } from './intercpetors/token-interceptor.in
     RecipeComponent,
     MyPlansComponent,
     ProfileComponent,
-    MealPlansComponent
+    MealPlansComponent,
+    RecipeDetailsComponent,
+    UserupdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FlexLayoutModule,
     /* configure app with AmplifyUIAngularModule */
     AmplifyUIAngularModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
     LayoutModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule, 
+    NgbModule,
+    FormsModule, 
+    MatCardModule, 
+    MatExpansionModule, 
+    CdkAccordionModule
+
   ],
   providers: [{
     provide: APP_INITIALIZER,

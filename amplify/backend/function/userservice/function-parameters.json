@@ -1,0 +1,24 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "endlesscmpe281useroperations",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true,
+      "env": "devmain"
+    }
+  ],
+  "permissions": {
+    "auth": {
+      "endlesscmpe28139dc59d9": [
+        "read"
+      ]
+    },
+    "storage": {
+      "users": [
+        "read",
+        "update"
+      ]
+    }
+  }
+}

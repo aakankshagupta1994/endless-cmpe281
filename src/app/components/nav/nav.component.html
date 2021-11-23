@@ -6,8 +6,14 @@
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
         <a mat-list-item href="/">Home</a>
-        <a mat-list-item href="#">Diets</a>
-        <a mat-list-item routerLink="/mealplan/1">Sample Meal Plan</a>
+       <!-- <a mat-list-item href="#" *ngIf="checkUserRole(['',''])">Diets</a>-->
+       <a mat-list-item routerLink="/mealplans" *ngIf="checkUserRole(['user','dietitian','admin'])">Meal Plans</a>
+       <a mat-list-item routerLink="createmealplan" *ngIf="checkUserRole(['admin','dietitian'])">Create Meal Plan</a>
+        <a mat-list-item routerLink="/recipe" *ngIf="checkUserRole(['user','dietitian','admin'])">Available Recipes</a>
+        <a mat-list-item routerLink="createrecipe" *ngIf="checkUserRole(['admin','dietitian'])">Create Recipe</a>
+        <!-- <a mat-list-item routerLink="recipe/123" *ngIf="checkUserRole(['user','dietitian','admin'])">Recipe Details</a> -->
+        <a mat-list-item routerLink="/userupdate" *ngIf="checkUserRole(['admin'])">Add Dietitian</a>
+        <a mat-list-item routerLink="/myplans" *ngIf="checkUserRole(['user','dietitian'])">My Plans</a>
         <!-- <a mat-list-item href="#">Link 3</a> -->
       </mat-nav-list>
     </mat-sidenav>
@@ -23,20 +29,20 @@
         </button>
         <span>ElifeDiet</span>
         <!-- <input type="text" value='search'> -->
-        
+        <span class="header-spacer"></span>
         <div style="margin: auto;">
-          <input matInput placeholder="Placeholder">
+          <input matInput placeholder="Search Meal Plans">
           <mat-icon matSuffix>search</mat-icon>
         </div>
   
-  
+        <span class="header-spacer"></span>
         <div style="margin: auto;">
           <!-- <h4>profile</h4> -->
         <mat-form-field >
-        <mat-label> profile</mat-label>
+        <mat-label> {{user?.username ?? ''}}</mat-label>
         <mat-select>
-        <mat-option > Settings</mat-option>
-        <mat-option > Logout</mat-option>
+        <mat-option routerLink="/profile" > Settings</mat-option>
+        <mat-option  (click)="logout()"> Logout</mat-option>
         </mat-select>
         </mat-form-field>
         </div>
@@ -45,8 +51,24 @@
       </mat-toolbar>
   
       <!-- Add Content Here -->
+      <div class="content">
+
       <router-outlet></router-outlet>
-  
+      </div>
+      <div class="chatcontainer" *ngIf="showChat">
+
+        <amplify-chatbot bot-name="lexbot_devmain" 
+        bot-title="Meal Plan Chatbot"
+        clearOnComplete="true"
+        welcome-message="Hello, how can I help you? you can ask me to suggest a meal plan." (chatCompleted)="onBotComplete($event)" class="chat"></amplify-chatbot>
+       
+      </div>
+      
+      <div class="chatcontainerdab">
+        <button mat-fab color="primary" aria-label="chatbot" (click)="toggleChat()">
+          <mat-icon>chat</mat-icon>
+        </button>
+      </div>
   
     </mat-sidenav-content>
   </mat-sidenav-container>

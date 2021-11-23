@@ -1,9 +1,34 @@
 {
   "function": {
-    "apiversion": {
+    "userservice": {
       "build": true,
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "endlesscmpe28139dc59d9",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "users",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "endlesscmpe281useroperations",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     },
     "mealplanservice": {
       "build": true,
@@ -12,23 +37,172 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "apiversion",
+          "resourceName": "endlesscmpe281useroperations",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "auth",
+          "resourceName": "endlesscmpe28139dc59d9",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "users",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "recipe",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "mealplan",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        }
+      ]
+    },
+    "recipeservice": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "endlesscmpe281useroperations",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "auth",
+          "resourceName": "endlesscmpe28139dc59d9",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "users",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "recipe",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "mealplan",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        }
+      ]
+    },
+    "endlesscmpe281useroperations": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
+    },
+    "useradd": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "endlesscmpe281useroperations",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "userservice",
           "attributes": [
             "Name"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "users",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        }
+      ]
+    },
+    "userupdate": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "endlesscmpe281useroperations",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "userservice",
+          "attributes": [
+            "Name"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "users",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
           ]
         }
       ]
     }
   },
   "auth": {
-    "endlesscognito": {
+    "endlesscmpe28139dc59d9": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "signupAttributes": [
           "EMAIL"
         ],
@@ -44,6 +218,22 @@
           "EMAIL"
         ]
       }
+    },
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "endlesscmpe28139dc59d9",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
     }
   },
   "api": {
@@ -53,7 +243,7 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "apiversion",
+          "resourceName": "mealplanservice",
           "attributes": [
             "Name",
             "Arn"
@@ -61,7 +251,15 @@
         },
         {
           "category": "function",
-          "resourceName": "mealplanservice",
+          "resourceName": "recipeservice",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "userservice",
           "attributes": [
             "Name",
             "Arn"
@@ -75,6 +273,27 @@
       "service": "amplifyhosting",
       "providerPlugin": "awscloudformation",
       "type": "manual"
+    }
+  },
+  "interactions": {
+    "chatbots": {
+      "service": "Lex",
+      "providerPlugin": "awscloudformation",
+      "build": true
+    }
+  },
+  "storage": {
+    "users": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "recipe": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "mealplan": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

@@ -19,16 +19,66 @@
         }
       },
       "auth": {
-        "endlesscognito": {}
+        "endlesscmpe28189e8e758": {}
+      }
+    }
+  },
+  "devmain": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-endlesscmpe281-devmain-191353-authRole",
+      "UnauthRoleArn": "arn:aws:iam::486806635132:role/amplify-endlesscmpe281-devmain-191353-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::486806635132:role/amplify-endlesscmpe281-devmain-191353-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+      "UnauthRoleName": "amplify-endlesscmpe281-devmain-191353-unauthRole",
+      "StackName": "amplify-endlesscmpe281-devmain-191353",
+      "StackId": "arn:aws:cloudformation:us-west-2:486806635132:stack/amplify-endlesscmpe281-devmain-191353/65e627d0-4754-11ec-8c18-022ade7f0375",
+      "AmplifyAppId": "d2f27et41k6nl7",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-endlesscmpe281-devmain-191353-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2f27et41k6nl7",
+          "type": "manual"
+        }
+      },
+      "auth": {
+        "endlesscmpe28139dc59d9": {},
+        "userPoolGroups": {},
+        "true": {}
       },
       "function": {
-        "apiversion": {
-          "deploymentBucketName": "amplify-endlesscmpe281-dev-164341-deployment",
-          "s3Key": "amplify-builds/apiversion-785244653061362f3568-build.zip"
+        "recipeservice": {
+          "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+          "s3Key": "amplify-builds/recipeservice-4b362f444574302b4f75-build.zip"
+        },
+        "userservice": {
+          "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+          "s3Key": "amplify-builds/userservice-4257335a6c4c4d323363-build.zip"
         },
         "mealplanservice": {
-          "deploymentBucketName": "amplify-endlesscmpe281-dev-164341-deployment",
-          "s3Key": "amplify-builds/mealplanservice-3653714d6d46384c625a-build.zip"
+          "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+          "s3Key": "amplify-builds/mealplanservice-2f717834723462467736-build.zip"
+        },
+        "useradd": {
+          "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+          "s3Key": "amplify-builds/useradd-4d324e71767a5054336e-build.zip",
+          "userlayer": "useradd"
+        },
+        "endlesscmpe281useroperations": {
+          "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+          "s3Key": "amplify-builds/endlesscmpe281useroperations-LambdaLayerVersion1872dc60-build.zip"
+        },
+        "userupdate": {
+          "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+          "s3Key": "amplify-builds/userupdate-34335450424853796c65-build.zip"
+        }
+      },
+      "interactions": {
+        "chatbots": {
+          "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
+          "s3Key": "amplify-builds/chatbots-4e64516a4e616e65656d-build.zip"
         }
       }
     }

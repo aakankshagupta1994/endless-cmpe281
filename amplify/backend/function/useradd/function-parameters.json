@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "function": {
+      "userservice": [
+        "create",
+        "read",
+        "update"
+      ]
+    },
+    "storage": {
+      "users": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "endlesscmpe281useroperations",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true,
+      "env": "devmain"
+    }
+  ],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "userlayer",
+      "environmentVariableName": "userlayer"
+    }
+  ]
+}

@@ -1,15 +1,28 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationGuardGuard implements CanActivate {
-  canActivate(
+  constructor(public userService: UserService, public router: Router) {}
+
+   async canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    state: RouterStateSnapshot):  Promise<boolean | UrlTree> {
+    let allowedRoles=  route.data.expectedRole as string[];
+    let user=await this.userService.getUserDetails() ?? '';
+    console.log('logged in user ',user);
+    if(allowedRoles.indexOf(user.usertype)!=-1){
+        return true;
+    }
+    else
+    {
+      this.router.navigate(['']);
+    }
+    return false;
   }
   
 }

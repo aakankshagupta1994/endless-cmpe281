@@ -1,0 +1,14 @@
+{
+  "resourceName": "recipe",
+  "tableName": "recipe",
+  "partitionKey": {
+    "fieldName": "recipeid",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "dietitianid",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
