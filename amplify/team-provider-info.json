@@ -55,7 +55,7 @@
         },
         "userservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/userservice-4257335a6c4c4d323363-build.zip"
+          "s3Key": "amplify-builds/userservice-4b4751752f656b6b7173-build.zip"
         },
         "mealplanservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
@@ -68,7 +68,7 @@
         },
         "endlesscmpe281useroperations": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/endlesscmpe281useroperations-LambdaLayerVersion1872dc60-build.zip"
+          "s3Key": "amplify-builds/endlesscmpe281useroperations-LambdaLayerVersion0fee091a-build.zip"
         },
         "userupdate": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",

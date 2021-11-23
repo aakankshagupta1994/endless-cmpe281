@@ -51,4 +51,20 @@ export class UserService {
     });
     return this.loggedInUser;
   }
+  async upgradeUser(){
+    let res= await API.post('endlessapi', '/user',{
+      body: {}, 
+      headers: {}, 
+    });
+    return res;
+  }
+  async subscribe(mealplanId:string){
+    let res= await API.post('endlessapi', '/user',{
+      body: {
+        mealplanId:mealplanId
+      }, 
+      headers: {}, 
+    });
+    return res;
+  }
 }

@@ -14,19 +14,19 @@
                 <div class="profile-pic">
                     <img src="assets/img/Dinner.jpg">
                 </div>
-                <p class="p"><b>{{user.username}}</b></p>
-                <p class="p">{{user.usertype}} </p>
+                <p class="p"><b>{{user?.username ?? ''}}</b></p>
+                <p class="p">{{user?.usertype ?? ''}} </p>
                 <div class="icons">
                 </div>
 
-                <div class="user-data" *ngIf="user.usertype!=='admin'">
+                <div class="user-data" *ngIf="user&&user.usertype!=='admin'">
                     <div class="post">
                         <div class="num">Active Plan</div>
                         <div class="txt"></div>
                     </div>
                 </div>
-                <div class="card-footer" *ngIf="user.usertype!=='admin'">
-                    <button class="btn-follow">Upgrade to Dietitian</button>
+                <div class="card-footer" *ngIf="user&&user.usertype==='user'">
+                    <button class="btn-follow" (click)="upgradeUser($event)">Upgrade to Dietitian</button>
                 </div>
             </div>
         </div>
