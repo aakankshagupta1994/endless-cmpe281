@@ -22,6 +22,15 @@
           ]
         },
         {
+          "category": "storage",
+          "resourceName": "mealplan",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
           "category": "function",
           "resourceName": "endlesscmpe281useroperations",
           "attributes": [

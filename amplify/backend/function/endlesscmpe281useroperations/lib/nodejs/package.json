@@ -2,6 +2,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "underscore": "^1.13.1"
+  }
 }

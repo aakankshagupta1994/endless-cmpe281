@@ -1,16 +1,16 @@
 /* Amplify Params - DO NOT EDIT
-	AUTH_ENDLESSCMPE28139DC59D9_USERPOOLID
-	ENV
-	REGION
-	STORAGE_MEALPLAN_ARN
-	STORAGE_MEALPLAN_NAME
-	STORAGE_MEALPLAN_STREAMARN
-	STORAGE_RECIPE_ARN
-	STORAGE_RECIPE_NAME
-	STORAGE_RECIPE_STREAMARN
-	STORAGE_USERS_ARN
-	STORAGE_USERS_NAME
-	STORAGE_USERS_STREAMARN
+  AUTH_ENDLESSCMPE28139DC59D9_USERPOOLID
+  ENV
+  REGION
+  STORAGE_MEALPLAN_ARN
+  STORAGE_MEALPLAN_NAME
+  STORAGE_MEALPLAN_STREAMARN
+  STORAGE_RECIPE_ARN
+  STORAGE_RECIPE_NAME
+  STORAGE_RECIPE_STREAMARN
+  STORAGE_USERS_ARN
+  STORAGE_USERS_NAME
+  STORAGE_USERS_STREAMARN
 Amplify Params - DO NOT EDIT *//*
 Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
@@ -27,12 +27,12 @@ var bodyParser = require('body-parser')
 var express = require('express')
 
 AWS.config.update({ region: process.env.TABLE_REGION });
-const usercode=require('/opt/user');
+const usercode = require('/opt/user');
 usercode.assignClient(process.env.TABLE_REGION);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 let tableName = "recipe";
-if(process.env.ENV && process.env.ENV !== "NONE") {
+if (process.env.ENV && process.env.ENV !== "NONE") {
   tableName = tableName + '-' + process.env.ENV;
 }
 
@@ -52,7 +52,7 @@ app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "*")
   next()
@@ -60,70 +60,66 @@ app.use(function(req, res, next) {
 app.use(usercode.userMiddleWare);
 // convert url string param to expected Type
 const convertUrlType = (param, type) => {
-  switch(type) {
+  switch (type) {
     case "N":
       return Number.parseInt(param);
     default:
       return param;
   }
 }
-app.get(path+"/user",async function(req,res){
-  console.log('usercontext ',req.users);
+app.get(path + "/user", async function (req, res) {
+  console.log('usercontext ', req.users);
   return res.json(req.users);
 });
+function checkCreateAccess(req, res, next) {
+  if (req.users.usertype === "admin" || req.users.usertype === "dietitian") {
+    next();
+  }
+  else {
+    console.log(Err);
+    res.status(402).json({ 'Status': 'Forbidden' });
+  }
+}
 /********************************
  * HTTP Get method for list objects *
  ********************************/
-app.get(path,function(req,res) {
+app.get(path, function (req, res) {
   console.log("In recipe list lambda fnc")
-    // if (userIdPresent && req.apiGateway) {
-      const queryParams = {
-        TableName: tableName
-      }
-    // }
-    // else {
-    //   try {
-    //     queryParams = {
-    //       TableName: tableName
-    //     }
-    //   } catch (err) {
-    //     res.statusCode = 500;
-    //     res.json({ error: 'Wrong column type ' + err });
-    //   }
-    // }
-    console.log(queryParams);
-    dynamodb.scan(queryParams, (err, data) => {
-      if (err) {
-        res.statusCode = 500;
-        res.json({ error: 'Could not load items: ' + err });
-      } else {
-        res.json(data.Items);
-      }
-    });
-});
-
-app.get(path + "/:id"  ,function(req,res) {
-
-});
-
-
-app.get(path + hashKeyPath, function(req, res) {
-  if (req.path === '/recipe/all') {
-    if (userIdPresent && req.apiGateway) {
-      let queryParams = {
-        TableName: tableName
-      }
+  // if (userIdPresent && req.apiGateway) {
+  const queryParams = {
+    TableName: tableName
+  }
+  // }
+  // else {
+  //   try {
+  //     queryParams = {
+  //       TableName: tableName
+  //     }
+  //   } catch (err) {
+  //     res.statusCode = 500;
+  //     res.json({ error: 'Wrong column type ' + err });
+  //   }
+  // }
+  console.log(queryParams);
+  dynamodb.scan(queryParams, (err, data) => {
+    if (err) {
+      res.statusCode = 500;
+      res.json({ error: 'Could not load items: ' + err });
+    } else {
+      console.log(data);
+      res.json(data.Items);
     }
-    else {
-      try {
+  });
+});
+
+app.get(path + hashKeyPath, function (req, res) {
+  
+  if (req.path === '/recipe/all') {
+      let queryParams 
         queryParams = {
           TableName: tableName
         }
-      } catch (err) {
-        res.statusCode = 500;
-        res.json({ error: 'Wrong column type ' + err });
-      }
-    }
+     
 
     dynamodb.scan(queryParams, (err, data) => {
       if (err) {
@@ -136,45 +132,46 @@ app.get(path + hashKeyPath, function(req, res) {
     });
 
   }
-  else {var condition = {}
-  condition[partitionKeyName] = {
-    ComparisonOperator: 'EQ'
-  }
-
-  if (userIdPresent && req.apiGateway) {
-    condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH ];
-  } else {
-    try {
-      condition[partitionKeyName]['AttributeValueList'] = [ convertUrlType(req.params[partitionKeyName], partitionKeyType) ];
-    } catch(err) {
-      res.statusCode = 500;
-      res.json({error: 'Wrong column type ' + err});
+  else {
+    var condition = {}
+    condition[partitionKeyName] = {
+      ComparisonOperator: 'EQ'
     }
-  }
 
-  let queryParams = {
-    TableName: tableName,
-    KeyConditions: condition
-  }
-
-
-  
-  dynamodb.query(queryParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500;
-      res.json({error: 'Could not load items: ' + err});
+    if (userIdPresent && req.apiGateway) {
+      condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH];
     } else {
-      res.json(data.Items);
+      try {
+        condition[partitionKeyName]['AttributeValueList'] = [convertUrlType(req.params[partitionKeyName], partitionKeyType)];
+      } catch (err) {
+        res.statusCode = 500;
+        res.json({ error: 'Wrong column type ' + err });
+      }
     }
-  });
- }
+
+    let queryParams = {
+      TableName: tableName,
+      KeyConditions: condition
+    }
+
+
+
+    dynamodb.query(queryParams, (err, data) => {
+      if (err) {
+        res.statusCode = 500;
+        res.json({ error: 'Could not load items: ' + err });
+      } else {
+        res.json(data.Items);
+      }
+    });
+  }
 });
 
 /*****************************************
  * HTTP Get method for get single object *
  *****************************************/
 
-app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
+app.get(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
   var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
@@ -182,17 +179,17 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
     params[partitionKeyName] = req.params[partitionKeyName];
     try {
       params[partitionKeyName] = convertUrlType(req.params[partitionKeyName], partitionKeyType);
-    } catch(err) {
+    } catch (err) {
       res.statusCode = 500;
-      res.json({error: 'Wrong column type ' + err});
+      res.json({ error: 'Wrong column type ' + err });
     }
   }
   if (hasSortKey) {
     try {
       params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType);
-    } catch(err) {
+    } catch (err) {
       res.statusCode = 500;
-      res.json({error: 'Wrong column type ' + err});
+      res.json({ error: 'Wrong column type ' + err });
     }
   }
 
@@ -201,15 +198,15 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
     Key: params
   }
 
-  dynamodb.get(getItemParams,(err, data) => {
-    if(err) {
+  dynamodb.get(getItemParams, (err, data) => {
+    if (err) {
       res.statusCode = 500;
-      res.json({error: 'Could not load items: ' + err.message});
+      res.json({ error: 'Could not load items: ' + err.message });
     } else {
       if (data.Item) {
         res.json(data.Item);
       } else {
-        res.json(data) ;
+        res.json(data);
       }
     }
   });
@@ -220,7 +217,7 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
 * HTTP put method for insert object *
 *************************************/
 
-app.put(path, function(req, res) {
+app.put(path,checkCreateAccess, function (req, res) {
 
   if (userIdPresent) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
@@ -231,11 +228,11 @@ app.put(path, function(req, res) {
     Item: req.body
   }
   dynamodb.put(putItemParams, (err, data) => {
-    if(err) {
+    if (err) {
       res.statusCode = 500;
-      res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'put call succeed!', url: req.url, data: data})
+      res.json({ error: err, url: req.url, body: req.body });
+    } else {
+      res.json({ success: 'put call succeed!', url: req.url, data: data })
     }
   });
 });
@@ -244,7 +241,7 @@ app.put(path, function(req, res) {
 * HTTP post method for insert object *
 *************************************/
 
-app.post(path, function(req, res) {
+app.post(path,checkCreateAccess, function (req, res) {
 
   if (userIdPresent) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
@@ -255,11 +252,11 @@ app.post(path, function(req, res) {
     Item: req.body
   }
   dynamodb.put(putItemParams, (err, data) => {
-    if(err) {
+    if (err) {
       res.statusCode = 500;
-      res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'post call succeed!', url: req.url, data: data})
+      res.json({ error: err, url: req.url, body: req.body });
+    } else {
+      res.json({ success: 'post call succeed!', url: req.url, data: data })
     }
   });
 });
@@ -268,25 +265,25 @@ app.post(path, function(req, res) {
 * HTTP remove method to delete object *
 ***************************************/
 
-app.delete(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
+app.delete(path + '/object' + hashKeyPath + sortKeyPath,checkCreateAccess, function (req, res) {
   var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
   } else {
     params[partitionKeyName] = req.params[partitionKeyName];
-     try {
+    try {
       params[partitionKeyName] = convertUrlType(req.params[partitionKeyName], partitionKeyType);
-    } catch(err) {
+    } catch (err) {
       res.statusCode = 500;
-      res.json({error: 'Wrong column type ' + err});
+      res.json({ error: 'Wrong column type ' + err });
     }
   }
   if (hasSortKey) {
     try {
       params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType);
-    } catch(err) {
+    } catch (err) {
       res.statusCode = 500;
-      res.json({error: 'Wrong column type ' + err});
+      res.json({ error: 'Wrong column type ' + err });
     }
   }
 
@@ -294,17 +291,17 @@ app.delete(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
     TableName: tableName,
     Key: params
   }
-  dynamodb.delete(removeItemParams, (err, data)=> {
-    if(err) {
+  dynamodb.delete(removeItemParams, (err, data) => {
+    if (err) {
       res.statusCode = 500;
-      res.json({error: err, url: req.url});
+      res.json({ error: err, url: req.url });
     } else {
-      res.json({url: req.url, data: data});
+      res.json({ url: req.url, data: data });
     }
   });
 });
-app.listen(3000, function() {
-    console.log("App started")
+app.listen(3000, function () {
+  console.log("App started")
 });
 
 // Export the app object. When executing the application local this does nothing. However,

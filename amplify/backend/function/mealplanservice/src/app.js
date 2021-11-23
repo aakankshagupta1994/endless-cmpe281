@@ -48,8 +48,8 @@ const hashKeyPath = '/:' + partitionKeyName;
 const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
 // declare a new express app
 var app = express()
-app.use(bodyParser.json())
-app.use(awsServerlessExpressMiddleware.eventContext())
+app.use(bodyParser.json());
+app.use(awsServerlessExpressMiddleware.eventContext());
 
 // Enable CORS for all methods
 app.use(function (req, res, next) {
@@ -67,7 +67,15 @@ const convertUrlType = (param, type) => {
       return param;
   }
 }
-
+function checkCreateAccess(req, res, next) {
+  if (req.users.usertype === "admin" || req.users.usertype === "dietitian") {
+    next();
+  }
+  else {
+    console.log(Err);
+    res.status(402).json({ 'Status': 'Forbidden' });
+  }
+}
 app.get(path+"/user",async function(req,res){
   console.log('usercontext ',req.users);
   return res.json(req.users);
@@ -194,7 +202,7 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
 * HTTP put method for insert object *
 *************************************/
 
-app.put(path, function (req, res) {
+app.put(path,checkCreateAccess, function (req, res) {
 
   if (userIdPresent) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
@@ -218,7 +226,7 @@ app.put(path, function (req, res) {
 * HTTP post method for insert object *
 *************************************/
 
-app.post(path, function (req, res) {
+app.post(path,checkCreateAccess, function (req, res) {
 
   if (userIdPresent) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
@@ -242,7 +250,7 @@ app.post(path, function (req, res) {
 * HTTP remove method to delete object *
 ***************************************/
 
-app.delete(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
+app.delete(path + '/object' + hashKeyPath + sortKeyPath,checkCreateAccess, function (req, res) {
   var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;

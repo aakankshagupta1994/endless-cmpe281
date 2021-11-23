@@ -14,6 +14,7 @@ import Auth from '@aws-amplify/auth';
 })
 export class NavComponent {
   userRole:string='';
+  user:any;
   showChat:boolean=false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -25,7 +26,8 @@ export class NavComponent {
   constructor(private breakpointObserver: BreakpointObserver,private _snackBar: MatSnackBar,private userService:UserService) {}
   ngOnInit(){
     this.userService.getUserDetails().then((data)=>{
-        this.userRole=data.role;
+      this.user=data;
+        this.userRole=data.usertype;
     }).catch((err)=>{
       console.log(err);
     });
