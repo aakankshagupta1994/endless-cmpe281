@@ -19,8 +19,9 @@ const AWS = require('aws-sdk')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
-const usercode=require('/opt/user');
+
 AWS.config.update({ region: process.env.TABLE_REGION });
+const usercode=require('/opt/user');
 usercode.assignClient(process.env.TABLE_REGION);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -47,14 +48,14 @@ const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
 var app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
-app.use(usercode.userMiddleWare);
+
 // Enable CORS for all methods
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "*")
   next()
 });
-
+app.use(usercode.userMiddleWare);
 // convert url string param to expected Type
 const convertUrlType = (param, type) => {
   switch(type) {

@@ -1,4 +1,17 @@
-/*
+/* Amplify Params - DO NOT EDIT
+	AUTH_ENDLESSCMPE28139DC59D9_USERPOOLID
+	ENV
+	REGION
+	STORAGE_MEALPLAN_ARN
+	STORAGE_MEALPLAN_NAME
+	STORAGE_MEALPLAN_STREAMARN
+	STORAGE_RECIPE_ARN
+	STORAGE_RECIPE_NAME
+	STORAGE_RECIPE_STREAMARN
+	STORAGE_USERS_ARN
+	STORAGE_USERS_NAME
+	STORAGE_USERS_STREAMARN
+Amplify Params - DO NOT EDIT *//*
 Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
     http://aws.amazon.com/apache2.0/
@@ -14,7 +27,8 @@ var bodyParser = require('body-parser')
 var express = require('express')
 
 AWS.config.update({ region: process.env.TABLE_REGION });
-
+const usercode=require('/opt/user');
+usercode.assignClient(process.env.TABLE_REGION);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 let tableName = "mealplan";
@@ -43,7 +57,7 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "*")
   next()
 });
-
+app.use(usercode.userMiddleWare);
 // convert url string param to expected Type
 const convertUrlType = (param, type) => {
   switch (type) {
@@ -54,6 +68,10 @@ const convertUrlType = (param, type) => {
   }
 }
 
+app.get(path+"/user",async function(req,res){
+  console.log('usercontext ',req.users);
+  return res.json(req.users);
+});
 /********************************
  * HTTP Get method for list objects *
  ********************************/

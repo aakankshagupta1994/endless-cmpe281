@@ -14,6 +14,16 @@ export class UserService {
     }).catch((err) => {
       console.log(err);
     });
+    API.get('endlessapi', '/mealplan/user', {}).then((data) => {
+      console.log('mealplan user ',data);
+    }).catch((err) => {
+      console.log(err);
+    });
+    API.get('endlessapi', '/recipe/user', {}).then((data) => {
+      console.log('recpie user ',data);
+    }).catch((err) => {
+      console.log(err);
+    });
     return {
       username: 'varun',
       role: 'admin'
