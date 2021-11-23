@@ -47,5 +47,13 @@ export class UserupdateComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  action(username:string,status:string){
+    
+    if(status==='approve'){
+    }
+    else{
 
+    }
+    console.log(username+' : '+status);
+  }
 }

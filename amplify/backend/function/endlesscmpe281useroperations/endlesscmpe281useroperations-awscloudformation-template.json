@@ -23,20 +23,16 @@
     "LambdaLayerVersionc2622bbd": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
-        "CompatibleRuntimes": {
-          "Ref": "runtimes"
-        },
+        "CompatibleRuntimes": [
+          "nodejs14.x"
+        ],
         "Content": {
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": {
-            "Ref": "s3Key"
-          }
+          "S3Key": "amplify-builds/endlesscmpe281useroperations-LambdaLayerVersionc2622bbd-build.zip"
         },
-        "Description": {
-          "Ref": "description"
-        },
+        "Description": "Updated layer version 2021-11-23T21:54:32.537Z",
         "LayerName": {
           "Fn::Sub": [
             "endlesscmpe281useroperations-${env}",
@@ -55,9 +51,7 @@
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": {
-          "Ref": "LambdaLayerVersionc2622bbd"
-        },
+        "LayerVersionArn": "arn:aws:lambda:us-west-2:486806635132:layer:endlesscmpe281useroperations-devmain:21",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
