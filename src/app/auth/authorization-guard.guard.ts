@@ -14,7 +14,8 @@ export class AuthorizationGuardGuard implements CanActivate {
     state: RouterStateSnapshot):  Promise<boolean | UrlTree> {
     let allowedRoles=  route.data.expectedRole as string[];
     let user=await this.userService.getUserDetails() ?? '';
-    if(allowedRoles.indexOf(user.role)!=-1){
+    console.log('logged in user ',user);
+    if(allowedRoles.indexOf(user.usertype)!=-1){
         return true;
     }
     else

@@ -14,7 +14,8 @@ export class RecipeService {
 
   async getRecipes() {
     // var recipes;
-   this.recipes=  await API.get('endlessapi', '/recipe/all', {}).then(resp => {
+   this.recipes=  await API.get('endlessapi', '/recipe', {}).then(resp => {
+     this.recipes=resp;
     return resp;
       // console.log(resp);
     }).catch(err => {

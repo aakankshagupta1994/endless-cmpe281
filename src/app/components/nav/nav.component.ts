@@ -25,7 +25,7 @@ export class NavComponent {
   constructor(private breakpointObserver: BreakpointObserver,private _snackBar: MatSnackBar,private userService:UserService) {}
   ngOnInit(){
     this.userService.getUserDetails().then((data)=>{
-        this.userRole=data.role;
+        this.userRole=data.usertype;
     }).catch((err)=>{
       console.log(err);
     });

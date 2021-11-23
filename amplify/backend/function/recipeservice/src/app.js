@@ -106,33 +106,20 @@ app.get(path, function (req, res) {
       res.statusCode = 500;
       res.json({ error: 'Could not load items: ' + err });
     } else {
+      console.log(data);
       res.json(data.Items);
     }
   });
 });
 
-app.get(path + "/:id", function (req, res) {
-
-});
-
-
 app.get(path + hashKeyPath, function (req, res) {
+  
   if (req.path === '/recipe/all') {
-    if (userIdPresent && req.apiGateway) {
-      let queryParams = {
-        TableName: tableName
-      }
-    }
-    else {
-      try {
+      let queryParams 
         queryParams = {
           TableName: tableName
         }
-      } catch (err) {
-        res.statusCode = 500;
-        res.json({ error: 'Wrong column type ' + err });
-      }
-    }
+     
 
     dynamodb.scan(queryParams, (err, data) => {
       if (err) {
