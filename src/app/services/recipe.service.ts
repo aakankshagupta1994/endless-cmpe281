@@ -7,39 +7,43 @@ import { API } from 'aws-amplify';
   providedIn: 'root'
 })
 export class RecipeService {
-  receipeList : any;
+  recipes: any;
+  recipe: any;
+
   constructor(httpClient: HttpClient) { }
 
-  async getRecipe(recipeId : string) {
-    var recipes;
-    return await API.get('endlessapi', '/recipe/' + recipeId, {}).then(resp => {
-      // recipes = resp;
-      return resp;
-      console.log(resp);
+  async getRecipes() {
+    // var recipes;
+   this.recipes=  await API.get('endlessapi', '/recipe/all', {}).then(resp => {
+    return resp;
+      // console.log(resp);
     }).catch(err => {
       console.log(err);
     });
-debugger;
-    return recipes;
+
+    console.log(this.recipes);
+    return this.recipes;
   }
 
-  async getRecipeList() {
-   debugger;
-    this.receipeList = await API.get('endlessapi', '/recipe/all', {}).then(resp => {
-      // return resp;
+  async getRecipe(recipeId: string) {
+    // debugger;
+    this.recipe = await API.get('endlessapi', '/recipe/' + recipeId, {}).then(resp => {
+      console.log(resp);
+      // debugger;
+      return resp;
     }).catch(err => {
       console.log(err);
     });
-    debugger;
-    console.log(this.receipeList);
-
-    return this.receipeList;
+   return this.recipe;
   }
 
 
   async createRecipe(body: object) {
-
-    API.post('endlessapi', '/recipe', body).then(resp => {
+    let myInit = {
+      body: body, // replace this with attributes you need
+      headers: {}, // OPTIONAL
+    };
+    API.post('endlessapi', '/recipe', myInit).then(resp => {
       console.log(resp);
     }).catch(err => {
       console.log(err);

@@ -42,7 +42,7 @@ export class CreateMealPlanComponent implements OnInit {
     //   });
   //  this.mealPlanList =  this.MealPlanService.getList();
 
-  this.recipes = await this.recipeService.getRecipeList();
+  this.recipes = await this.recipeService.getRecipes();
   console.log("Receipe List " + this.recipes);
 
   }

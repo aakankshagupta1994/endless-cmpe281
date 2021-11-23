@@ -1,7 +1,7 @@
-export interface Ingridient {
+export interface ingredient{
 
     
-    ingridient: string,
+    ingredient: string,
     quantity: string,
     macros: string
     

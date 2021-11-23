@@ -27,6 +27,9 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { UserupdateComponent } from './components/userupdate/userupdate.component';
+
 
 @NgModule({
   declarations: [
@@ -40,11 +43,13 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
     MyPlansComponent,
     ProfileComponent,
     MealPlansComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    UserupdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FlexLayoutModule,
     /* configure app with AmplifyUIAngularModule */
     AmplifyUIAngularModule,
     NoopAnimationsModule,
