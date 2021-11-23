@@ -53,7 +53,18 @@ export class UserService {
   }
   async upgradeUser(){
     let res= await API.post('endlessapi', '/user/dietitianreq',{
-      body: {}, 
+      body: {
+      }, 
+      headers: {}, 
+    });
+    return res;
+  }
+  async approval(username:string,approval:string){
+    let res= await API.post('endlessapi', '/user/dietitianreq',{
+      body: {
+        username:username,
+        approval:approval
+      }, 
       headers: {}, 
     });
     return res;

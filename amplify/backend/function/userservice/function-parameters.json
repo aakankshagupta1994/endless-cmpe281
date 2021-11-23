@@ -16,8 +16,12 @@
     },
     "storage": {
       "users": [
+        "create",
         "read",
         "update"
+      ],
+      "mealplan": [
+        "read"
       ]
     }
   }

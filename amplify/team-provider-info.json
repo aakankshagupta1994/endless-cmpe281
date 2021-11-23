@@ -55,7 +55,7 @@
         },
         "userservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/userservice-4257335a6c4c4d323363-build.zip"
+          "s3Key": "amplify-builds/userservice-74666d5863723036692b-build.zip"
         },
         "mealplanservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
@@ -63,16 +63,16 @@
         },
         "useradd": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/useradd-4d324e71767a5054336e-build.zip",
+          "s3Key": "amplify-builds/useradd-776539767265696d4c74-build.zip",
           "userlayer": "useradd"
         },
         "endlesscmpe281useroperations": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/endlesscmpe281useroperations-LambdaLayerVersion1872dc60-build.zip"
+          "s3Key": "amplify-builds/endlesscmpe281useroperations-LambdaLayerVersionc2622bbd-build.zip"
         },
         "userupdate": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/userupdate-34335450424853796c65-build.zip"
+          "s3Key": "amplify-builds/userupdate-30507458436d75413553-build.zip"
         }
       },
       "interactions": {

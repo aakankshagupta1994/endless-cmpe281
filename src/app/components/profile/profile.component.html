@@ -16,18 +16,9 @@
                 </div>
                 <p class="p"><b>{{user?.username ?? ''}}</b></p>
                 <p class="p">{{user?.usertype ?? ''}} </p>
-                <button class="btn-follow" (click)="upgradeUser($event)">Upgrade to Dietitian</button>
+                <button class="btn-follow" (click)="upgradeUser($event)" *ngIf="user&&user.usertype==='user'">Upgrade to Dietitian</button>
+                <p *ngIf="user&&user.dietitianreq&&user.usertype==='user'">Request Pending</p>
                 <div class="icons">
-                </div>
-
-                <div class="user-data" *ngIf="user&&user.usertype!=='admin'">
-                    <div class="post">
-                        <div class="num">Active Plan</div>
-                        <div class="txt"></div>
-                    </div>
-                </div>
-                <div class="card-footer" *ngIf="user&&user.usertype==='user'">
-                    
                 </div>
             </div>
         </div>
