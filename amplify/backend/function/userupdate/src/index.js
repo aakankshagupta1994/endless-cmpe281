@@ -34,11 +34,7 @@ exports.handler = async (event, context, callback) => {
                 ,
                 "identityid": event.userName
                 ,
-                "usertype":  "user",
-                "dietitianreq":false,
-                "isdietitian":false,
-                "activeplan" : null,
-                "plans":[]
+                "usertype":  "user"
                 
             }
         };

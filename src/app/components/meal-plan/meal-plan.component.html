@@ -33,7 +33,7 @@
       
          
            
-            <mat-grid-list cols="3" rowHeight="350px">
+            <mat-grid-list cols="3" rowHeight="450px">
               <!-- <mat-grid-tile> -->
                   <mat-card class="mealplan-card" >
                       <mat-card-header>
@@ -53,7 +53,7 @@
       
                       </mat-card-content>
                       <mat-card-actions>
-                        <button mat-button [routerLink]="[item.meals[0].mealplanid]">SEE RECIPE</button>
+                        <button mat-button [routerLink]="['/recipe',item.meals[0].recipeid]">SEE RECIPE</button>
                         
                       </mat-card-actions>
                   </mat-card>
@@ -75,7 +75,7 @@
       
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-button [routerLink]="[item.meals[1].mealplanid]">SEE RECIPE</button>
+                        <button mat-button [routerLink]="['/recipe',item.meals[1].recipeid]">SEE RECIPE</button>
                         
                       </mat-card-actions>
                 </mat-card> 
@@ -97,7 +97,7 @@
       
                   </mat-card-content>
                   <mat-card-actions>
-                    <button mat-button [routerLink]="[item.meals[2].mealplanid]" >SEE RECIPE</button>
+                    <button mat-button [routerLink]="['/recipe',item.meals[2].recipeid]" >SEE RECIPE</button>
                     
                   </mat-card-actions>
               </mat-card>  
