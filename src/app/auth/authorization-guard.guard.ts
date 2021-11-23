@@ -8,13 +8,16 @@ import { UserService } from '../services/user.service';
 })
 export class AuthorizationGuardGuard implements CanActivate {
   constructor(public userService: UserService, public router: Router) {}
-
+  
    async canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  Promise<boolean | UrlTree> {
     let allowedRoles=  route.data.expectedRole as string[];
     let user=await this.userService.getUserDetails() ?? '';
     console.log('logged in user ',user);
+    if(this.checkDietitian(user,allowedRoles)){
+      return true;
+    }
     if(allowedRoles.indexOf(user.usertype)!=-1){
         return true;
     }
@@ -24,5 +27,10 @@ export class AuthorizationGuardGuard implements CanActivate {
     }
     return false;
   }
-  
+   checkDietitian(user:any,allowedRoles:string[]){
+      if(allowedRoles.indexOf('dietitian')!=-1&&user){
+        return user.isdietitian;
+      }
+      else true;
+  }
 }

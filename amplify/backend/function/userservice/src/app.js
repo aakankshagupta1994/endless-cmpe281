@@ -200,12 +200,42 @@ app.post(path + '/dietitianreq', async function (req, res) {
 
 });
 app.get(path + '/dietitianreqs', async function (req, res) {
-  let reqs = await fetchDietitianReqs(process.env.STORAGE_USERS_NAME);
+  let reqs = await usercode.fetchDietitianReqs(process.env.STORAGE_USERS_NAME);
   res.json(reqs);
 });
-app.post(path + '/approvedietitian', function (req, res) {
-  res.json({ status: "ok" });
+app.post(path + '/approvedietitian',async function (req, res) {
+  let input=req.body;
+  let isdietitian=false;
+  if(input.approve){
+    //approve request;
+    isdietitian=true;
+  }
+  let params = {
+    TableName: process.env.STORAGE_USERS_NAME,
+    Key: { 'username': input.username, "usertype": "user" },
+    UpdateExpression: 'set #a = :x , #b = :y',
+    ExpressionAttributeNames: { '#a': 'dietitianreq' },
+    ExpressionAttributeValues: {
+      ':x': false,
+      ':y': isdietitian
+    }
+  };
+  try {
+    console.log('user update request approval', params);
+    user = await usercode.updateUser(params);
+    if (user) {
+      return res.json({ status: "success", msg: "Request Processed" });
+    }
+    else {
+      return res.json({ status: "failure", msg: "Could not process request" });
+    }
+  }
+  catch (err) {
+    console.log('user upgrade request approval error ', err);
+    return res.json({ status: "failure", msg: "Could not process request" });
+  }
 });
+
 app.listen(3000, function () {
   console.log("App started")
 });

@@ -20,7 +20,7 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersiondb487ee6": {
+    "LambdaLayerVersionc2622bbd": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": {
@@ -51,13 +51,70 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivatedb487ee6": {
+    "LambdaLayerPermissionPrivatec2622bbd": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
         "LayerVersionArn": {
-          "Ref": "LambdaLayerVersiondb487ee6"
+          "Ref": "LambdaLayerVersionc2622bbd"
         },
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersiondb487ee6": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs14.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/endlesscmpe281useroperations-LambdaLayerVersiondb487ee6-build.zip"
+        },
+        "Description": "Updated layer version 2021-11-23T20:47:35.083Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "endlesscmpe281useroperations-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatedb487ee6": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-west-2:486806635132:layer:endlesscmpe281useroperations-devmain:20",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerPermissionPrivateLegacy19": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-west-2:486806635132:layer:endlesscmpe281useroperations-devmain:19",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerPermissionPrivateLegacy18": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-west-2:486806635132:layer:endlesscmpe281useroperations-devmain:18",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
@@ -696,7 +753,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersiondb487ee6"
+        "Ref": "LambdaLayerVersionc2622bbd"
       }
     }
   }

@@ -68,11 +68,7 @@ export class UserService {
     return res;
   }
   async getDietitianReqs(){
-    let res= await API.post('endlessapi', '/user/dietitianreqs',{
-      body: {
-      }, 
-      headers: {}, 
-    });
+    let res= API.get('endlessapi', '/user/dietitianreqs',{});
     return res;
   }
 }

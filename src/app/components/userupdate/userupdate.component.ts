@@ -2,16 +2,14 @@ import { Component, OnInit,AfterViewInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { UserService } from 'src/app/services/user.service';
 
 export interface UserRequest {
-  name: string;
-  id: number;
+  username: string;
+
 }
 
 const ELEMENT_DATA: UserRequest[] = [
-  {id: 1, name: 'Dietitian 1'},
-  {id: 2, name: 'Dietitian 2' },
-  {id: 3, name: 'Dietitian 3'},
 ];
 
 @Component({
@@ -21,12 +19,12 @@ const ELEMENT_DATA: UserRequest[] = [
 })
 export class UserupdateComponent implements OnInit {
 
-  displayedColumns: string[] = ['id','name','action'];
+  displayedColumns: string[] = ['name','action'];
   dataSource: MatTableDataSource<UserRequest>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor() { 
+  constructor(private userService:UserService) { 
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
   }
 
@@ -35,6 +33,10 @@ export class UserupdateComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.userService.getDietitianReqs().then((response:any)=>{
+      console.log(response);
+      this.dataSource=new MatTableDataSource<UserRequest>(response);
+    });
   }
 
   applyFilter(event: Event) {

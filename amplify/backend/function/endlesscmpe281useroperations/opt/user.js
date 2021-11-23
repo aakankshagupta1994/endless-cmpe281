@@ -15,7 +15,24 @@ async function getItem(params) {
     } catch (err) {
         return err
     }
-} async function getItems(params) {
+}
+let scanItems=async(params)=>{
+    try {
+        
+    let scanResults = [];
+    let items;
+    do{
+        items =  await docClient.scan(params).promise();
+        items.Items.forEach((item) => scanResults.push(item));
+        params.ExclusiveStartKey  = items.LastEvaluatedKey;
+    }while(typeof items.LastEvaluatedKey !== "undefined");
+    
+    return scanResults;
+  } catch (err) {
+    return err
+  }
+} 
+async function getItems(params) {
     try {
 
         const data = await docClient.query(params).promise();
@@ -84,21 +101,20 @@ async function fetchUser(usertable, username) {
 }
 async function fetchDietitianReqs(usertable) {
     console.log("Fetching Users with dietitian request true ", usertable);
-    var params = {
+    let params = {
         TableName: usertable,
-        KeyConditionExpression: "#a = :val",
-        ExpressionAttributeNames: {
-            "#a": "dietitianreq"
+        FilterExpression: "#a = :val",
+        ExpressionAttributeNames: { "#a": "dietitianreq"
         },
         ExpressionAttributeValues: {
             ":val": true
         },
-        Limit: 30
+        ProjectionExpression:"username"
     }
     console.log(params);
     // Call DynamoDB to read the item from the table
     try {
-        let users = await getItems(params);
+        let users = await scanItems(params);
         console.log("Success", users);
         return users;
     }
