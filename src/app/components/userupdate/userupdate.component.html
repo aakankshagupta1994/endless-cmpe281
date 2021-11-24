@@ -1,9 +1,13 @@
 <div class="container">
     <h1>Dietitian Requests</h1>
+    <button mat-mini-fab color="primary" aria-label="refresh">
+        <mat-icon (click)="refresh()">refresh</mat-icon>
+      </button>
     <div class="content">
         <div fxLayout="row wrap">
             <div fxFlex="80%" fxFlex.xs="100%" fxFlex.sm="100%" fxLayoutAlign="stretch">
                 <div fxLayout="column">
+                    
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
                         <!--- Note that these columns can be defined in any order.

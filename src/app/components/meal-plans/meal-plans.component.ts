@@ -10,6 +10,7 @@ import 'rxjs/add/operator/filter';
 import { filter } from 'rxjs/operators';
 
 
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-meal-plans',
   templateUrl: './meal-plans.component.html',
@@ -40,7 +41,7 @@ export class MealPlansComponent implements OnInit {
   // }
 
   constructor(private mealplanservice: MealPlanService, private userService: UserService, private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router, private _snackBar: MatSnackBar) {
 
   }
 
@@ -52,7 +53,6 @@ export class MealPlansComponent implements OnInit {
       .filter(params => params.mealtype)
       .subscribe(params => {
         console.log(params); // { order: "popular" }
-        debugger;
         this.filter = params.mealtype;
         console.log(this.filter); // popular
       }
@@ -60,13 +60,22 @@ export class MealPlansComponent implements OnInit {
   }
 
   async subscribeMealPlan(mealplanid: any) {
-    this.existingUser = await this.userService.getLoggedInUser();
-    debugger;
-    console.log("Logged in User" + this.existingUser[0]);
-
-    this.mealList = await this.userService.UpdateMealPlanForUser(mealplanid, this.existingUser[0])
-    console.log("Diet updated");
-    this.router.navigate(['/']);
+    /*  this.existingUser = await this.userService.getLoggedInUser();
+      debugger;
+      console.log("Logged in User" + this.existingUser[0]);
+      
+      this.mealList = await this.userService.UpdateMealPlanForUser(mealplanid,this.existingUser[0])
+      console.log("Diet updated");
+      this.router.navigate(['/']);
+      */
+    let status = await this.userService.subscribeMealPlan(mealplanid);
+    if (status) {
+      this._snackBar.open(status.msg, 'dismiss', {
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 3000
+      });
+    }
   }
 
 }
