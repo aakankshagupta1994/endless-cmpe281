@@ -5,8 +5,11 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import Amplify from "aws-amplify";
+import Predictions, { AmazonAIPredictionsProvider } from '@aws-amplify/predictions';
+
 import aws_exports from "./aws-exports";
 Amplify.configure(aws_exports);
+Amplify.addPluggable(new AmazonAIPredictionsProvider());
 
 if (environment.production) {
   enableProdMode();

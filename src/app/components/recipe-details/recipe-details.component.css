@@ -74,6 +74,9 @@
     height: auto;
   }
   
+  table {
+    width: 100%;
+  }
  .topMargin{
     margin-top: 200px !important;
     
@@ -96,4 +99,6 @@
     width: 400px;
   }
 
-  
+  .audio{
+    float:right;
+  }
