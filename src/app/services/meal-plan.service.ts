@@ -12,7 +12,6 @@ export class MealPlanService {
   async getMealPlan(mealPlanId: string) {
     return API.get('endlessapi', '/mealplan/' + mealPlanId, {}).then(resp => {
       console.log(resp);
-      debugger;
       return resp;
     }).catch(err => {
       console.log(err);
