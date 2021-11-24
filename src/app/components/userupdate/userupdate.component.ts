@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { UserService } from 'src/app/services/user.service';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { ifStmt } from '@angular/compiler/src/output/output_ast';
 export interface UserRequest {
   username: string;
 
@@ -39,6 +40,12 @@ export class UserupdateComponent implements OnInit {
       this.dataSource=new MatTableDataSource<UserRequest>(response);
     });
   }
+  refresh(){
+    this.userService.getDietitianReqs().then((response:any)=>{
+      console.log(response);
+      this.dataSource=new MatTableDataSource<UserRequest>(response);
+    });
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -50,17 +57,15 @@ export class UserupdateComponent implements OnInit {
   }
   async action(username:string,status:string){
     
-    if(status==='approve'){
-    }
-    else{
-
-    }
     console.log(username+' : '+status);
     let resp=await this.userService.approval(username,status);
-    this._snackBar.open(resp.msg, 'dismiss', {
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      duration:3000
-    });
+    if(resp){
+      this._snackBar.open(resp.msg, 'dismiss', {
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration:3000
+      });
+    this.refresh();
+   }
   }
 }

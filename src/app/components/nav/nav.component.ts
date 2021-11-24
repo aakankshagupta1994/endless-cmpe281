@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 import Auth from '@aws-amplify/auth';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class NavComponent {
     );
   @Output() 
   fullfillment = new EventEmitter<any>();
-  constructor(private breakpointObserver: BreakpointObserver,private _snackBar: MatSnackBar,private userService:UserService) {}
+  constructor(private breakpointObserver: BreakpointObserver,private _snackBar: MatSnackBar,private userService:UserService,private _router: Router) {}
   ngOnInit(){
     this.userService.getUserDetails().then((data)=>{
       this.user=data;
@@ -43,7 +44,9 @@ export class NavComponent {
               verticalPosition: 'bottom',
               duration:3000
             });
-      }
+            
+            this._router.navigate(['/mealplans'],{ queryParams:{mealtype:data.slots.MealType}});
+      } 
       if (err) console.error('Chat failed:', err);
   };
   toggleChat(){

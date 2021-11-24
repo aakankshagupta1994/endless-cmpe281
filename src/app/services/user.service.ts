@@ -69,10 +69,10 @@ export class UserService {
     });
     return res;
   }
-  async subscribe(mealplanId:string){
+  async subscribeMealPlan(mealplanId:string){
     let res= await API.post('endlessapi', '/user/subscribe',{
       body: {
-        mealplanId:mealplanId
+        mealplanid:mealplanId
       }, 
       headers: {}, 
     });
