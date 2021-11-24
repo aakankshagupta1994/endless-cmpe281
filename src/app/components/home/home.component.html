@@ -1,16 +1,48 @@
 <div *ngIf="display; else elseTemplate">
-  
-<div class="grid-container">
-  
-  <mat-grid-list cols="7" rowHeight="100px">
-    <mat-grid-tile style="text-align: left;" ><h1 class="mat-h1">Subscribed Diet</h1></mat-grid-tile>
-    <mat-grid-tile class="square" style="text-align: left;"><h2  class="mat-h2 vegan">VEGAN</h2></mat-grid-tile>
-    
-  </mat-grid-list>
-  
-      
-      
-<mat-grid-list cols="3" rowHeight="400px" *ngIf="user.activeplan">
+
+  <div class="grid-container">
+
+    <mat-grid-list cols="7" rowHeight="100px">
+      <mat-grid-tile style="text-align: left;">
+        <h1 class="mat-h1">{{mealPlanDetails[0].name}}</h1>
+      </mat-grid-tile>
+      <mat-grid-tile class="square" style="text-align: left;">
+        <h2 class="mat-h2 vegan">{{mealPlanDetails[0].mealplantype}}</h2>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+
+    <mat-grid-list cols="3" rowHeight="500px">
+      <mat-grid-tile *ngFor="let data of meals">
+        <mat-card class="mealplan-card">
+          <mat-card-header>
+
+
+            <mat-card-title>{{data.recipeName}}
+            </mat-card-title>
+            <mat-card-subtitle>{{data.dietitianid}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>
+              <p style="width: 350px;">
+                {{data.description}}
+              </p>
+              <img src="https://cdn.shopify.com/s/files/1/1517/2462/articles/VeganmealPrep_1512x.jpg" alt="Los Angeles"
+                style="width:100%;">
+
+
+            </div>
+
+          </mat-card-content>
+          <!-- <mat-card-actions>
+                <button mat-button [routerLink]="[data.mealplanid]" >DETAILS</button>
+                <button mat-button (click)="subscribeMealPlan(data.mealplanid)" >SUBSCRIBE</button>
+              </mat-card-actions> -->
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <!-- <mat-grid-list cols="3" rowHeight="400px" *ngIf="user.activeplan">
         <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
           <mat-card class="dashboard-card">
             <mat-card-header>
@@ -40,29 +72,26 @@
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
-      </mat-grid-list>
-<a mat-list-item routerLink="/mealplans/"><button mat-button color="primary">Subscibe to new DietPlan</button></a>
-  
-</div>
+      </mat-grid-list> -->
+    <a mat-list-item routerLink="/mealplans/"><button mat-button color="primary">Subscibe to new DietPlan</button></a>
+
+  </div>
 </div>
 <ng-template #elseTemplate>
 
-          <div class="carousel-caption" style=" top: 55%; color:black; font-size: x-large;">
-                    <h1>Eat Better Not</h1>
-                    <h1>LESS !!</h1>
-                    
-          </div>
-      <div>
-        <h1>You are not subscribed to any Meal Plan <a mat-list-item routerLink="/mealplans/"><button mat-button color="primary">Start your journey today</button></a></h1>
-        <div>
-          <img class="imageCSS"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/assorted-fruits-and-vegetables-background-royalty-free-image-512628566-1533328851.jpg?resize=980:*">
-      </div>
-      
-        
-      </div>
+  <div class="carousel-caption" style=" top: 55%; color:black; font-size: x-large;">
+    <h1>Eat Better Not</h1>
+    <h1>LESS !!</h1>
+
+  </div>
+  <div>
+    <h1>You are not subscribed to any Meal Plan <a mat-list-item routerLink="/mealplans/"><button mat-button
+          color="primary">Start your journey today</button></a></h1>
+    <div>
+      <img class="imageCSS"
+        src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/assorted-fruits-and-vegetables-background-royalty-free-image-512628566-1533328851.jpg?resize=980:*">
+    </div>
+
+
+  </div>
 </ng-template>
-    
-    
-    
-    

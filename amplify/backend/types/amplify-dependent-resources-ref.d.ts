@@ -96,6 +96,7 @@ export type AmplifyDependentResourcesAttributes = {
             "SortKeyType": "string",
             "Region": "string"
         }
+
     },
     "predictions": {
         "audiohelper": {
