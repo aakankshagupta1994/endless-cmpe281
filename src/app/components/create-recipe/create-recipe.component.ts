@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { CreateRecipeRequest } from 'src/app/interfaces/recipe';
 import { UserService } from 'src/app/services/user.service';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'createrecipe',
@@ -77,7 +79,7 @@ export class CreateRecipeComponent implements OnInit {
 
     let recipe: CreateRecipeRequest = {
       recipeid: generateString(6).trim(),
-      dietitianid: "d102",
+      dietitianid: user,
       recipeName: this.recipeName,
       type: this.type,
       procedure: this.steps,
@@ -87,8 +89,12 @@ export class CreateRecipeComponent implements OnInit {
     // let body = {"recipeId":(this.recipeName.substr(0,this.recipeName.indexOf(' ')).trim().concat(generateString(5))), "recipeName": this.recipeName,"dietecianId": dietecianId,"type":this.type,"procedure":this.steps , "ingredients":this.ingredients };
     //  let req = { "body" : recipe}
      
-    this.recipeService.createRecipe(recipe);
-
+    var resp = await this.recipeService.createRecipe(recipe);
+    // debugger;
+    if(resp!=null){
+      window.alert("recipe created");
+    }
+     
   }
 
 }

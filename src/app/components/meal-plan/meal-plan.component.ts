@@ -77,7 +77,7 @@ export class MealPlanComponent {
       
     }
 
-    debugger; 
+    // debugger; 
     this.mealplandetail = await this.mealplanservice.filterMeals("mealplantype=vegan");
    
     
@@ -116,7 +116,7 @@ export class MealPlanComponent {
 
     let recipeDetails = await this.recipeservice.getRecipe(recipeId);
     return recipeDetails;
-    debugger;
+    // debugger;
   }
 
 

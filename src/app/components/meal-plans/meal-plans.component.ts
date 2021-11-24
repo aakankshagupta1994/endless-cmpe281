@@ -40,7 +40,7 @@ export class MealPlansComponent implements OnInit {
   async subscribeMealPlan(mealplanid : any)
   {
     this.existingUser = await this.userService.getLoggedInUser();
-    debugger;
+    // debugger;
     console.log("Logged in User" + this.existingUser[0]);
     
     this.mealList = await this.userService.UpdateMealPlanForUser(mealplanid,this.existingUser[0])
