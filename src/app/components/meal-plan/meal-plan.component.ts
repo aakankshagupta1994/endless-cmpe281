@@ -1,6 +1,6 @@
 import { RecipeService } from 'src/app/services/recipe.service';
 import { MealPlanService } from './../../services/meal-plan.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Mealplan } from 'src/app/interfaces/mealplan';
 
@@ -15,6 +15,9 @@ import { a } from '@aws-amplify/ui';
   templateUrl: './meal-plan.component.html',
   styleUrls: ['./meal-plan.component.css']
 })
+
+
+
 export class MealPlanComponent {
   mealplandetail?: Mealplan[];
   mealplanname?: string;
@@ -77,8 +80,8 @@ export class MealPlanComponent {
       
     }
 
-    debugger; 
-    this.mealplandetail = await this.mealplanservice.filterMeals("mealplantype=vegan");
+    // debugger; 
+    // this.mealplandetail = await this.mealplanservice.filterMeals("mealplantype=vegan");
    
     
     // return this.items;

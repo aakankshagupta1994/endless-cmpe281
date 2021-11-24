@@ -9,7 +9,7 @@
 
 
     <mat-grid-list cols="3" rowHeight="500px">
-        <mat-grid-tile *ngFor="let data of mealList">
+        <mat-grid-tile *ngFor="let data of mealList | pipetransformer : filter">
             <mat-card class="mealplan-card" >
                 <mat-card-header>
 

@@ -31,6 +31,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { UserupdateComponent } from './components/userupdate/userupdate.component';
 import { UserComponent } from './user/user.component';
 
+import { PipetransformerPipe } from './components/pipetransformer.pipe';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { UserComponent } from './user/user.component';
     MealPlansComponent,
     RecipeDetailsComponent,
     UserupdateComponent,
-    UserComponent
+    UserComponent,
+    
+    PipetransformerPipe
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,8 @@ import { UserComponent } from './user/user.component';
     useFactory: AxiosConfigFactory,
     deps: [AxiosInterceptorService],
     multi: true
-}],
+}, 
+PipetransformerPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
