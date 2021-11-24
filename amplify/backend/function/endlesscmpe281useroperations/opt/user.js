@@ -57,11 +57,11 @@ async function updateUser(params) {
     try {
 
         let data = await docClient.update(params).promise();
-        console.log('updated user ',data);
+        console.log( 'updated user ',data);
         return { status: "success", data: data };
     }
     catch (err) {
-        console.log('updating user error', err);
+        console.log( 'updating user error', err);
         return { status: 'failure', err: err };
     }
 }

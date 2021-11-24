@@ -29,6 +29,7 @@ AWS.config.update({ region: process.env.TABLE_REGION });
 const usercode = require('/opt/user');
 usercode.assignClient(process.env.TABLE_REGION);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
+const { v4: uuidv4 } = require('uuid');
 
 let tableName = "users";
 if (process.env.ENV && process.env.ENV !== "NONE") {
@@ -83,85 +84,100 @@ app.get(path + '/myplans', async function (req, res) {
   return res.json({ activeplan: req.users.activeplan, plans: req.users.plans });
 });
 app.post(path + '/subscribe', async function (req, res) {
+  let transid=uuidv4();
   let input = req.body;
   //check plan exists in user object?
-  if (req.users.activeplan && req.users.activeplan.planid == input.mealplanId) {
-    return res.json({ "status": "success", "msg": "Already Subscribed and Active" });
-  }
-  if (req.users.plans) {
-    let mealplan = _util.find(req.users.plans, function (plan) { return plan.mealplanId == input.mealplanId });
-    if (mealplan) {
-
+  //get the current userplans
+  let plans = [];
+  if (req.users.plans && req.users.plans.length > 0) {
+    console.log(transid+" user already has plans");
+    plans = req.users.plans;
+    //turn off all plans
+    plans=_util.forEach(plans,(plan)=>plan.active=false);
+    let fplan=_util.find(plans,(plan)=>{
+      return plan.mealplanid==input.mealplanid
+    });
+    //find if user already has that plan
+    if(fplan){
+      //if yes turn it on and change date
+      //update user and return 
+      plans=_util.forEach(plans,(plan)=>{
+        if(plan.mealplanid==input.mealplanid){
+          plan.active=false;
+          plan.subscribedOn=((new Date().getMonth()+1).toString())+ '/'+( new Date().getDate().toString()) +'/' + (new Date().getFullYear().toString());
+        }
+      });
       try {
-        let response = await updateUserPlans(input.mealplanId, req.users.username);
-        return res.json({ "status": "success", "msg": "Activated the meal plan" });
+        let response = await updateUserPlans(plans, req.users.username,transid);
+        return res.json({ "status": "success", "msg": "Activated the meal plan "+ transid});
       }
       catch (err) {
         console.log('meal plan activation error ', err);
-        return res.json({ "status": "failure", "msg": "Could not activate meal plan" });
+        return res.json({ "status": "failure", "msg": "Could not activate meal plan already present "+transid });
       }
-
     }
-
+    
   }
-  //if yes make it active
-  //else
-  //check plan exists
   try {
-
-    let response = await usercode.fetchMealPlan(process.env.STORAGE_MEALPLAN_NAME, input.mealplanId);
-    if (response) {
+    //check if requested plan exists
+    let mealplanresponse = await usercode.fetchMealPlan(process.env.STORAGE_MEALPLAN_NAME, input.mealplanid);
+    if (mealplanresponse) {
       try {
-        let response = await updateUserPlans(input.mealplanId, req.users.username);
-        return res.json({ "status": "success", "msg": "Activated the meal plan" });
+        console.log(transid+' meal plan found '+mealplanresponse);
+        //if yes add entry to plans with date and activate
+        plans.push({
+          mealplanid:mealplanresponse.mealplanid,
+          active:true,
+          subscribedOn:((new Date().getMonth()+1).toString())+ '/'+( new Date().getDate().toString()) +'/' + (new Date().getFullYear().toString())
+        });
+        console.log(transid+' : '+req.users.username+'updating user plan '+JSON.stringify(plans));
+        let userupdateresponse = await updateUserPlans(plans, req.users,transid);
+        console.log('meal plan updation reponse',userupdateresponse);
+        if(userupdateresponse.status=="success")
+        return res.json({ "status": "success", "msg": "Activated the meal plan "+transid });
+        else
+        return res.json({"status": "failure", "msg": "Could not activate meal plan error while updating "+transid});
       }
       catch (err) {
-        console.log('meal plan activation error ', err);
-        return res.json({ "status": "failure", "msg": "Could not activate meal plan" });
+        console.log(transid+'meal plan activation error ', err);
+        return res.json({ "status": "failure", "msg": "Could not activate meal plan error while updating "+transid });
       }
+    }
+    else {
+      return res.json({ "status": "failure", "msg": "Could not find meal plan "+transid });
     }
   }
   catch (Err) {
-    return res.json({ "status": "failure", "msg": "Could not find meal plan" });
+    //if not return error
+    return res.json({ "status": "failure", "msg": "Could not process request "+transid });
   }
-  //if yes add it to user object and update
-  //else reject
-
-  console.log('usercontext ', req.users);
-  return res.json({ activeplan: req.users.activeplan, plans: req.users.plans });
 });
-
-async function updateUserPlans(mealplanId, user) {
+async function updateUserPlans(plans, user,transid) {
   //change current active
-  let plan = {
-    activeplan: {
-      mealplanId: mealplanId,
-      activeon: new Date().toDateString()
-    }
-  }
+
   var params = {
     TableName: process.env.STORAGE_USERS_NAME,
-    Key: { 'username': user.username, "usertype": "user" },
+    Key: { 'username': user.username, "usertype": user.usertype },
     UpdateExpression: 'set #a = :x',
-    ExpressionAttributeNames: { '#a': 'activeplan' },
+    ExpressionAttributeNames: { '#a': 'plans' },
     ExpressionAttributeValues: {
-      ':x': plan.activeplan
+      ':x': plans
     }
   };
   try {
-    console.log('user plan update request ', params);
+    console.log(transid+' user plan update request '+JSON.stringify( params));
     user = await usercode.updateUser(params);
-    if (user) {
-      return res.json({ status: "success", msg: "Sent Request" });
+    if (user.status=="success") {
+      return { status: "success", msg: "Sent Request "+transid };
     }
     else {
 
-      return res.json({ status: "failure", msg: "Could not process request" });
+      return { status: "failure", msg: "Could not process request "+transid };
     }
   }
   catch (err) {
-    console.log('user plan update request error ', err);
-    return res.json({ status: "failure", msg: "Could not process request" });
+    console.log(transid+' user plan update request error ', err);
+    return { status: "failure", msg: "Could not process request "+transid };
   }
 }
 app.post(path + '/dietitianreq', async function (req, res) {
@@ -203,19 +219,19 @@ app.get(path + '/dietitianreqs', async function (req, res) {
   let reqs = await usercode.fetchDietitianReqs(process.env.STORAGE_USERS_NAME);
   res.json(reqs);
 });
-app.post(path + '/approvedietitian',async function (req, res) {
-  let input=req.body;
-  let isdietitian=false;
-  console.log('approval request  ',input);
-  if(input.approve=="approve"){
+app.post(path + '/approvedietitian', async function (req, res) {
+  let input = req.body;
+  let isdietitian = false;
+  console.log('approval request  ', input);
+  if (input.approve == "approve") {
     //approve request;
-    isdietitian=true;
+    isdietitian = true;
   }
   let params = {
     TableName: process.env.STORAGE_USERS_NAME,
     Key: { 'username': input.username, "usertype": "user" },
     UpdateExpression: 'set #a = :x , #b = :y',
-    ExpressionAttributeNames: { '#a': 'dietitianreq', '#b':'isdietitian' },
+    ExpressionAttributeNames: { '#a': 'dietitianreq', '#b': 'isdietitian' },
     ExpressionAttributeValues: {
       ':x': false,
       ':y': isdietitian
