@@ -31,3 +31,6 @@ export interface UpdateMealplanRequest {
 }
 export interface UpdateMealplanResponse {
 }
+export interface filterMealType {
+    mealtype : string
+}
