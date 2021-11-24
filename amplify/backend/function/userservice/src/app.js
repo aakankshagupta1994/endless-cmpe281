@@ -206,6 +206,7 @@ app.get(path + '/dietitianreqs', async function (req, res) {
 app.post(path + '/approvedietitian',async function (req, res) {
   let input=req.body;
   let isdietitian=false;
+  console.log('approval request  ',input);
   if(input.approve=="approve"){
     //approve request;
     isdietitian=true;
@@ -214,7 +215,7 @@ app.post(path + '/approvedietitian',async function (req, res) {
     TableName: process.env.STORAGE_USERS_NAME,
     Key: { 'username': input.username, "usertype": "user" },
     UpdateExpression: 'set #a = :x , #b = :y',
-    ExpressionAttributeNames: { '#a': 'dietitianreq' },
+    ExpressionAttributeNames: { '#a': 'dietitianreq', '#b':'isdietitian' },
     ExpressionAttributeValues: {
       ':x': false,
       ':y': isdietitian
