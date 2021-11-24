@@ -15,7 +15,7 @@
                     <img src="assets/img/Dinner.jpg">
                 </div>
                 <p class="p"><b>{{user?.username ?? ''}}</b></p>
-                <p class="p">{{user?.usertype ?? ''}} </p>
+                <p class="p">{{user?.usertype ?? ''}}  {{user.dietitian?'| Dietitian':''}}</p>
                 <button class="btn-follow" (click)="upgradeUser($event)" *ngIf="user&&user.usertype==='user'">Upgrade to Dietitian</button>
                 <p *ngIf="user&&user.dietitianreq&&user.usertype==='user'">Request Pending</p>
                 <div class="icons">
