@@ -4,10 +4,10 @@
 
     <mat-grid-list cols="7" rowHeight="100px">
       <mat-grid-tile style="text-align: left;">
-        <h1 class="mat-h1">{{mealPlanDetails[0].name}}</h1>
+        <h1 class="mat-h1">{{mealPlanDetails?mealPlanDetails[0]?.name??'':''}}</h1>
       </mat-grid-tile>
       <mat-grid-tile class="square" style="text-align: left;">
-        <h2 class="mat-h2 vegan">{{mealPlanDetails[0].mealplantype}}</h2>
+        <h2 class="mat-h2 vegan">{{mealPlanDetails?mealPlanDetails[0]?.mealplantype??'':''}}</h2>
       </mat-grid-tile>
 
     </mat-grid-list>

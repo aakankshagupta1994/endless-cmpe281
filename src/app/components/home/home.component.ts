@@ -44,21 +44,21 @@ export class HomeComponent implements OnInit {
 
     this.userService.getUserDetails().then(data => {
       this.user = data;
-      debugger;
+    
       var that = this;
       if (this.user.isActive === true) {
         this.display = true;
 
-        let activeuserplan = this.user.plans.map((item: any) => {
+        let activeuserplan = this.user.plans.find((item: any) => {
           if (item.active === true) {
             return item;
           }
         });
         // this.mealplanid = this.user.activeplan;
 
-        let data = this.getMealPlanDetails(activeuserplan[0]).then(res => {
+        let data = this.getMealPlanDetails(activeuserplan).then(res => {
           console.log(res);
-          debugger;
+      
         })
 
       }
@@ -66,13 +66,14 @@ export class HomeComponent implements OnInit {
       this.user = null;
     });
 
-    debugger;
+  
   }
   async getMealPlanDetails(userplan: any) {
-    debugger;
+   console.log(userplan);
+   if(userplan){
     this.mealPlanDetails = await this.mealplanservice.getMealPlan(userplan.mealplanid);
-    debugger;
-    let userDate = userplan.subscribedOn.split('/')
+ 
+    let userDate = userplan.subscribedOn.split('/');
     let date = new Date();
     date.setFullYear(JSON.parse(userDate[2]));
     date.setMonth(JSON.parse(userDate[0]) - 1);
@@ -85,10 +86,10 @@ export class HomeComponent implements OnInit {
     if (this.mealPlanDetails.length > 0) {
       let completedata = await this.formatItems(this.mealPlanDetails[0].chart[day]);
       console.log(completedata);
-      debugger;
+      
       return this.mealPlanDetails;
     }
-
+  }
 
   }
 
