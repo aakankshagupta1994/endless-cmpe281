@@ -72,11 +72,10 @@ app.get(path + "/user", async function (req, res) {
   return res.json(req.users);
 });
 function checkCreateAccess(req, res, next) {
-  if (req.users.usertype === "admin" || req.users.usertype === "dietitian") {
+  if (req.users.usertype === "admin" || req.users.isdietitian) {
     next();
   }
   else {
-    console.log(Err);
     res.status(402).json({ 'Status': 'Forbidden' });
   }
 }

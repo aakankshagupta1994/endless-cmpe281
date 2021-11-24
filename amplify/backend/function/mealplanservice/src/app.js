@@ -68,11 +68,10 @@ const convertUrlType = (param, type) => {
   }
 }
 function checkCreateAccess(req, res, next) {
-  if (req.users.usertype === "admin" || req.users.usertype === "dietitian") {
+  if (req.users.usertype === "admin" || req.users.isdietitian) {
     next();
   }
   else {
-    console.log(Err);
     res.status(402).json({ 'Status': 'Forbidden' });
   }
 }

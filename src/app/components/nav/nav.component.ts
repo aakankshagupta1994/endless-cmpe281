@@ -52,8 +52,8 @@ export class NavComponent {
   toggleChat(){
     this.showChat=!this.showChat;
   }
-  checkUserRole(userRoles:string[]){
-    return userRoles.indexOf(this.userRole)!=-1?true:false;
+  checkUserRole(userRoles:string[],dietitiancheck:boolean){
+    return userRoles.indexOf(this.userRole)!=-1||(dietitiancheck&&this.user&&this.user.isdietitian)?true:false;
   }
   async logout(){
     try{

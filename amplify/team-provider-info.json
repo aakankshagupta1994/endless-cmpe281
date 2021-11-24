@@ -51,7 +51,7 @@
       "function": {
         "recipeservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/recipeservice-4b362f444574302b4f75-build.zip"
+          "s3Key": "amplify-builds/recipeservice-5a4a6877776979644441-build.zip"
         },
         "userservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
@@ -59,7 +59,7 @@
         },
         "mealplanservice": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
-          "s3Key": "amplify-builds/mealplanservice-2f717834723462467736-build.zip"
+          "s3Key": "amplify-builds/mealplanservice-54316232756f356a7668-build.zip"
         },
         "useradd": {
           "deploymentBucketName": "amplify-endlesscmpe281-devmain-191353-deployment",
