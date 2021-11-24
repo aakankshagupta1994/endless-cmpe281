@@ -119,7 +119,7 @@ export class MealPlanComponent {
 
     let recipeDetails = await this.recipeservice.getRecipe(recipeId);
     return recipeDetails;
-    debugger;
+    // debugger;
   }
 
 
