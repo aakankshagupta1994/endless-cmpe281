@@ -163,4 +163,7 @@ Admin has the authority to approve the dietitian request.
 ![image](https://user-images.githubusercontent.com/89236239/143189360-5de9e67a-9ef1-4418-80c5-e071018e450b.png)
 ![image](https://user-images.githubusercontent.com/89236239/143189370-fc562efe-0f87-4283-9b41-6a5ca71a7696.png)
 
+Video Link: 
+
+https://drive.google.com/drive/folders/1u52QaIU3EETsuap6bIJdWIGtKY-NKfcj?usp=sharing
 
