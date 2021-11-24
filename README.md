@@ -103,9 +103,9 @@ Available Recipes page 2 type and ingredients : User/Dietician/Admin Role
 
 Available Recipes Page 3 procedures: User/Dietician/Admin Role
  
+![image](https://user-images.githubusercontent.com/89236413/143194374-ff3d91ce-4393-468c-8198-1118036484ed.png)
 
   
-![image](https://user-images.githubusercontent.com/89236239/143189208-cf88489e-2c45-4af3-99a7-9b85de8f5a38.png)
 
 User Profile: User/Dietician/Admin Role
 We are able to see our user name displayed in the top right drop down menu.
@@ -123,15 +123,18 @@ The dietitians will be able to create recipes on this page.
 A dietitian will need to enter the recipe name,
 select the type of recipe (Veg/Non-Veg), enter ingredient details, and the procedure to make the dish.  
 The recipes created here can then be used in the meal plans that the dietitian will create
-![image](https://user-images.githubusercontent.com/89236239/143189265-559a0832-2ece-4d4e-9610-bdcc1b980888.png)
+![image](https://user-images.githubusercontent.com/89236413/143194520-957a5354-b2e4-4ada-8295-71fb5409f0d8.png)
+
 
  
 Create Recipe Page 2: User/Dietician/Admin Role
- ![image](https://user-images.githubusercontent.com/89236239/143189271-ef4d8b5c-a683-4819-8ad0-8da05f119a0d.png)
+ ![image](https://user-images.githubusercontent.com/89236413/143194641-188cb833-f97f-4955-8e7d-548aeb207173.png)
 
 
 
-![image](https://user-images.githubusercontent.com/89236239/143189183-dcb6c9ff-b0d4-4c40-9e33-ff3824974ef3.png)
+
+![image](https://user-images.githubusercontent.com/89236413/143194820-a42daec8-dc7b-4f9a-a190-f48895d7cfb9.png)
+
 
 
 
