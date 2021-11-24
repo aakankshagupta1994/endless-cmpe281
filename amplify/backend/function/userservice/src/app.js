@@ -187,10 +187,11 @@ app.post(path + '/dietitianreq', async function (req, res) {
   if (req.users.usertype === "dietitian") {
     return res.json({ status: "success", msg: "Already Dietitian" });
   }
-  let user = usercode.fetchUser(process.env.STORAGE_USERS_NAME, req.users.username);
+  let user =await usercode.fetchUser(process.env.STORAGE_USERS_NAME, req.users.username);
   if (user.hasOwnProperty('dietitianreq') && user.dietitianreq) {
     return res.json({ status: "success", msg: "Already Requested for upgrade to Dietitian" });
   }
+  console.log('dietitian user request ',user);
   //update user
   var params = {
     TableName: process.env.STORAGE_USERS_NAME,
@@ -204,7 +205,7 @@ app.post(path + '/dietitianreq', async function (req, res) {
   try {
     console.log('user update request ', params);
     user = await usercode.updateUser(params);
-    if (user) {
+    if (user.status=="success") {
       return res.json({ status: "success", msg: "Sent Request" });
     }
     else {
