@@ -8,9 +8,9 @@
       
     </style> -->
   </head>
-  <body>
+  <body style="background-color:rgb(65, 59, 59);">
     <div class="testbox">
-      <form ngNativeValidate>
+      <form #loginForm="ngForm" style="background-color:rgb(65, 59, 59);">
         <div class="banner">
           <h1>Create Recipe</h1>
         </div>
@@ -19,7 +19,9 @@
           <p>Enter Recipe Name</p>
           <div class="name-item">
            <input required type="text" name="recipeName" placeholder="My Recipe" [(ngModel)]="recipeName"/> 
-           
+           <!-- <div *ngIf="recipeName.errors?.['required']">
+            Name is required.
+          </div> -->
           </div> 
         </div> 
         Veg <input required type="radio" id="options1" name="function" [(ngModel)]="type" value="Veg">
@@ -61,12 +63,12 @@
               </tr>
             </table>
           </section>
-          
+           
           </div>
         </div>
       
         <div class="btn-block">
-          <button  (click)="onSubmit()" >Submit</button>
+          <button [disabled]="loginForm.form.invalid" (click)="onSubmit()" >Submit</button>
         </div>
       </form>
     </div>

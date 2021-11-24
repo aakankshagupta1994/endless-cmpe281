@@ -44,8 +44,11 @@ export class RecipeService {
       body: body, // replace this with attributes you need
       headers: {}, // OPTIONAL
     };
-    API.post('endlessapi', '/recipe', myInit).then(resp => {
-      console.log(resp);
+    return API.post('endlessapi', '/recipe', myInit).then(resp => {
+      // debugger;
+      return resp;
+
+      // console.log(resp);
     }).catch(err => {
       console.log(err);
     });

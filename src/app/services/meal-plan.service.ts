@@ -39,7 +39,7 @@ export class MealPlanService {
   }
 
   async filterMeals(query: any) {
-    debugger;
+    // debugger;
     this.mealplanList = await API.get('endlessapi', '/mealplan?mealplantype=Vegan', {});
     // this.mealplanList = await API.get('endlessapi', '/mealplan?mealplantype=Vegan' , 
     // {   'queryStringParameters': {
