@@ -77,7 +77,7 @@ export class CreateRecipeComponent implements OnInit {
 
     let recipe: CreateRecipeRequest = {
       recipeid: generateString(6).trim(),
-      dietitianid: "d102",
+      dietitianid: user,
       recipeName: this.recipeName,
       type: this.type,
       procedure: this.steps,
@@ -87,8 +87,12 @@ export class CreateRecipeComponent implements OnInit {
     // let body = {"recipeId":(this.recipeName.substr(0,this.recipeName.indexOf(' ')).trim().concat(generateString(5))), "recipeName": this.recipeName,"dietecianId": dietecianId,"type":this.type,"procedure":this.steps , "ingredients":this.ingredients };
     //  let req = { "body" : recipe}
      
-    this.recipeService.createRecipe(recipe);
+    var resp = await this.recipeService.createRecipe(recipe);
 
+    console.log(resp);
+
+    window.alert("Recipe Created");
+    
   }
 
 }

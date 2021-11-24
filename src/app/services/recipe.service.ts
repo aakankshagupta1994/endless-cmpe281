@@ -46,6 +46,8 @@ export class RecipeService {
     };
     API.post('endlessapi', '/recipe', myInit).then(resp => {
       console.log(resp);
+      // debugger;
+      return resp;
     }).catch(err => {
       console.log(err);
     });
