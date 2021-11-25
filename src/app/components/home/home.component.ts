@@ -48,18 +48,23 @@ export class HomeComponent implements OnInit {
       var that = this;
       if (this.user.isActive === true) {
         this.display = true;
-
-        let activeuserplan = this.user.plans.find((item: any) => {
-          if (item.active === true) {
-            return item;
-          }
-        });
-        // this.mealplanid = this.user.activeplan;
-
-        let data = this.getMealPlanDetails(activeuserplan).then(res => {
-          console.log(res);
-      
-        })
+        if(this.user&&this.user.plans&&this.user.plans.length==0){
+          this.display=false;
+        }
+        else{
+          let activeuserplan = this.user.plans.find((item: any) => {
+            if (item.active === true) {
+              return item;
+            }
+          });
+          // this.mealplanid = this.user.activeplan;
+  
+          let data = this.getMealPlanDetails(activeuserplan).then(res => {
+            console.log(res);
+        
+          })
+        }
+        
 
       }
     }).catch(err => {

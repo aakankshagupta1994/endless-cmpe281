@@ -43,8 +43,10 @@
     ],
     "triggers": {},
     "hostedUIDomainName": "endlesscmpe28139dc59d9-39dc59d9",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
+    "authProvidersUserPool": [
+      "Facebook"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
     "userPoolGroupList": [
       "endlessuserpool"
     ],
@@ -69,10 +71,10 @@
     "authProviders": [],
     "userPoolGroups": true,
     "adminQueries": false,
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4200/\"],\"LogoutURLs\":[\"http://localhost:4200/\"]}",
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [],
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.elifediet.com/\"],\"LogoutURLs\":[\"https://www.elifediet.com/\"]}"
   }
 }
