@@ -25,7 +25,7 @@ https://www.linkedin.com/in/pratiksha-shukla-61b17919a/
 
 
 Govinder Somal
-
+https://www.linkedin.com/in/govindersomal/ 
 
 SAN JOSE STATE UNIVERSITY 
 
